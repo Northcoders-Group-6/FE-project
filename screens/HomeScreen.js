@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+
   const handleSignOut = () => {
     auth
       .signOut()

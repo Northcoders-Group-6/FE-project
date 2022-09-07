@@ -30,14 +30,18 @@ const LoginScreen = () => {
     return unsubscribe;
   }, []);
 
-  const handleSignUp = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log("Registered with:", user.email);
-      })
-      .catch((error) => alert(error.message));
+  const handleRegister = () => {
+    navigation.replace("Which User");
   };
+
+  // const handleSignUp = () => {
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((userCredentials) => {
+  //       const user = userCredentials.user;
+  //       console.log("Registered with:", user.email);
+  //     })
+  //     .catch((error) => alert(error.message));
+  // }; //THIS IS THE CODE FOR REGISTERING USERS TO FIREBASE
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
@@ -49,7 +53,10 @@ const LoginScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.select({ android: undefined, ios: "padding" })}
+    >
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -70,7 +77,7 @@ const LoginScreen = () => {
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={handleSignUp}
+          onPress={handleRegister}
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
