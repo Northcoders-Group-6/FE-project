@@ -1,14 +1,28 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const WhichUser = () => {
+  const navigation = useNavigation();
+
+  const handleStudentReg = () => {
+    navigation.replace("Student Reg");
+  };
+
+  const handleOrganiserReg = () => {
+    navigation.replace("Organiser Reg");
+  };
+
   return (
     <View>
       <Text style={styles.textStyle}>Are you...</Text>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={handleStudentReg} style={styles.button}>
         <Text style={styles.buttonText}>Student</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
+      <TouchableOpacity
+        onPress={handleOrganiserReg}
+        style={[styles.button, styles.buttonOutline]}
+      >
         <Text style={styles.buttonOutlineText}>Organiser</Text>
       </TouchableOpacity>
     </View>
