@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TextInput } from "react-native";
 import React from "react";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const StudentReg = () => {
   return (
     <View>
-      <Text>StudentReg</Text>
+      <TextInput>First Name</TextInput>
+      <TextInput>Surname</TextInput>
     </View>
   );
 };
