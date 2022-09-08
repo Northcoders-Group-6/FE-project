@@ -8,6 +8,7 @@ import WelcomeScreen from "./screens/WelcomeScreen";
 import WhichUser from "./screens/WhichUser";
 import StudentReg from "./screens/StudentReg";
 import OrganiserReg from "./screens/OrganiserReg";
+import ExploreOpps from "./screens/ExploreOpps";
 
 const Stack = createNativeStackNavigator();
 
