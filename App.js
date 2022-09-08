@@ -9,25 +9,34 @@ import WhichUser from "./screens/WhichUser";
 import StudentReg from "./screens/StudentReg";
 import OrganiserReg from "./screens/OrganiserReg";
 import ExploreOpps from "./screens/ExploreOpps";
+import { UserContext } from "./src/contexts/UserContext";
+import { useContext, useState } from "react";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [loggedInUser, setloggedInUser] = useState([]);
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={LoginScreen}
-        />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Welcome" component={WelcomeScreen} />
-        <Stack.Screen name="Which User" component={WhichUser} />
-        <Stack.Screen name="Student Reg" component={StudentReg} />
-        <Stack.Screen name="Organiser Reg" component={OrganiserReg} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <UserContext.Provider value={{ loggedInUser, setloggedInUser }}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Login"
+              component={LoginScreen}
+            />
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Welcome" component={WelcomeScreen} />
+            <Stack.Screen name="Which User" component={WhichUser} />
+            <Stack.Screen name="Student Reg" component={StudentReg} />
+            <Stack.Screen name="Organiser Reg" component={OrganiserReg} />
+            <Stack.Screen name="Explore" component={ExploreOpps} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </UserContext.Provider>
+    </>
   );
 }
 
