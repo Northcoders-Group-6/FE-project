@@ -34,118 +34,120 @@ const volunteerSchema = yup.object({
 
 const StudentReg = () => {
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.select({ android: undefined, ios: "padding" })}
-      >
-        <View style={styles.buttonContainer}>
-          <Formik
-            initialValues={{
-              userType: "vol",
-              firstName: "",
-              surname: "",
-              studentId: "",
-              location: "",
-              phone: "",
-              email: "",
-              password: "",
-            }}
-            validationSchema={volunteerSchema}
-            onSubmit={(values, actions) => {
-              console.log(values);
-              db.collection("Volunteers").add(values);
-              actions.resetForm();
-            }}
-          >
-            {props => (
-              <View>
-                <TextInput
-                  style={styles.input}
-                  placeholder="First Name"
-                  onChangeText={props.handleChange("firstName")}
-                  onBlur={props.handleBlur("firstName")}
-                  value={props.values.firstName}
-                />
-                {/* only if the left value is a valid string, will the right value be displayed */}
-                <Text style={styles.errorText}>
-                  {props.touched.firstName && props.errors.firstName}
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Surname"
-                  onChangeText={props.handleChange("surname")}
-                  onBlur={props.handleBlur("surname")}
-                  value={props.values.surname}
-                />
-                <Text style={styles.errorText}>
-                  {props.touched.surname && props.errors.surname}
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Student ID number"
-                  onChangeText={props.handleChange("studentId")}
-                  onBlur={props.handleBlur("studentId")}
-                  value={props.values.studentId}
-                />
-                <Text style={styles.errorText}>
-                  {props.touched.studentId && props.errors.studentId}
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Location"
-                  onChangeText={props.handleChange("location")}
-                  onBlur={props.handleBlur("location")}
-                  value={props.values.location}
-                />
-                <Text style={styles.errorText}>
-                  {props.touched.location && props.errors.location}
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Phone"
-                  onChangeText={props.handleChange("phone")}
-                  value={props.values.phone}
-                  onBlur={props.handleBlur("phone")}
-                  keyboardType="numeric"
-                />
-                <Text style={styles.errorText}>
-                  {props.touched.phone && props.errors.phone}
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Email"
-                  onChangeText={props.handleChange("email")}
-                  onBlur={props.handleBlur("email")}
-                  value={props.values.email}
-                />
-                <Text style={styles.errorText}>
-                  {props.touched.email && props.errors.email}
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Password"
-                  onChangeText={props.handleChange("password")}
-                  onBlur={props.handleBlur("password")}
-                  value={props.values.password}
-                  secureTextEntry
-                />
-                <Text style={styles.errorText}>
-                  {props.touched.password && props.errors.password}
-                </Text>
-                <TouchableOpacity>
-                  <Button title="Submit" onPress={props.handleSubmit} />
-                </TouchableOpacity>
-                <Text>
-                  By signing up I agreee to Voluntreat's terms of service and
-                  privacy policy
-                </Text>
-              </View>
-            )}
-          </Formik>
-        </View>
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+    <ScrollView style={{ marginHorizontal: 20 }}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.select({ android: undefined, ios: "padding" })}
+        >
+          <View style={styles.buttonContainer}>
+            <Formik
+              initialValues={{
+                userType: "vol",
+                firstName: "",
+                surname: "",
+                studentId: "",
+                location: "",
+                phone: "",
+                email: "",
+                password: "",
+              }}
+              validationSchema={volunteerSchema}
+              onSubmit={(values, actions) => {
+                console.log(values);
+                db.collection("Volunteers").add(values);
+                actions.resetForm();
+              }}
+            >
+              {props => (
+                <View>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="First Name"
+                    onChangeText={props.handleChange("firstName")}
+                    onBlur={props.handleBlur("firstName")}
+                    value={props.values.firstName}
+                  />
+                  {/* only if the left value is a valid string, will the right value be displayed */}
+                  <Text style={styles.errorText}>
+                    {props.touched.firstName && props.errors.firstName}
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Surname"
+                    onChangeText={props.handleChange("surname")}
+                    onBlur={props.handleBlur("surname")}
+                    value={props.values.surname}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.surname && props.errors.surname}
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Student ID number"
+                    onChangeText={props.handleChange("studentId")}
+                    onBlur={props.handleBlur("studentId")}
+                    value={props.values.studentId}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.studentId && props.errors.studentId}
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Location"
+                    onChangeText={props.handleChange("location")}
+                    onBlur={props.handleBlur("location")}
+                    value={props.values.location}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.location && props.errors.location}
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Phone"
+                    onChangeText={props.handleChange("phone")}
+                    value={props.values.phone}
+                    onBlur={props.handleBlur("phone")}
+                    keyboardType="numeric"
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.phone && props.errors.phone}
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    onChangeText={props.handleChange("email")}
+                    onBlur={props.handleBlur("email")}
+                    value={props.values.email}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.email && props.errors.email}
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Password"
+                    onChangeText={props.handleChange("password")}
+                    onBlur={props.handleBlur("password")}
+                    value={props.values.password}
+                    secureTextEntry
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.password && props.errors.password}
+                  </Text>
+                  <TouchableOpacity>
+                    <Button title="Submit" onPress={props.handleSubmit} />
+                  </TouchableOpacity>
+                  <Text>
+                    By signing up I agreee to Voluntreat's terms of service and
+                    privacy policy
+                  </Text>
+                </View>
+              )}
+            </Formik>
+          </View>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   );
 };
 
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
     margin: 0,
     borderWidth: 1,
     borderColor: "#ddd",
-    padding: 0,
+    padding: 5,
     fontSize: 15,
     borderRadius: 6,
   },
@@ -169,6 +171,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
+    margin: 3,
     backgroundColor: "#5D62CB",
     color: "white",
     width: "100%",
