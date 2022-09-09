@@ -35,7 +35,7 @@ const LoginScreen = () => {
   }, []);
 
   const handleRegister = () => {
-    navigation.replace("Explore Opps");
+    navigation.replace("Which User");
   };
 
   // const handleSignUp = () => {
