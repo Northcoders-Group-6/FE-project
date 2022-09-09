@@ -9,6 +9,8 @@ import {
 import React from "react";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+// import { db } from "../firebase";
+// import { doc, setDoc } from "firebase/firestore";
 
 const StudentReg = () => {
   const [firstName, setFirstName] = useState("");
