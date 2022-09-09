@@ -11,18 +11,49 @@ import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 const StudentReg = () => {
+  const [firstName, setFirstName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [studentId, setStudentId] = useState("");
+  const [location, setLocation] = useState("");
+  const [email, setEmail] = useState("");
+  const [telephone, setTelephone] = useState("");
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.select({ android: undefined, ios: "padding" })}
     >
       <View style={styles.buttonContainer}>
-        <TextInput placeholder="First Name"></TextInput>
-        <TextInput placeholder="Surname"></TextInput>
-        <TextInput placeholder="Student ID number"></TextInput>
-        <TextInput placeholder="Location"></TextInput>
-        <TextInput placeholder="Email Address"></TextInput>
-        <TextInput placeholder="Telephone"></TextInput>
+        <TextInput
+          placeholder="First Name"
+          value={firstName}
+          onChangeText={(text) => setFirstName(text)}
+        ></TextInput>
+        <TextInput
+          placeholder="Surname"
+          value={surname}
+          onChangeText={(text) => setSurname(text)}
+        ></TextInput>
+        <TextInput
+          placeholder="Student ID number"
+          value={studentId}
+          onChangeText={(text) => setStudentId(text)}
+        ></TextInput>
+        <TextInput
+          placeholder="Location"
+          value={location}
+          onChangeText={(text) => setLocation(text)}
+        ></TextInput>
+        <TextInput
+          placeholder="Email Address"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        ></TextInput>
+        <TextInput
+          placeholder="Telephone"
+          value={telephone}
+          onChangeText={(text) => setTelephone(text)}
+        ></TextInput>
         <TouchableOpacity>
           <Text style={[styles.buttonOutlineText, styles.button]}>Submit</Text>
         </TouchableOpacity>
