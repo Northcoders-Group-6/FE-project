@@ -1,17 +1,36 @@
 import { db } from "../firebase";
-
 import { Formik } from "formik";
+import * as yup from "yup";
+
 import {
   Button,
   StyleSheet,
   Text,
   View,
+  ScrollView,
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+const volunteerSchema = yup.object({
+  firstName: yup.string().required().min(4).max(10),
+  surname: yup.string().required().min(4).max(10),
+  studentId: yup
+    .string()
+    .required()
+    .min(4, "Must be exactly 5 values")
+    .max(4, "Must be exactly 5 values"),
+  location: yup.string().required().min(4),
+  phoneNumber: yup.string().matches(phoneRegExp, "Phone number is not valid"),
+  email: yup.string().email("Please enter a valid email"),
+  password: yup.string().required().min(8),
+});
 
 const StudentReg = () => {
   return (
@@ -23,15 +42,16 @@ const StudentReg = () => {
         <View style={styles.buttonContainer}>
           <Formik
             initialValues={{
+              userType: "vol",
               firstName: "",
               surname: "",
               studentId: "",
               location: "",
-              email: "",
               phone: "",
+              email: "",
               password: "",
-              userType: "vol",
             }}
+            validationSchema={volunteerSchema}
             onSubmit={(values, actions) => {
               console.log(values);
               db.collection("Volunteers").add(values);
@@ -44,51 +64,77 @@ const StudentReg = () => {
                   style={styles.input}
                   placeholder="First Name"
                   onChangeText={props.handleChange("firstName")}
+                  onBlur={props.handleBlur("firstName")}
                   value={props.values.firstName}
                 />
+                {/* only if the left value is a valid string, will the right value be displayed */}
+                <Text style={styles.errorText}>
+                  {props.touched.firstName && props.errors.firstName}
+                </Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Surname"
                   onChangeText={props.handleChange("surname")}
+                  onBlur={props.handleBlur("surname")}
                   value={props.values.surname}
                 />
+                <Text style={styles.errorText}>
+                  {props.touched.surname && props.errors.surname}
+                </Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Student ID number"
                   onChangeText={props.handleChange("studentId")}
+                  onBlur={props.handleBlur("studentId")}
                   value={props.values.studentId}
                 />
+                <Text style={styles.errorText}>
+                  {props.touched.studentId && props.errors.studentId}
+                </Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Location"
                   onChangeText={props.handleChange("location")}
+                  onBlur={props.handleBlur("location")}
                   value={props.values.location}
                 />
-                <TextInput
-                  style={styles.input}
-                  placeholder="Email"
-                  onChangeText={props.handleChange("email")}
-                  value={props.values.email}
-                />
+                <Text style={styles.errorText}>
+                  {props.touched.location && props.errors.location}
+                </Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Phone"
                   onChangeText={props.handleChange("phone")}
                   value={props.values.phone}
+                  onBlur={props.handleBlur("phone")}
                   keyboardType="numeric"
                 />
+                <Text style={styles.errorText}>
+                  {props.touched.phone && props.errors.phone}
+                </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email"
+                  onChangeText={props.handleChange("email")}
+                  onBlur={props.handleBlur("email")}
+                  value={props.values.email}
+                />
+                <Text style={styles.errorText}>
+                  {props.touched.email && props.errors.email}
+                </Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Password"
                   onChangeText={props.handleChange("password")}
+                  onBlur={props.handleBlur("password")}
                   value={props.values.password}
+                  secureTextEntry
                 />
+                <Text style={styles.errorText}>
+                  {props.touched.password && props.errors.password}
+                </Text>
                 <TouchableOpacity>
-                  <Button
-                    style={styles.button}
-                    title="Submit"
-                    onPress={props.handleSubmit}
-                  />
+                  <Button title="Submit" onPress={props.handleSubmit} />
                 </TouchableOpacity>
                 <Text>
                   By signing up I agreee to Voluntreat's terms of service and
@@ -107,28 +153,35 @@ export default StudentReg;
 
 const styles = StyleSheet.create({
   input: {
+    margin: 0,
     borderWidth: 1,
     borderColor: "#ddd",
-    padding: 10,
-    fontSize: 18,
+    padding: 0,
+    fontSize: 15,
     borderRadius: 6,
   },
-  buttonContainer: {
-    width: "60%",
+  container: {
+    marginTop: 40,
+    flex: 1,
+    flexDirection: "column",
+    padding: 20,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
   },
   button: {
     backgroundColor: "#5D62CB",
+    color: "white",
     width: "100%",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
   },
-  buttonOutlineText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
+  errorText: {
+    color: "crimson",
+    fontWeight: "bold",
+    marginBottom: 2,
+    marginTop: 2,
+    margin: 0,
+    textAlign: "center",
   },
 });
