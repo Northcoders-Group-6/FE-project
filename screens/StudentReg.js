@@ -3,7 +3,6 @@ import { Formik } from "formik";
 import * as yup from "yup";
 
 import {
-  Button,
   StyleSheet,
   Text,
   View,
@@ -141,7 +140,15 @@ const StudentReg = () => {
                     {props.touched.password && props.errors.password}
                   </Text>
                   <TouchableOpacity>
-                    <Button title="Submit" onPress={props.handleSubmit} />
+                    <View style={styles.button}>
+                      <Text
+                        style={styles.buttonText}
+                        title="Submit"
+                        onPress={props.handleSubmit}
+                      >
+                        Submit
+                      </Text>
+                    </View>
                   </TouchableOpacity>
                   <Text>
                     By signing up I agreee to Voluntreat's terms of service and
@@ -177,16 +184,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    margin: 3,
+    borderRadius: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
     backgroundColor: "#5D62CB",
+  },
+  buttonText: {
     color: "white",
-    width: "100%",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    fontSize: 16,
+    textAlign: "center",
   },
   errorText: {
-    color: "crimson",
+    color: "#5D62CB",
     fontWeight: "bold",
     marginBottom: 2,
     marginTop: 2,
