@@ -19,16 +19,21 @@ const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const volunteerSchema = yup.object({
-  firstName: yup.string().required().min(4).max(10),
-  surname: yup.string().required().min(4).max(10),
+  firstName: yup.string().required().min(2).max(20),
+  surname: yup.string().required().min(2).max(20),
   studentId: yup
     .string()
     .required()
-    .min(4, "Must be exactly 5 values")
-    .max(4, "Must be exactly 5 values"),
-  location: yup.string().required().min(4),
-  phoneNumber: yup.string().matches(phoneRegExp, "Phone number is not valid"),
-  email: yup.string().email("Please enter a valid email"),
+    .min(5, "Must be exactly 5 values")
+    .max(5, "Must be exactly 5 values"),
+  location: yup.string().required().min(2),
+  phone: yup
+    .string()
+    .required("Phone is required field")
+    .matches(phoneRegExp, "Phone number is not valid")
+    .min(10, "to short")
+    .max(10, "to long"),
+  email: yup.string().required().email("Please enter a valid email"),
   password: yup.string().required().min(8),
 });
 
@@ -55,8 +60,8 @@ const StudentReg = () => {
               validationSchema={volunteerSchema}
               onSubmit={(values, actions) => {
                 console.log(values);
-                db.collection("Volunteers").add(values);
                 actions.resetForm();
+                db.collection("Volunteers").add(values);
               }}
             >
               {props => (
@@ -88,6 +93,7 @@ const StudentReg = () => {
                     onChangeText={props.handleChange("studentId")}
                     onBlur={props.handleBlur("studentId")}
                     value={props.values.studentId}
+                    keyboardType="numeric"
                   />
                   <Text style={styles.errorText}>
                     {props.touched.studentId && props.errors.studentId}
@@ -106,8 +112,8 @@ const StudentReg = () => {
                     style={styles.input}
                     placeholder="Phone"
                     onChangeText={props.handleChange("phone")}
-                    value={props.values.phone}
                     onBlur={props.handleBlur("phone")}
+                    value={props.values.phone}
                     keyboardType="numeric"
                   />
                   <Text style={styles.errorText}>
