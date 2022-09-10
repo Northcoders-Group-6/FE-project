@@ -1,3 +1,8 @@
+//////////////TODO///////////////////
+// Add a flash message after a successful registration
+// Add a path to move to the student profile page after the registration
+// Add a back button to go back to the main page
+
 import { db } from "../firebase";
 import { Formik } from "formik";
 import * as yup from "yup";
