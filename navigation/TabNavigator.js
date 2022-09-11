@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import ExploreOpps from "../screens/ExploreOpps";
 import Activity from "../screens/Activity";
-import Map from "../screens/Map";
+import MapScreen from "../screens/MapScreen";
 import Settings from "../screens/Settings";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Feather from "react-native-vector-icons/Feather";

@@ -19,7 +19,6 @@ import {
   Keyboard,
 } from "react-native";
 
-
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -69,7 +68,7 @@ const StudentReg = () => {
                 db.collection("Volunteers").add(values);
               }}
             >
-              {props => (
+              {(props) => (
                 <View>
                   <TextInput
                     style={styles.input}

@@ -9,12 +9,10 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Formik } from "formik";
-import { db} from '../firebase'
+import { db } from "../firebase";
 
 const OrganiserReg = () => {
-  
-  const [newOrg, setNewOrg] = useState({})
-  
+  const [newOrg, setNewOrg] = useState({});
 
   return (
     <View style={styles.buttonContainer}>
@@ -30,14 +28,10 @@ const OrganiserReg = () => {
           password: "",
           userType: "org",
         }}
-
-        
-
-        onSubmit={ (values, actions) => {
-          setNewOrg(values)
-          db.collection('organizations').add(values)
+        onSubmit={(values, actions) => {
+          setNewOrg(values);
+          db.collection("organizations").add(values);
           actions.resetForm();
-
         }}
       >
         {(props) => (
