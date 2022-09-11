@@ -6,10 +6,10 @@ import { useNavigation } from "@react-navigation/native";
 const ExploreOpps = () => {
   const opps = [
     {
-      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Clean up on aisle 3",
-      company: "Tesco",
-      location: "Oxford Road",
+      img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
+      opp: "Food Bank Donation",
+      company: "Green Veg Grocers",
+      location: "Oxford Road, Manchester",
     },
     {
       img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
@@ -30,14 +30,14 @@ const ExploreOpps = () => {
       <View style={styles.oppsContainer} key={element.opp}>
         <Image
           source={{ uri: element.img }}
-          style={{ width: 200, height: 200 }}
+          style={{ width: 400, height: 200 }}
         />
+
         <Text style={styles.oppsText}>{element.opp}</Text>
         <Text style={styles.oppsText}>{element.company}</Text>
         <Text style={styles.oppsText}>{element.location}</Text>
-
         <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
-          <Text style={styles.buttonOutlineText}>See More</Text>
+          <Text style={styles.seeMore}>See More</Text>
         </TouchableOpacity>
       </View>
     );
@@ -48,40 +48,50 @@ export default ExploreOpps;
 
 const styles = StyleSheet.create({
   oppsContainer: {
-    // flex: 3,
-    width: "60%",
+    paddingBottom: 30,
+    paddingTop: 30,
+    width: "100%",
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    textAlign: "left",
+    marginLeft: 5,
   },
-  oppsText: { color: "black", fontWeight: "700", fontSize: 16 },
+  oppsText: {
+    color: "#3D5C43",
+    fontWeight: "700",
+    fontSize: 16,
+    textAlign: "left",
+    marginTop: 8,
+  },
   buttonContainer: {
-    width: "60%",
+    width: "80%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
   },
   button: {
-    backgroundColor: "#5D62CB",
-    width: "100%",
+    backgroundColor: "#3D5C43",
+    width: "80%",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
   },
   buttonOutline: {
-    backgroundColor: "white",
-    marginTop: 5,
-    borderColor: "#5D62CB",
+    backgroundColor: "#3D5C43",
+    marginTop: 20,
+    borderColor: "#3D5C43",
     borderWidth: 2,
+    alignItems: "center",
   },
-  buttonText: {
+
+  buttonOutlineText: {
     color: "white",
     fontWeight: "700",
     fontSize: 16,
+    alignItems: "center",
   },
-  buttonOutlineText: {
-    color: "#5D62CB",
-    fontWeight: "700",
-    fontSize: 16,
+  seeMore: {
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
   },
 });

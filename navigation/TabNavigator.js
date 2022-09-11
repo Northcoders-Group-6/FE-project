@@ -5,7 +5,6 @@ import Activity from "../screens/Activity";
 import MapScreen from "../screens/MapScreen";
 import Settings from "../screens/Settings";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
