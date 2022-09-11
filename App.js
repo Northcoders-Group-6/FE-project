@@ -14,6 +14,7 @@ import OrganiserReg from "./screens/OrganiserReg";
 import ExploreOpps from "./screens/ExploreOpps";
 import { UserContext } from "./src/contexts/UserContext";
 import { useContext, useState } from "react";
+import TabNavigator from "./navigation/TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +36,7 @@ export default function App() {
             <Stack.Screen name="Which User" component={WhichUser} />
             <Stack.Screen name="Student Reg" component={StudentReg} />
             <Stack.Screen name="Organiser Reg" component={OrganiserReg} />
-            <Stack.Screen name="Explore Opps" component={ExploreOpps} />
+            <Stack.Screen name="Explore Opps" component={TabNavigator} />
           </Stack.Navigator>
         </NavigationContainer>
       </UserContext.Provider>
