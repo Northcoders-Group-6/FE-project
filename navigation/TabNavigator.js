@@ -41,7 +41,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Map"
-        component={Map}
+        component={MapScreen}
         options={{
           tabBarShowLabel: true,
           tabBarIcon: ({ color }) => (

@@ -38,7 +38,7 @@ export default function App() {
             <Stack.Screen name="Which User" component={WhichUser} />
             <Stack.Screen name="Student Reg" component={StudentReg} />
             <Stack.Screen name="Organiser Reg" component={OrganiserReg} />
-            <Stack.Screen name="Explore" component={ExploreOpps} />
+            <Stack.Screen name="Explore Opps" component={TabNavigator} />
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Single" component={SingleOpp} />
           </Stack.Navigator>
