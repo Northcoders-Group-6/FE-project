@@ -52,6 +52,7 @@ const LoginScreen = () => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Logged in with", user.email);
+        navigation.replace("Explore Opps");
       })
       .catch((error) => alert(error.message));
   };

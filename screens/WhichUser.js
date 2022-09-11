@@ -5,24 +5,20 @@ import { useNavigation } from "@react-navigation/native";
 const WhichUser = () => {
   const navigation = useNavigation();
 
-  const handleStudentReg = () => {
+  const studentLogin = () => {
     navigation.replace("Student Reg");
   };
 
-  const handleOrganiserReg = () => {
-    navigation.replace("Organiser Reg");
-  };
-
+  const orgLogin = ()=>{
+    navigation.replace('Organiser Reg')
+  }
   return (
     <View>
       <Text style={styles.textStyle}>Are you...</Text>
-      <TouchableOpacity onPress={handleStudentReg} style={styles.button}>
+      <TouchableOpacity onPress={studentLogin} style={styles.button}>
         <Text style={styles.buttonText}>Student</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={handleOrganiserReg}
-        style={[styles.button, styles.buttonOutline]}
-      >
+      <TouchableOpacity onPress={orgLogin} style={[styles.button, styles.buttonOutline]}>
         <Text style={styles.buttonOutlineText}>Organiser</Text>
       </TouchableOpacity>
     </View>
