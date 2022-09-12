@@ -1,12 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Button,
-} from "react-native";
+import { StyleSheet, View, TextInput, Button } from "react-native";
 import React, { useState } from "react";
 import { Formik } from "formik";
 import { db } from "../firebase";
