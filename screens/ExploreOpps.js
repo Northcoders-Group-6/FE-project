@@ -1,4 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,6 +18,7 @@ const ExploreOpps = () => {
       company: "Green Veg Grocers",
       location: "Oxford Road, Manchester",
     },
+
     {
       img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
       opp: "Tree planting",
@@ -34,10 +42,10 @@ const ExploreOpps = () => {
       <View style={styles.oppsContainer} key={element.opp}>
         <Image
           source={{ uri: element.img }}
-          style={{ width: 400, height: 200 }}
+          style={{ width: 400, height: 250 }}
         />
 
-        <Text style={styles.oppsText}>{element.opp}</Text>
+        <Text style={styles.oppsTextTitle}>{element.opp}</Text>
         <Text style={styles.oppsText}>{element.company}</Text>
         <Text style={styles.oppsText}>{element.location}</Text>
         <TouchableOpacity
@@ -46,6 +54,12 @@ const ExploreOpps = () => {
         >
           <Text style={styles.seeMore}>See More</Text>
         </TouchableOpacity>
+        <View
+          style={{
+            borderBottomColor: "#646464",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+          }}
+        />
       </View>
     );
   });
@@ -63,11 +77,22 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   oppsText: {
+    color: "#4D4B4B",
+    fontWeight: "700",
+    fontSize: 14,
+    textAlign: "left",
+    paddingBottom: 5,
+    marginLeft: 5,
+    lineHeight: 20,
+  },
+  oppsTextTitle: {
     color: "#3D5C43",
     fontWeight: "700",
-    fontSize: 16,
+    fontSize: 20,
     textAlign: "left",
-    marginTop: 8,
+    marginTop: 20,
+    marginBottom: 8,
+    marginLeft: 5,
   },
   buttonContainer: {
     width: "80%",
@@ -86,8 +111,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#3D5C43",
     marginTop: 20,
     borderColor: "#3D5C43",
-    borderWidth: 2,
     alignItems: "center",
+    marginBottom: 40,
   },
 
   buttonOutlineText: {
@@ -100,5 +125,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "white",
+  },
+  hairlineWidth: {
+    marginTop: 100,
+    padding: 30,
   },
 });

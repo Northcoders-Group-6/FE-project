@@ -17,8 +17,8 @@ const SingleOpp = () => {
     {
       img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
       opp: "Food Bank Donation",
-      company: "Green Veg Grocers",
-      location: "Oxford Road, Manchester",
+      company: "Mustard Tree",
+      location: "Ancoats, Manchester",
     },
   ];
 
@@ -34,14 +34,23 @@ const SingleOpp = () => {
             source={{ uri: element.img }}
             style={{ width: 400, height: 250 }}
           />
-
-          <Text style={styles.oppsText1}>{element.opp}</Text>
+          <Text style={styles.oppsTextTitle}>{element.opp}</Text>
           <Text style={styles.oppsText}>{element.company}</Text>
-          <Text style={styles.oppsText}>{element.location}</Text>
-          <Text style={styles.oppsText2}>
+          <View
+            style={{
+              borderBottomColor: "#646464",
+              borderBottomWidth: StyleSheet.hairlineWidth,
+            }}
+          >
+            <Text style={styles.oppsText}>{element.location}</Text>
+          </View>
+          <Text style={styles.descriptionText}> Description</Text>
+          <Text style={styles.oppsTextDescription}>
             Join us in helping tackle food waste and donating food to those in
             need. We will need help with donations to make sure we provide the
-            community with bags of food they can take away.
+            community with bags of donations they can take away. We will also
+            provide free food on the day and a free meal voucher next time you
+            shop to say thank you for your hard work.
           </Text>
           <Text style={styles.text}>
             <Ionicons name="calendar" size={20} />
@@ -55,6 +64,7 @@ const SingleOpp = () => {
             <Ionicons name="gift" size={20} />
             Free meal vouchers next time you shop
           </Text>
+
           <TouchableOpacity
             onPress={sendToSignUpPage}
             style={[styles.button, styles.buttonOutline]}
@@ -79,28 +89,31 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   oppsText: {
-    color: "#646464",
+    color: "#4D4B4B",
     fontWeight: "700",
     fontSize: 14,
     textAlign: "left",
+    paddingBottom: 5,
     marginLeft: 5,
+    lineHeight: 20,
   },
-  oppsText1: {
+  oppsTextTitle: {
     color: "#3D5C43",
     fontWeight: "700",
     fontSize: 20,
     textAlign: "left",
-    marginTop: 12,
+    marginTop: 20,
     marginBottom: 8,
-    marginLeft: 6,
+    marginLeft: 5,
   },
-  oppsText2: {
+  oppsTextDescription: {
     color: "#3D5C43",
     fontWeight: "700",
     fontSize: 16,
     textAlign: "left",
     marginTop: 18,
     marginLeft: 5,
+    lineHeight: 24,
   },
   buttonContainer: {
     width: "80%",
@@ -137,11 +150,22 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 20,
     marginLeft: 10,
-    color: "#646464",
+    color: "#4D4B4B",
     fontWeight: "700",
     fontSize: 14,
     textAlign: "left",
-    marginTop: 20,
+    marginTop: 15,
     marginLeft: 5,
+  },
+  hairlineWidth: {
+    marginTop: 100,
+    padding: 30,
+  },
+  descriptionText: {
+    color: "#4D4B4B",
+    fontWeight: "700",
+    fontSize: 16,
+    textAlign: "left",
+    paddingTop: 10,
   },
 });
