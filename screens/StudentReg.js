@@ -34,8 +34,8 @@ const volunteerSchema = yup.object({
     .string()
     .required()
     .matches(phoneRegExp, "Phone number is not valid")
-    .min(10, "to short")
-    .max(10, "to long"),
+    .min(11, "too short")
+    .max(11, "too long"),
   email: yup.string().required().email("Please enter a valid email"),
   password: yup.string().required().min(8),
 });
@@ -45,7 +45,8 @@ const StudentReg = () => {
   const successToast = () => {
     Toast.show({
       type: "success",
-      text1: "You Successfully register!",
+      text1: "You have successfully registered!",
+
       text2: "Please login",
       visibilityTime: 5000,
       autoHide: true,
@@ -55,8 +56,9 @@ const StudentReg = () => {
       onHide: () => {},
     });
   };
+
   const errorToast = err => {
-    Toast.show({
+    ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
       text2: "Try Again",
@@ -92,8 +94,9 @@ const StudentReg = () => {
                 db.collection("Volunteers")
                   .add(values)
                   .then(() => successToast())
+
                   .catch(err => errorToast(err));
-                db.collection("Volunteers").add(values);
+
                 createUserWithEmailAndPassword(
                   auth,
                   values.email,
@@ -104,10 +107,9 @@ const StudentReg = () => {
                 //   console.log("Registered with:", user.email);
                 // })
                 // .catch((error) => alert(error.message));
-
               }}
             >
-              {props => (
+              {(props) => (
                 <View>
                   <TextInput
                     style={styles.input}
@@ -195,8 +197,10 @@ const StudentReg = () => {
                     </View>
                   </TouchableOpacity>
                   <Text>
-                    By signing up I agreee to Voluntreat's terms of service and
-                    privacy policy
+                    By signing up I agreee to Voluntreat's
+                    <Text style={styles.text1}> terms of service </Text>
+                    <Text>and </Text>
+                    <Text style={styles.text1}> privacy policy</Text>
                   </Text>
                 </View>
               )}
@@ -240,11 +244,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   errorText: {
-    color: "#5D62CB",
+    color: "#C33C54",
     fontWeight: "bold",
     marginBottom: 2,
     marginTop: 2,
     margin: 0,
     textAlign: "center",
+  },
+  text1: {
+    color: "#E48510",
+    justifyContent: "space-between",
   },
 });
