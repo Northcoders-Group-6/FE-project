@@ -35,8 +35,8 @@ const organiserSchema = yup.object({
     .string()
     .required()
     .matches(phoneRegExp, "Phone number is not valid")
-    .min(10, "to short")
-    .max(10, "to long"),
+    .min(11, "too short")
+    .max(11, "too long"),
   email: yup.string().required().email("Please enter a valid email"),
   password: yup.string().required().min(8),
 });
@@ -46,7 +46,7 @@ const OrganiserReg = () => {
   const successToast = () => {
     Toast.show({
       type: "success",
-      text1: "You Successfully register Organization!🎉",
+      text1: "You have successfully registered your organization! 🎉",
       text2: "Please login",
       visibilityTime: 5000,
       autoHide: true,
@@ -56,7 +56,7 @@ const OrganiserReg = () => {
       onHide: () => {},
     });
   };
-  const errorToast = err => {
+  const errorToast = (err) => {
     ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
@@ -96,10 +96,10 @@ const OrganiserReg = () => {
                   db.collection("Organizations")
                     .add(values)
                     .then(() => successToast())
-                    .catch(err => errorToast(err));
+                    .catch((err) => errorToast(err));
                 }}
               >
-                {props => (
+                {(props) => (
                   <View>
                     <TextInput
                       placeholder="Company Name"
@@ -211,7 +211,6 @@ export default OrganiserReg;
 
 const styles = StyleSheet.create({
   input: {
-    margin: 0,
     borderWidth: 1,
     borderColor: "#ddd",
     padding: 5,
@@ -219,12 +218,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   container: {
-    marginTop: 40,
-    flex: 1,
-    flexDirection: "column",
     padding: 20,
-    justifyContent: "center",
-    alignItems: "center",
   },
   button: {
     borderRadius: 8,
@@ -239,8 +233,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   errorText: {
-    color: "#5D62CB",
-    fontWeight: "bold",
+    color: "#C33C54",
+    fontWeight: "light",
     marginBottom: 2,
     marginTop: 2,
     margin: 0,

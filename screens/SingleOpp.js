@@ -32,13 +32,14 @@ const SingleOpp = () => {
         <View style={styles.oppsContainer} key={element.opp}>
           <Image
             source={{ uri: element.img }}
-            style={{ width: 400, height: 250 }}
+            style={{ width: 450, height: 250 }}
           />
           <Text style={styles.oppsTextTitle}>{element.opp}</Text>
           <Text style={styles.oppsText}>{element.company}</Text>
           <View
             style={{
               borderBottomColor: "#646464",
+              paddingBottom: 15,
               borderBottomWidth: StyleSheet.hairlineWidth,
             }}
           >
@@ -52,24 +53,26 @@ const SingleOpp = () => {
             provide free food on the day and a free meal voucher next time you
             shop to say thank you for your hard work.
           </Text>
+
+          <Text style={styles.organiserName}>Organiser: Anne Matthews</Text>
+
           <Text style={styles.text}>
-            <Ionicons name="calendar" size={20} />
-            From 10AM - 4PM Sat 8 Aug and Sun 9 Aug
+            <Ionicons name="calendar" size={20} />- From 10AM - 4PM Sat 8 Aug
+            and Sun 9 Aug
           </Text>
           <Text style={styles.text}>
-            <Ionicons name="team" size={20} />
-            Up to 10 volunteers needed
+            <Ionicons name="team" size={20} />- Up to 10 volunteers needed
           </Text>
           <Text style={styles.text}>
-            <Ionicons name="gift" size={20} />
-            Free meal vouchers next time you shop
+            <Ionicons name="gift" size={20} />- Free meal vouchers next time you
+            shop
           </Text>
 
           <TouchableOpacity
             onPress={sendToSignUpPage}
             style={[styles.button, styles.buttonOutline]}
           >
-            <Text style={styles.seeMore}> Sign Up</Text>
+            <Text style={styles.signUp}> Sign Up</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -86,7 +89,6 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "column",
     textAlign: "left",
-    marginLeft: 5,
   },
   oppsText: {
     color: "#4D4B4B",
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "left",
     paddingBottom: 5,
-    marginLeft: 5,
+    marginLeft: 8,
     lineHeight: 20,
   },
   oppsTextTitle: {
@@ -104,29 +106,28 @@ const styles = StyleSheet.create({
     textAlign: "left",
     marginTop: 20,
     marginBottom: 8,
-    marginLeft: 5,
+    marginLeft: 8,
   },
   oppsTextDescription: {
     color: "#3D5C43",
     fontWeight: "700",
-    fontSize: 16,
+    fontSize: 14,
     textAlign: "left",
     marginTop: 18,
-    marginLeft: 5,
+    marginLeft: 10,
     lineHeight: 24,
   },
   buttonContainer: {
-    width: "80%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
   },
   button: {
     backgroundColor: "#3D5C43",
-    width: "80%",
+    width: "100%",
     padding: 15,
     borderRadius: 10,
-    alignItems: "center",
   },
   buttonOutline: {
     backgroundColor: "#3D5C43",
@@ -142,23 +143,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     alignItems: "center",
   },
-  seeMore: {
+  signUp: {
     alignItems: "center",
     justifyContent: "center",
     color: "white",
   },
   text: {
     marginTop: 20,
-    marginLeft: 10,
     color: "#4D4B4B",
     fontWeight: "700",
     fontSize: 14,
     textAlign: "left",
-    marginTop: 15,
-    marginLeft: 5,
+    marginTop: 20,
+    marginLeft: 8,
   },
   hairlineWidth: {
-    marginTop: 100,
     padding: 30,
   },
   descriptionText: {
@@ -167,5 +166,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "left",
     paddingTop: 10,
+    marginLeft: 8,
+  },
+  organiserName: {
+    marginTop: 20,
+    marginLeft: 10,
+    color: "#4D4B4B",
+    fontWeight: "700",
+    fontSize: 14,
+    textAlign: "left",
+    marginTop: 15,
+    marginLeft: 8,
   },
 });
