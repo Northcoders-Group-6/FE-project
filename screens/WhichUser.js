@@ -10,7 +10,7 @@ const WhichUser = () => {
   };
 
   const orgLogin = () => {
-    navigation.navigate("Organiser Reg");
+    navigation.navigate("Create Event");
   };
   return (
     <View>

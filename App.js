@@ -9,9 +9,13 @@ import StudentReg from "./screens/StudentReg";
 import OrganiserReg from "./screens/OrganiserReg";
 import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
+
+import CreateEvent from "./screens/CreateEvent";
+
 import Settings from "./screens/Settings";
 import VolunteerHistory from "./screens/VolunteerHistory";
 import EditProfile from "./screens/EditProfile";
+
 import { UserContext } from "./src/contexts/UserContext";
 import { useState } from "react";
 import TabNavigator from "./navigation/TabNavigator";
@@ -39,12 +43,16 @@ export default function App() {
             <Stack.Screen name="Explore Opps" component={TabNavigator} />
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Single" component={SingleOpp} />
+
+            <Stack.Screen name="Create Event" component={CreateEvent} />
+
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen
               name="Volunteer History"
               component={VolunteerHistory}
             />
             <Stack.Screen name="Edit Profile" component={EditProfile} />
+
           </Stack.Navigator>
         </NavigationContainer>
       </UserContext.Provider>
