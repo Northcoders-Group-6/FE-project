@@ -10,7 +10,7 @@ const WhichUser = () => {
   };
 
   const orgLogin = () => {
-    navigation.navigate("Create Event");
+    navigation.navigate("Organiser Reg");
   };
   return (
     <View>
@@ -31,13 +31,18 @@ const WhichUser = () => {
 export default WhichUser;
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    width: "60%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 40,
+  },
   button: {
     backgroundColor: "#3D5C43",
-    width: "60%",
+    width: "100%",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
-    justifyContent: "center",
   },
   buttonOutline: {
     backgroundColor: "white",
@@ -54,10 +59,5 @@ const styles = StyleSheet.create({
     color: "#3D5C43",
     fontWeight: "700",
     fontSize: 16,
-  },
-  textStyle: {
-    color: "#3D5C43",
-    fontSize: 20,
-    marginBottom: 30,
   },
 });
