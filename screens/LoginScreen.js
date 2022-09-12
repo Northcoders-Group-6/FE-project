@@ -24,7 +24,7 @@ const LoginScreen = () => {
   const { setLoggedInUser } = useContext(UserContext);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
         navigation.replace("Home");
@@ -49,12 +49,12 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then(userCredentials => {
+      .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Logged in with", user.email);
         navigation.replace("Explore Opps");
       })
-      .catch(error => alert(error.message));
+      .catch((error) => alert(error.message));
   };
 
   return (
@@ -66,13 +66,13 @@ const LoginScreen = () => {
         <TextInput
           placeholder="Email"
           value={email}
-          onChangeText={text => setEmail(text)}
+          onChangeText={(text) => setEmail(text)}
           style={styles.input}
         />
         <TextInput
           placeholder="Password"
           value={password}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           style={styles.input}
           secureTextEntry
         />
