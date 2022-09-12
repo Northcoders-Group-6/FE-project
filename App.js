@@ -9,6 +9,7 @@ import StudentReg from "./screens/StudentReg";
 import OrganiserReg from "./screens/OrganiserReg";
 import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
+import SignUp from "./screens/SignUp";
 
 import CreateEvent from "./screens/CreateEvent";
 
@@ -44,6 +45,7 @@ export default function App() {
             <Stack.Screen name="Explore Opps" component={TabNavigator} />
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Single" component={SingleOpp} />
+            <Stack.Screen name="Sign Up" component={SignUp} />
 
             <Stack.Screen name="Create Event" component={CreateEvent} />
 
@@ -53,7 +55,6 @@ export default function App() {
               component={VolunteerHistory}
             />
             <Stack.Screen name="Edit Profile" component={EditProfile} />
-
           </Stack.Navigator>
         </NavigationContainer>
         <Toast />
