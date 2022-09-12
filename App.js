@@ -19,6 +19,7 @@ import EditProfile from "./screens/EditProfile";
 import { UserContext } from "./src/contexts/UserContext";
 import { useState } from "react";
 import TabNavigator from "./navigation/TabNavigator";
+import Toast from "react-native-toast-message";
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,7 @@ export default function App() {
 
           </Stack.Navigator>
         </NavigationContainer>
+        <Toast />
       </UserContext.Provider>
     </>
   );
