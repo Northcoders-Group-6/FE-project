@@ -1,9 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import {
-  getFocusedRouteNameFromRoute,
-  NavigationContainer,
-} from "@react-navigation/native";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
@@ -11,11 +7,17 @@ import WelcomeScreen from "./screens/WelcomeScreen";
 import WhichUser from "./screens/WhichUser";
 import StudentReg from "./screens/StudentReg";
 import OrganiserReg from "./screens/OrganiserReg";
-import ExploreOpps from "./screens/ExploreOpps";
 import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
+
+import CreateEvent from "./screens/CreateEvent";
+
+import Settings from "./screens/Settings";
+import VolunteerHistory from "./screens/VolunteerHistory";
+import EditProfile from "./screens/EditProfile";
+
 import { UserContext } from "./src/contexts/UserContext";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import TabNavigator from "./navigation/TabNavigator";
 import Toast from "react-native-toast-message";
 
@@ -42,6 +44,16 @@ export default function App() {
             <Stack.Screen name="Explore Opps" component={TabNavigator} />
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Single" component={SingleOpp} />
+
+            <Stack.Screen name="Create Event" component={CreateEvent} />
+
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen
+              name="Volunteer History"
+              component={VolunteerHistory}
+            />
+            <Stack.Screen name="Edit Profile" component={EditProfile} />
+
           </Stack.Navigator>
         </NavigationContainer>
         <Toast />

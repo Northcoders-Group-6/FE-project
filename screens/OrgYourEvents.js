@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
+import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
 
-const ExploreOpps = () => {
-  const navigation = useNavigation();
+const OrgYourEvents = () => {
   const opps = [
     {
       img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
@@ -25,10 +25,6 @@ const ExploreOpps = () => {
     },
   ];
 
-  const singleOpp = () => {
-    navigation.navigate("Single");
-  };
-
   return opps.map((element) => {
     return (
       <View style={styles.oppsContainer} key={element.opp}>
@@ -40,10 +36,7 @@ const ExploreOpps = () => {
         <Text style={styles.oppsText}>{element.opp}</Text>
         <Text style={styles.oppsText}>{element.company}</Text>
         <Text style={styles.oppsText}>{element.location}</Text>
-        <TouchableOpacity
-          onPress={singleOpp}
-          style={[styles.button, styles.buttonOutline]}
-        >
+        <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
           <Text style={styles.seeMore}>See More</Text>
         </TouchableOpacity>
       </View>
@@ -51,7 +44,7 @@ const ExploreOpps = () => {
   });
 };
 
-export default ExploreOpps;
+export default OrgYourEvents;
 
 const styles = StyleSheet.create({
   oppsContainer: {
