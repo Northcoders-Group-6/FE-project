@@ -46,15 +46,14 @@ export default function App() {
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Single" component={SingleOpp} />
             <Stack.Screen name="Sign Up" component={SignUp} />
-
             <Stack.Screen name="Create Event" component={CreateEvent} />
-
             <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="Edit Profile" component={EditProfile} />
+
             <Stack.Screen
               name="Volunteer History"
               component={VolunteerHistory}
             />
-            <Stack.Screen name="Edit Profile" component={EditProfile} />
           </Stack.Navigator>
         </NavigationContainer>
         <Toast />
