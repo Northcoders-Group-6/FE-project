@@ -14,6 +14,7 @@ import OrganiserReg from "./screens/OrganiserReg";
 import ExploreOpps from "./screens/ExploreOpps";
 import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
+import CreateEvent from "./screens/CreateEvent";
 import { UserContext } from "./src/contexts/UserContext";
 import { useContext, useState } from "react";
 import TabNavigator from "./navigation/TabNavigator";
@@ -41,6 +42,7 @@ export default function App() {
             <Stack.Screen name="Explore Opps" component={TabNavigator} />
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Single" component={SingleOpp} />
+            <Stack.Screen name="Create Event" component={CreateEvent} />
           </Stack.Navigator>
         </NavigationContainer>
       </UserContext.Provider>
