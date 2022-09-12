@@ -7,6 +7,8 @@ import { db } from "../firebase";
 import { Formik } from "formik";
 import * as yup from "yup";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 import {
   StyleSheet,
   Text,
@@ -33,7 +35,7 @@ const volunteerSchema = yup.object({
   location: yup.string().required().min(2),
   phone: yup
     .string()
-    .required("Phone is required field")
+    .required()
     .matches(phoneRegExp, "Phone number is not valid")
     .min(10, "to short")
     .max(10, "to long"),
@@ -63,9 +65,18 @@ const StudentReg = () => {
               }}
               validationSchema={volunteerSchema}
               onSubmit={(values, actions) => {
-                console.log(values);
                 actions.resetForm();
                 db.collection("Volunteers").add(values);
+                createUserWithEmailAndPassword(
+                  auth,
+                  values.email,
+                  values.password
+                );
+                // .then((userCredentials) => {
+                //   const user = userCredentials.user;
+                //   console.log("Registered with:", user.email);
+                // })
+                // .catch((error) => alert(error.message));
               }}
             >
               {(props) => (
