@@ -6,19 +6,22 @@ const WhichUser = () => {
   const navigation = useNavigation();
 
   const studentLogin = () => {
-    navigation.replace("Student Reg");
+    navigation.navigate("Student Reg");
   };
 
-  const orgLogin = ()=>{
-    navigation.replace('Organiser Reg')
-  }
+  const orgLogin = () => {
+    navigation.navigate("Organiser Reg");
+  };
   return (
     <View>
       <Text style={styles.textStyle}>Are you...</Text>
       <TouchableOpacity onPress={studentLogin} style={styles.button}>
         <Text style={styles.buttonText}>Student</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={orgLogin} style={[styles.button, styles.buttonOutline]}>
+      <TouchableOpacity
+        onPress={orgLogin}
+        style={[styles.button, styles.buttonOutline]}
+      >
         <Text style={styles.buttonOutlineText}>Organiser</Text>
       </TouchableOpacity>
     </View>
