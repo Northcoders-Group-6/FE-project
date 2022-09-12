@@ -1,11 +1,8 @@
-//////////////TODO///////////////////
-// Add a flash message after a successful registration
-// Add a path to move to the student profile page after the registration
-// Add a back button to go back to the main page
-
 import { db } from "../firebase";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { useNavigation } from "@react-navigation/native";
+import Toast, { ErrorToast } from "react-native-toast-message";
 
 import {
   StyleSheet,
@@ -42,6 +39,31 @@ const volunteerSchema = yup.object({
 });
 
 const StudentReg = () => {
+  const navigation = useNavigation();
+  const successToast = () => {
+    Toast.show({
+      type: "success",
+      text1: "You Successfully register!",
+      text2: "Please login",
+      visibilityTime: 5000,
+      autoHide: true,
+      onShow: () => {
+        navigation.replace("Login");
+      },
+      onHide: () => {},
+    });
+  };
+  const errorToast = err => {
+    Toast.show({
+      type: "error",
+      text1: `Something goes wrong: ${err}`,
+      text2: "Try Again",
+      visibilityTime: 5000,
+      autoHide: false,
+      onShow: () => {},
+      onHide: () => {},
+    });
+  };
   return (
     <ScrollView style={{ marginHorizontal: 20 }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -65,10 +87,13 @@ const StudentReg = () => {
               onSubmit={(values, actions) => {
                 console.log(values);
                 actions.resetForm();
-                db.collection("Volunteers").add(values);
+                db.collection("Volunteers")
+                  .add(values)
+                  .then(() => successToast())
+                  .catch(err => errorToast(err));
               }}
             >
-              {(props) => (
+              {props => (
                 <View>
                   <TextInput
                     style={styles.input}
