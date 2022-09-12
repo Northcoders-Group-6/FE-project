@@ -46,6 +46,7 @@ const StudentReg = () => {
     Toast.show({
       type: "success",
       text1: "You have successfully registered!",
+
       text2: "Please login",
       visibilityTime: 5000,
       autoHide: true,
@@ -55,8 +56,9 @@ const StudentReg = () => {
       onHide: () => {},
     });
   };
-  const errorToast = (err) => {
-    Toast.show({
+
+  const errorToast = err => {
+    ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
       text2: "Try Again",
@@ -92,8 +94,9 @@ const StudentReg = () => {
                 db.collection("Volunteers")
                   .add(values)
                   .then(() => successToast())
-                  .catch((err) => errorToast(err));
-                db.collection("Volunteers").add(values);
+
+                  .catch(err => errorToast(err));
+
                 createUserWithEmailAndPassword(
                   auth,
                   values.email,
