@@ -1,7 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
-import { auth } from "../firebase";
-import { useNavigation } from "@react-navigation/native";
 
 const ExploreOpps = () => {
   const opps = [

@@ -1,4 +1,3 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import ExploreOpps from "../screens/ExploreOpps";
 import Activity from "../screens/Activity";

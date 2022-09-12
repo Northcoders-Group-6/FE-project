@@ -31,23 +31,18 @@ const WhichUser = () => {
 export default WhichUser;
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    width: "60%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 40,
-  },
   button: {
-    backgroundColor: "#5D62CB",
-    width: "100%",
+    backgroundColor: "#3D5C43",
+    width: "60%",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
+    justifyContent: "center",
   },
   buttonOutline: {
     backgroundColor: "white",
     marginTop: 5,
-    borderColor: "#5D62CB",
+    borderColor: "#3D5C43",
     borderWidth: 2,
   },
   buttonText: {
@@ -56,8 +51,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: "#5D62CB",
+    color: "#3D5C43",
     fontWeight: "700",
     fontSize: 16,
+  },
+  textStyle: {
+    color: "#3D5C43",
+    fontSize: 20,
+    marginBottom: 30,
   },
 });

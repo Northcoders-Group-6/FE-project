@@ -1,14 +1,65 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import React from "react";
-
+import { useNavigation } from "@react-navigation/native";
+import Ionicons from "react-native-vector-icons/AntDesign";
 const Settings = () => {
+  const navigation = useNavigation();
+
+  const volunteerHistory = () => {
+    navigation.navigate("Volunteer History");
+  };
+
+  const EditProfile = () => {
+    navigation.navigate("Edit Profile");
+  };
   return (
     <View>
-      <Text>Settings</Text>
+      <Text style={styles.text}>
+        <Ionicons name="smileo" size={20} />
+        {"\n"}Jodie
+      </Text>
+      <TouchableOpacity onPress={volunteerHistory} style={styles.button}>
+        <Text style={styles.buttonText}>View My History</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={EditProfile} style={styles.button}>
+        <Text style={styles.buttonText}>Edit Profile</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Notification Settings</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Privacy Settings</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Email Support</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>FAQ</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default Settings;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "white",
+    marginTop: 8,
+    padding: 18,
+    borderColor: "#3D5C43",
+    borderWidth: 1,
+  },
+
+  buttonText: {
+    color: "#3D5C43",
+  },
+  text: {
+    paddingTop: 10,
+    color: "#3D5C43",
+    fontSize: 20,
+    marginBottom: 20,
+    textAlign: "center",
+    marginTop: 10,
+  },
+});
