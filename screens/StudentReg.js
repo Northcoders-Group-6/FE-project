@@ -45,7 +45,7 @@ const StudentReg = () => {
   const successToast = () => {
     Toast.show({
       type: "success",
-      text1: "You Successfully register!",
+      text1: "You Successfully register as Volunteer!👍",
       text2: "Please login",
       visibilityTime: 5000,
       autoHide: true,
@@ -56,7 +56,7 @@ const StudentReg = () => {
     });
   };
   const errorToast = err => {
-    Toast.show({
+    ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
       text2: "Try Again",
@@ -93,7 +93,7 @@ const StudentReg = () => {
                   .add(values)
                   .then(() => successToast())
                   .catch(err => errorToast(err));
-                db.collection("Volunteers").add(values);
+
                 createUserWithEmailAndPassword(
                   auth,
                   values.email,
@@ -104,7 +104,6 @@ const StudentReg = () => {
                 //   console.log("Registered with:", user.email);
                 // })
                 // .catch((error) => alert(error.message));
-
               }}
             >
               {props => (
