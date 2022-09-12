@@ -35,7 +35,7 @@ const LoginScreen = () => {
   }, []);
 
   const handleRegister = () => {
-    navigation.replace("Map");
+    navigation.replace("Which User");
   };
 
   // const handleSignUp = () => {
