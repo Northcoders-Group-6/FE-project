@@ -11,7 +11,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
 
-const singleEvent = () => {
+const SingleOpp = () => {
   const navigation = useNavigation();
   const opps = [
     {
@@ -22,8 +22,8 @@ const singleEvent = () => {
     },
   ];
 
-  const singleOpps = () => {
-    navigation.navigate("Single");
+  const sendToSignUpPage = () => {
+    navigation.navigate("Sign Up");
   };
 
   return opps.map((element) => {
@@ -56,7 +56,7 @@ const singleEvent = () => {
             Free meal vouchers next time you shop
           </Text>
           <TouchableOpacity
-            onPress={singleOpps}
+            onPress={sendToSignUpPage}
             style={[styles.button, styles.buttonOutline]}
           >
             <Text style={styles.seeMore}> Sign Up</Text>
@@ -67,7 +67,7 @@ const singleEvent = () => {
   });
 };
 
-export default singleEvent;
+export default SingleOpp;
 
 const styles = StyleSheet.create({
   oppsContainer: {
