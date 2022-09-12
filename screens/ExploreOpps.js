@@ -42,7 +42,7 @@ const ExploreOpps = () => {
       <View style={styles.oppsContainer} key={element.opp}>
         <Image
           source={{ uri: element.img }}
-          style={{ width: 400, height: 250 }}
+          style={{ width: 450, height: 250 }}
         />
 
         <Text style={styles.oppsTextTitle}>{element.opp}</Text>
@@ -69,12 +69,12 @@ export default ExploreOpps;
 
 const styles = StyleSheet.create({
   oppsContainer: {
+    width: "100%",
+    textAlign: "left",
     paddingBottom: 30,
     paddingTop: 30,
-    width: "100%",
     flexDirection: "column",
     textAlign: "left",
-    marginLeft: 5,
   },
   oppsText: {
     color: "#4D4B4B",
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "left",
     paddingBottom: 5,
-    marginLeft: 5,
+    marginLeft: 8,
     lineHeight: 20,
   },
   oppsTextTitle: {
@@ -92,17 +92,17 @@ const styles = StyleSheet.create({
     textAlign: "left",
     marginTop: 20,
     marginBottom: 8,
-    marginLeft: 5,
+    marginLeft: 8,
   },
   buttonContainer: {
-    width: "80%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
   },
   button: {
     backgroundColor: "#3D5C43",
-    width: "80%",
+    width: "100%",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",

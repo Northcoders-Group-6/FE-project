@@ -57,7 +57,7 @@ const StudentReg = () => {
     });
   };
 
-  const errorToast = err => {
+  const errorToast = (err) => {
     ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
@@ -95,7 +95,7 @@ const StudentReg = () => {
                   .add(values)
                   .then(() => successToast())
 
-                  .catch(err => errorToast(err));
+                  .catch((err) => errorToast(err));
 
                 createUserWithEmailAndPassword(
                   auth,
@@ -224,12 +224,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   container: {
-    marginTop: 40,
-    flex: 1,
-    flexDirection: "column",
     padding: 20,
-    justifyContent: "center",
-    alignItems: "center",
   },
   button: {
     borderRadius: 8,
@@ -245,7 +240,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "#C33C54",
-    fontWeight: "bold",
+    fontWeight: "light",
     marginBottom: 2,
     marginTop: 2,
     margin: 0,
