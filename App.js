@@ -17,6 +17,7 @@ import SingleOpp from "./screens/SingleOpp";
 import { UserContext } from "./src/contexts/UserContext";
 import { useContext, useState } from "react";
 import TabNavigator from "./navigation/TabNavigator";
+import Toast from "react-native-toast-message";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,7 @@ export default function App() {
             <Stack.Screen name="Single" component={SingleOpp} />
           </Stack.Navigator>
         </NavigationContainer>
+        <Toast />
       </UserContext.Provider>
     </>
   );
