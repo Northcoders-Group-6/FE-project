@@ -26,6 +26,7 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
+
   const [volunteers, setVolunteers] = useState([]);
   const [isVolunteer, setIsVolunteer] = useState(false);
 
@@ -48,6 +49,7 @@ const LoginScreen = () => {
         volunteersAux.push({ ...doc.data() });
       });
       setVolunteers(volunteersAux);
+
       const filteredUser = volunteersAux.filter((user) => {
         return user.email === email;
       });
@@ -71,6 +73,7 @@ const LoginScreen = () => {
     });
     return unsubscribe;
   }, []);
+
 
   const handleRegister = () => {
     navigation.navigate("Which User");
