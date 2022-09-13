@@ -5,12 +5,14 @@ import {
   View,
   Image,
   ScrollView,
+  FlatList,
   LogBox,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useContext } from "react";
 import { UserContext } from "../src/contexts/UserContext";
+import Ionicons from "react-native-vector-icons/AntDesign";
 
 const ExploreOpps = () => {
   const {loggedInUser} = useContext(UserContext)
@@ -35,6 +37,12 @@ const ExploreOpps = () => {
       company: "Library",
       location: "St Peters square",
     },
+    {
+      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
+      opp: "Read to kids",
+      company: "Library",
+      location: "St Peters square",
+    },
   ];
 
   const singleOpp = () => {
@@ -48,7 +56,7 @@ const ExploreOpps = () => {
           source={{ uri: element.img }}
           style={{ width: 450, height: 250 }}
         />
-
+        <Text style={styles.text}></Text>
         <Text style={styles.oppsTextTitle}>{element.opp}</Text>
         <Text style={styles.oppsText}>{element.company}</Text>
         <Text style={styles.oppsText}>{element.location}</Text>
@@ -74,6 +82,7 @@ export default ExploreOpps;
 const styles = StyleSheet.create({
   oppsContainer: {
     width: "100%",
+    height: "100%",
     textAlign: "left",
     paddingBottom: 30,
     paddingTop: 30,
