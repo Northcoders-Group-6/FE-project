@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 
 import { useFonts } from "expo-font";
@@ -14,10 +14,16 @@ const SignUp = () => {
   }
 
   return (
-    <View style={styles.text}>
-      <Text style={{ fontFamily: "Rubik-Regular", fontSize: 36 }}>
-        You're all signed up {"\n"}and set to go!
-      </Text>
+    <View>
+      <Image
+        source={require("./../assets/screenshot.png")}
+        style={{ width: 410, height: 250 }}
+      />
+      <View style={styles.text}>
+        <Text style={{ fontFamily: "Rubik-Regular", fontSize: 36 }}>
+          You're all signed up {"\n"}and set to go!
+        </Text>
+      </View>
     </View>
   );
 };
@@ -26,7 +32,7 @@ export default SignUp;
 
 const styles = StyleSheet.create({
   text: {
-    marginTop: 400,
+    marginTop: 40,
     marginLeft: 40,
   },
 });
