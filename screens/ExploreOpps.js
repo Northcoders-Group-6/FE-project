@@ -5,11 +5,16 @@ import {
   View,
   Image,
   ScrollView,
+  LogBox,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useContext } from "react";
+import { UserContext } from "../src/contexts/UserContext";
 
 const ExploreOpps = () => {
+  const {loggedInUser} = useContext(UserContext)
+  console.log(loggedInUser);
   const navigation = useNavigation();
   const opps = [
     {
