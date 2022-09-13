@@ -15,7 +15,7 @@ import { UserContext } from "../src/contexts/UserContext";
 import Ionicons from "react-native-vector-icons/AntDesign";
 
 const ExploreOpps = () => {
-  const {loggedInUser} = useContext(UserContext)
+  const { loggedInUser } = useContext(UserContext);
   const navigation = useNavigation();
   const opps = [
     {
@@ -81,8 +81,6 @@ export default ExploreOpps;
 
 const styles = StyleSheet.create({
   oppsContainer: {
-    width: "100%",
-    height: "100%",
     textAlign: "left",
     paddingBottom: 30,
     paddingTop: 30,
@@ -122,10 +120,10 @@ const styles = StyleSheet.create({
   },
   buttonOutline: {
     backgroundColor: "#3D5C43",
-    marginTop: 20,
+    marginTop: 10,
     borderColor: "#3D5C43",
     alignItems: "center",
-    marginBottom: 40,
+    marginBottom: 10,
   },
 
   buttonOutlineText: {

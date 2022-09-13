@@ -5,7 +5,7 @@ const ShareTab = () => {
   const shareData = async () => {
     try {
       await Share.share({
-        message: "This is the demo text",
+        message: "Share this opportunity:",
       });
     } catch (error) {
       alert(error.message);

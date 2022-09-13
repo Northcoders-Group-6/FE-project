@@ -1,12 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
 import { auth } from "../firebase";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
 import { useContext } from "react";
 
 const OrgYourEvents = () => {
-  const {loggedInUser} = useContext(UserContext)
+  const { loggedInUser } = useContext(UserContext);
+  const navigation = useNavigation();
   const opps = [
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",
@@ -28,62 +29,97 @@ const OrgYourEvents = () => {
     },
   ];
 
-  return opps.map((element) => {
-    return (
-      <View style={styles.oppsContainer} key={element.opp}>
-        <Image
-          source={{ uri: element.img }}
-          style={{ width: 400, height: 200 }}
-        />
+  const singleEventClick = () => {
+    navigation.navigate("Org Single Event");
+  };
 
-        <Text style={styles.oppsText}>{element.opp}</Text>
-        <Text style={styles.oppsText}>{element.company}</Text>
-        <Text style={styles.oppsText}>{element.location}</Text>
-        <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
-          <Text style={styles.seeMore}>See More</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  });
+  const clickCreateEvent = () => {
+    navigation.navigate("Create Event");
+  };
+
+  return (
+    <>
+      <Text>Your Events</Text>
+      <TouchableOpacity
+        onPress={clickCreateEvent}
+        style={[styles.button, styles.buttonOutline]}
+      >
+        <Text>Create a new event</Text>
+      </TouchableOpacity>
+      {opps.map((element) => {
+        return (
+          <View style={styles.oppsContainer} key={element.opp}>
+            <Image
+              source={{ uri: element.img }}
+              style={{ width: 450, height: 250 }}
+            />
+
+            <Text style={styles.oppsText}>{element.opp}</Text>
+            <Text style={styles.oppsText}>{element.company}</Text>
+            <Text style={styles.oppsText}>{element.location}</Text>
+            <TouchableOpacity
+              onPress={singleEventClick}
+              style={[styles.button, styles.buttonOutline]}
+            >
+              <Text style={styles.seeMore}>See More</Text>
+            </TouchableOpacity>
+          </View>
+        );
+      })}
+    </>
+  );
 };
 
 export default OrgYourEvents;
 
 const styles = StyleSheet.create({
   oppsContainer: {
+    textAlign: "left",
     paddingBottom: 30,
     paddingTop: 30,
-    width: "100%",
     flexDirection: "column",
     textAlign: "left",
-    marginLeft: 5,
+  },
+  oppsHeaderText: {
+    fontSize: 30,
   },
   oppsText: {
-    color: "#3D5C43",
+    color: "#6D326D",
     fontWeight: "700",
-    fontSize: 16,
+    fontSize: 14,
     textAlign: "left",
-    marginTop: 8,
+    paddingBottom: 5,
+    marginLeft: 8,
+    lineHeight: 20,
+  },
+  oppsTextTitle: {
+    color: "#6D326D",
+    fontWeight: "700",
+    fontSize: 20,
+    textAlign: "left",
+    marginTop: 20,
+    marginBottom: 8,
+    marginLeft: 8,
   },
   buttonContainer: {
-    width: "80%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
   },
   button: {
-    backgroundColor: "#3D5C43",
-    width: "80%",
+    backgroundColor: "#6D326D",
+    width: "100%",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
   },
   buttonOutline: {
-    backgroundColor: "#3D5C43",
+    backgroundColor: "#6D326D",
     marginTop: 20,
-    borderColor: "#3D5C43",
-    borderWidth: 2,
+    borderColor: "#6D326D",
     alignItems: "center",
+    marginBottom: 40,
   },
 
   buttonOutlineText: {
