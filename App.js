@@ -26,11 +26,11 @@ import Toast from "react-native-toast-message";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [loggedInUser, setloggedInUser] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useState([]);
 
   return (
     <>
-      <UserContext.Provider value={{ loggedInUser, setloggedInUser }}>
+      <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen

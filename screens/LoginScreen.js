@@ -19,7 +19,7 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
-
+  
   const [volunteers, setVolunteers] = useState([]);
   const [isVolunteer, setIsVolunteer] = useState(false)
   const isVol = (email) => {
@@ -30,12 +30,14 @@ const LoginScreen = () => {
         volunteersAux.push({ ...doc.data() });
       });
       setVolunteers(volunteersAux);
-
       const filteredUser = volunteersAux.filter((user) => {
         return user.email === email;
       });
       
       if(filteredUser.length !== 0){
+        
+        setLoggedInUser(filteredUser[0])
+        
         navigation.replace("Explore Opps")
       }else{
         navigation.replace("Org Events")
@@ -44,6 +46,7 @@ const LoginScreen = () => {
     });
   };
 
+ 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -53,7 +56,7 @@ const LoginScreen = () => {
     return unsubscribe;
   }, []);
 
-  console.log("heheheheheheheh", loggedInUser);
+  
   const handleRegister = () => {
     navigation.navigate("Which User");
   };
