@@ -41,6 +41,7 @@ const CreateEvent = () => {
           onSubmit={(values, actions) => {
             values.company = loggedInUser.company_name;
             values.email = loggedInUser.email;
+            values.users = []
             setNewEvent(values);
             db.collection("events").add(values);
             actions.resetForm();
