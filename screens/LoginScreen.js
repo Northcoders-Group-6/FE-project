@@ -12,7 +12,7 @@ import { auth, db } from "../firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +22,20 @@ const LoginScreen = () => {
   
   const [volunteers, setVolunteers] = useState([]);
   const [isVolunteer, setIsVolunteer] = useState(false)
+
+  const isOrg = (email)=>{
+    const colRef = collection(db, "Organizations");
+    const q = query(colRef, where("email", "==", email))
+    onSnapshot(q, (snapshot)=>{
+      snapshot.docs.forEach((doc)=>{
+        const org = doc.data()
+        setLoggedInUser(org)
+      })
+      
+    })
+   
+  }
+
   const isVol = (email) => {
     const colRef = collection(db, "Volunteers");
     getDocs(colRef).then((snapshot) => {
@@ -40,6 +54,7 @@ const LoginScreen = () => {
         
         navigation.replace("Explore Opps")
       }else{
+        isOrg(email)
         navigation.replace("Org Events")
       }
 
