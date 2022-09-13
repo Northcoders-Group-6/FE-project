@@ -97,11 +97,13 @@ const OrganiserReg = () => {
                     .add(values)
                     .then(() => successToast())
                     .catch((err) => errorToast(err));
+
                   createUserWithEmailAndPassword(
                     auth,
                     values.email,
                     values.password
                   );
+
                 }}
               >
                 {(props) => (
