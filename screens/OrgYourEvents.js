@@ -2,8 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../src/contexts/UserContext";
+import { useContext } from "react";
 
 const OrgYourEvents = () => {
+  const {loggedInUser} = useContext(UserContext)
   const opps = [
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",

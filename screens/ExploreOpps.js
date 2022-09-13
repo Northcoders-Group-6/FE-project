@@ -14,7 +14,6 @@ import { UserContext } from "../src/contexts/UserContext";
 
 const ExploreOpps = () => {
   const {loggedInUser} = useContext(UserContext)
-  console.log(loggedInUser);
   const navigation = useNavigation();
   const opps = [
     {
