@@ -86,10 +86,10 @@ const StudentReg = () => {
                 phone: "",
                 email: "",
                 password: "",
-                uid: "",
               }}
               validationSchema={volunteerSchema}
               onSubmit={(values, actions) => {
+                values.events = [];
                 actions.resetForm();
 
                 db.collection("Volunteers")
