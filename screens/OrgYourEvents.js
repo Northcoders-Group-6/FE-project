@@ -1,9 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import React from "react";
-import { auth } from "../firebase";
+import { React, useState, useEffect } from "react";
+import { auth, db } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
 import { useContext } from "react";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 
 const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
@@ -28,15 +35,35 @@ const OrgYourEvents = () => {
     },
   ];
 
-  return opps.map((element) => {
+  const [eventArr, setEventArr] = useState([]);
+
+  useEffect(() => {
+    const getEmailFromUser = async () => {
+      let orgEmail = await loggedInUser.email;
+      return orgEmail;
+    };
+    getEmailFromUser().then((email) => {
+      const colRef = collection(db, "events");
+      const events = query(colRef, where("email", "==", email));
+      onSnapshot(events, (snapshot) => {
+        let eventAux = [];
+        snapshot.docs.forEach((doc) => {
+          eventAux.push({ ...doc.data() });
+        });
+        setEventArr(eventAux);
+      });
+    });
+  }, [loggedInUser]);
+
+  return eventArr.map((element) => {
     return (
-      <View style={styles.oppsContainer} key={element.opp}>
+      <View style={styles.oppsContainer} key={element.event_title}>
         <Image
-          source={{ uri: element.img }}
+          source={{ uri: element.image }}
           style={{ width: 400, height: 200 }}
         />
 
-        <Text style={styles.oppsText}>{element.opp}</Text>
+        <Text style={styles.oppsText}>{element.event_title}</Text>
         <Text style={styles.oppsText}>{element.company}</Text>
         <Text style={styles.oppsText}>{element.location}</Text>
         <TouchableOpacity style={[styles.button, styles.buttonOutline]}>

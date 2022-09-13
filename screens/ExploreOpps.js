@@ -35,6 +35,13 @@ const ExploreOpps = () => {
       company: "Library",
       location: "St Peters square",
     },
+
+    {
+      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
+      opp: "Read to kids3",
+      company: "Library",
+      location: "St Peters square",
+    },
   ];
 
   const singleOpp = () => {

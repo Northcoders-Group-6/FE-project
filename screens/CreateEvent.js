@@ -9,12 +9,17 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Formik } from "formik";
 import { db } from "../firebase";
+import { UserContext } from "../src/contexts/UserContext";
 
 const CreateEvent = () => {
   const [newEvent, setNewEvent] = useState({});
+  const { loggedInUser } = useContext(UserContext);
+
+  // console.log("here email", loggedInUser.email);
+  // console.log("here compnay", loggedInUser.compnay_name);
 
   return (
     <KeyboardAvoidingView
@@ -25,7 +30,6 @@ const CreateEvent = () => {
         <Formik
           initialValues={{
             event_title: "",
-            company: "",
             description: "",
             location: "",
             date_time: "",
@@ -35,6 +39,9 @@ const CreateEvent = () => {
             image: "",
           }}
           onSubmit={(values, actions) => {
+            values.company = loggedInUser.company_name;
+            values.email = loggedInUser.email;
+            values.users = []
             setNewEvent(values);
             db.collection("events").add(values);
             actions.resetForm();
@@ -49,12 +56,12 @@ const CreateEvent = () => {
                 onChangeText={props.handleChange("event_title")}
                 value={props.values.event_title}
               />
-              <TextInput
+              {/* <TextInput
                 placeholder="Company"
                 style={styles.input}
                 onChangeText={props.handleChange("company")}
                 value={props.values.company}
-              />
+              /> */}
               <TextInput
                 placeholder="Description"
                 style={styles.input}
