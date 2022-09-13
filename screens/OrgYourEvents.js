@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { auth, db } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
@@ -14,59 +14,35 @@ import {
 
 const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
-  
-  
-  const queryEvents = () => {
-    const getEmailFromUser = async () =>{
-      let orgEmail = await loggedInUser.email 
-      return orgEmail
-    }
-    getEmailFromUser().then((email)=>{
-       const colRef = collection(db, "events");
-    const events = query(colRef, where("email", "==", email))
-    onSnapshot(events, (snapshot)=>{
-      let events = [];
-      snapshot.docs.forEach((doc)=>{
-       events.push({...doc.data()})
-      })
-      console.log(events)
-    })
-    })
-    // const colRef = collection(db, "events");
-    // const events = query(colRef, where("email", "==", orgEmail))
-    // console.log(events);
-  };
-  queryEvents()
-  const opps = [
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",
-      opp: "Food Bank Donation",
-      company: "Unicorn",
-      location: "Oxford Road, Manchester",
-    },
-    {
-      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Tree planting",
-      company: "Plant a tree",
-      location: "Chorlton",
-    },
-    {
-      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Read to kids",
-      company: "Library",
-      location: "St Peters square",
-    },
-  ];
+  const [eventArr, setEventArr] = useState([]);
 
-  return opps.map((element) => {
+  useEffect(() => {
+    const getEmailFromUser = async () => {
+      let orgEmail = await loggedInUser.email;
+      return orgEmail;
+    };
+    getEmailFromUser().then((email) => {
+      const colRef = collection(db, "events");
+      const events = query(colRef, where("email", "==", email));
+      onSnapshot(events, (snapshot) => {
+        let eventAux = [];
+        snapshot.docs.forEach((doc) => {
+          eventAux.push({ ...doc.data() });
+        });
+        setEventArr(eventAux);
+      });
+    });
+  }, [loggedInUser]);
+
+  return eventArr.map((element) => {
     return (
-      <View style={styles.oppsContainer} key={element.opp}>
+      <View style={styles.oppsContainer} key={element.event_title}>
         <Image
-          source={{ uri: element.img }}
+          source={{ uri: element.image }}
           style={{ width: 400, height: 200 }}
         />
 
-        <Text style={styles.oppsText}>{element.opp}</Text>
+        <Text style={styles.oppsText}>{element.event_title}</Text>
         <Text style={styles.oppsText}>{element.company}</Text>
         <Text style={styles.oppsText}>{element.location}</Text>
         <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
