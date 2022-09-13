@@ -9,13 +9,11 @@ const HomeScreen = () => {
   const { loggedInUser } = useContext(UserContext);
 
   let currUser = auth.currentUser?.uid;
-  console.log(currUser);
   let student = db.collection("Volunteers");
   const doc = student.where("firstName", "==", "stan");
   // let org = db.collection("organisers").doc(currUser);
   // const orgdoc = await org.get()
 
-  console.log(doc);
   // console.log("org", orgdoc.data());
 
   const handleSignOut = () => {

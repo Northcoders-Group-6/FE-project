@@ -90,7 +90,6 @@ const StudentReg = () => {
               }}
               validationSchema={volunteerSchema}
               onSubmit={(values, actions) => {
-                console.log(values);
                 actions.resetForm();
 
                 db.collection("Volunteers")

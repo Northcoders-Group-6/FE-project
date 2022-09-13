@@ -14,18 +14,29 @@ import {
 
 const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
-
-  let events = [];
-
-  const colRef = collection(db, "events");
-  const q = query(colRef, where("email", "==", loggedInUser.email));
-  onSnapshot(q, (snapshot) => {
-    // let events = [];
-    snapshot.docs.forEach((doc) => {
-      console.log(doc.data());
-    });
-  });
-
+  
+  
+  const queryEvents = () => {
+    const getEmailFromUser = async () =>{
+      let orgEmail = await loggedInUser.email 
+      return orgEmail
+    }
+    getEmailFromUser().then((email)=>{
+       const colRef = collection(db, "events");
+    const events = query(colRef, where("email", "==", email))
+    onSnapshot(events, (snapshot)=>{
+      let events = [];
+      snapshot.docs.forEach((doc)=>{
+       events.push({...doc.data()})
+      })
+      console.log(events)
+    })
+    })
+    // const colRef = collection(db, "events");
+    // const events = query(colRef, where("email", "==", orgEmail))
+    // console.log(events);
+  };
+  queryEvents()
   const opps = [
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",
