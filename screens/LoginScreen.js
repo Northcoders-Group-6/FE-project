@@ -125,6 +125,14 @@ const LoginScreen = () => {
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
+        <View>
+          <Text style={styles.textBelow}>
+            Are you a student that is looking for volunteer opportunities?
+            Voluntreats offers a range of events to partake in your area to make
+            a difference in the community. Here, you can build your experience
+            while making changes for the greater good!
+          </Text>
+        </View>
       </View>
     </KeyboardAvoidingView>
   );
@@ -134,7 +142,8 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    marginTop: 200,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -186,6 +195,11 @@ const styles = StyleSheet.create({
   passwordInput: {
     color: "#5D62CB",
     fontWeight: "600",
+    fontSize: 16,
+  },
+  textBelow: {
+    marginTop: 40,
+    color: "#3D5C43",
     fontSize: 16,
   },
 });

@@ -14,6 +14,27 @@ import {
 
 const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
+  const opps = [
+    {
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",
+      opp: "Food Bank Donation",
+      company: "Unicorn",
+      location: "Oxford Road, Manchester",
+    },
+    {
+      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
+      opp: "Tree planting",
+      company: "Plant a tree",
+      location: "Chorlton",
+    },
+    {
+      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
+      opp: "Read to kids",
+      company: "Library",
+      location: "St Peters square",
+    },
+  ];
+
   const [eventArr, setEventArr] = useState([]);
 
   useEffect(() => {
