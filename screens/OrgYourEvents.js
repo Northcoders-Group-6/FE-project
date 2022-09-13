@@ -1,13 +1,21 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import React from "react";
-import { auth } from "../firebase";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+
+import { React, useState, useEffect } from "react";
+import { auth, db } from "../firebase";
+import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
 import { useContext } from "react";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 
 const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
-  const navigation = useNavigation();
+
   const opps = [
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",
@@ -29,7 +37,27 @@ const OrgYourEvents = () => {
     },
   ];
 
-  const singleEventClick = () => {
+  const [eventArr, setEventArr] = useState([]);
+
+  useEffect(() => {
+    const getEmailFromUser = async () => {
+      let orgEmail = await loggedInUser.email;
+      return orgEmail;
+    };
+    getEmailFromUser().then((email) => {
+      const colRef = collection(db, "events");
+      const events = query(colRef, where("email", "==", email));
+      onSnapshot(events, (snapshot) => {
+        let eventAux = [];
+        snapshot.docs.forEach((doc) => {
+          eventAux.push({ ...doc.data() });
+        });
+        setEventArr(eventAux);
+      });
+    });
+  }, [loggedInUser]);
+
+const singleEventClick = () => {
     navigation.navigate("Org Single Event");
   };
 
@@ -68,7 +96,6 @@ const OrgYourEvents = () => {
       })}
     </>
   );
-};
 
 export default OrgYourEvents;
 

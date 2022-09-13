@@ -20,7 +20,8 @@ import { UserContext } from "./src/contexts/UserContext";
 import { useState } from "react";
 import TabNavigator from "./navigation/TabNavigator";
 import Toast from "react-native-toast-message";
-
+import TabNavigatorOrg from "./navigation/TabNavigatorOrg";
+import OrgEventConfirmation from "./screens/OrgEventConfirmation";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -48,8 +49,16 @@ export default function App() {
             <Stack.Screen name="Create Event" component={CreateEvent} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
-            <Stack.Screen name="Org Events" component={OrgYourEvents} />
+
+       
             <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
+
+
+            <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
+            <Stack.Screen
+              name="Event Confirmation"
+              component={OrgEventConfirmation}
+            />
 
             <Stack.Screen
               name="Volunteer History"

@@ -57,14 +57,14 @@ const SingleOpp = () => {
           <Text style={styles.organiserName}>Organiser: Anne Matthews</Text>
 
           <Text style={styles.text}>
-            <Ionicons name="calendar" size={20} />- From 10AM - 4PM Sat 8 Aug
-            and Sun 9 Aug
+            <Ionicons name="calendar" size={22} /> From 10AM - 4PM Sat 8 Aug and
+            Sun 9 Aug
           </Text>
           <Text style={styles.text}>
-            <Ionicons name="team" size={20} />- Up to 10 volunteers needed
+            <Ionicons name="team" size={22} /> Up to 10 volunteers needed
           </Text>
           <Text style={styles.text}>
-            <Ionicons name="gift" size={20} />- Free meal vouchers next time you
+            <Ionicons name="gift" size={22} /> Free meal vouchers next time you
             shop
           </Text>
 

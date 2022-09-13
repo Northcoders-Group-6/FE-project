@@ -4,8 +4,6 @@ import {
   TouchableOpacity,
   View,
   Image,
-  ScrollView,
-  FlatList,
   LogBox,
 } from "react-native";
 import React from "react";
@@ -37,9 +35,10 @@ const ExploreOpps = () => {
       company: "Library",
       location: "St Peters square",
     },
+
     {
       img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Read to kids",
+      opp: "Read to kids3",
       company: "Library",
       location: "St Peters square",
     },
@@ -66,12 +65,6 @@ const ExploreOpps = () => {
         >
           <Text style={styles.seeMore}>See More</Text>
         </TouchableOpacity>
-        <View
-          style={{
-            borderBottomColor: "#646464",
-            borderBottomWidth: StyleSheet.hairlineWidth,
-          }}
-        />
       </View>
     );
   });
@@ -101,7 +94,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 20,
     textAlign: "left",
-    marginTop: 20,
+    marginTop: 5,
     marginBottom: 8,
     marginLeft: 8,
   },
@@ -123,9 +116,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderColor: "#3D5C43",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 1,
   },
-
   buttonOutlineText: {
     color: "white",
     fontWeight: "700",
@@ -136,9 +128,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "white",
-  },
-  hairlineWidth: {
-    marginTop: 100,
-    padding: 30,
   },
 });
