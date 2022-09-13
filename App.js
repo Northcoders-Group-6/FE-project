@@ -10,6 +10,7 @@ import OrganiserReg from "./screens/OrganiserReg";
 import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
 import SignUp from "./screens/SignUp";
+import OrgYourEvents from "./screens/OrgYourEvents"
 
 import CreateEvent from "./screens/CreateEvent";
 
@@ -49,6 +50,7 @@ export default function App() {
             <Stack.Screen name="Create Event" component={CreateEvent} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Edit Profile" component={EditProfile} />
+            <Stack.Screen name="Org Events" component={OrgYourEvents} />
 
             <Stack.Screen
               name="Volunteer History"
