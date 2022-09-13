@@ -55,7 +55,7 @@ const StudentReg = () => {
       onHide: () => {},
     });
   };
-  const errorToast = err => {
+  const errorToast = (err) => {
     Toast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
@@ -84,30 +84,32 @@ const StudentReg = () => {
                 phone: "",
                 email: "",
                 password: "",
+                uid: "",
               }}
               validationSchema={volunteerSchema}
               onSubmit={(values, actions) => {
+                console.log(values);
                 actions.resetForm();
-
-                db.collection("Volunteers")
-                  .add(values)
-                  .then(() => successToast())
-                  .catch(err => errorToast(err));
-                db.collection("Volunteers").add(values);
                 createUserWithEmailAndPassword(
                   auth,
                   values.email,
                   values.password
-                );
-                // .then((userCredentials) => {
-                //   const user = userCredentials.user;
-                //   console.log("Registered with:", user.email);
-                // })
-                // .catch((error) => alert(error.message));
-
+                )
+                  .then((userCredentials) => {
+                    const user = userCredentials.user;
+                    console.log(user.uid);
+                    values.uid = user.uid;
+                    //       const user = userCredentials.user;
+                  })
+                  .then(() => {
+                    db.collection("Volunteers")
+                      .add(values)
+                      .then(() => successToast())
+                      .catch((err) => errorToast(err));
+                  });
               }}
             >
-              {props => (
+              {(props) => (
                 <View>
                   <TextInput
                     style={styles.input}
