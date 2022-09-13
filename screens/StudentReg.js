@@ -86,9 +86,11 @@ const StudentReg = () => {
                 phone: "",
                 email: "",
                 password: "",
+                uid: "",
               }}
               validationSchema={volunteerSchema}
               onSubmit={(values, actions) => {
+                console.log(values);
                 actions.resetForm();
 
                 db.collection("Volunteers")

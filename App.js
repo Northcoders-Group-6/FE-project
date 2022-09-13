@@ -10,6 +10,7 @@ import OrganiserReg from "./screens/OrganiserReg";
 import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
 import SignUp from "./screens/SignUp";
+import OrgYourEvents from "./screens/OrgYourEvents"
 import CreateEvent from "./screens/CreateEvent";
 import Settings from "./screens/Settings";
 import VolunteerHistory from "./screens/VolunteerHistory";
@@ -22,11 +23,11 @@ import Toast from "react-native-toast-message";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [loggedInUser, setloggedInUser] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useState([]);
 
   return (
     <>
-      <UserContext.Provider value={{ loggedInUser, setloggedInUser }}>
+      <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
@@ -46,6 +47,7 @@ export default function App() {
             <Stack.Screen name="Create Event" component={CreateEvent} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
+            <Stack.Screen name="Org Events" component={OrgYourEvents} />
 
             <Stack.Screen
               name="Volunteer History"

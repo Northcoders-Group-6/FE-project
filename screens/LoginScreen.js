@@ -8,17 +8,60 @@ import {
 } from "react-native";
 import React, { useEffect } from "react";
 import { useState, useContext } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
+import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  
+  const [volunteers, setVolunteers] = useState([]);
+  const [isVolunteer, setIsVolunteer] = useState(false)
 
+  const isOrg = (email)=>{
+    const colRef = collection(db, "Organizations");
+    const q = query(colRef, where("email", "==", email))
+    onSnapshot(q, (snapshot)=>{
+      snapshot.docs.forEach((doc)=>{
+        const org = doc.data()
+        setLoggedInUser(org)
+      })
+      
+    })
+   
+  }
+
+  const isVol = (email) => {
+    const colRef = collection(db, "Volunteers");
+    getDocs(colRef).then((snapshot) => {
+      let volunteersAux = [];
+      snapshot.docs.forEach((doc) => {
+        volunteersAux.push({ ...doc.data() });
+      });
+      setVolunteers(volunteersAux);
+      const filteredUser = volunteersAux.filter((user) => {
+        return user.email === email;
+      });
+      
+      if(filteredUser.length !== 0){
+        
+        setLoggedInUser(filteredUser[0])
+        
+        navigation.replace("Explore Opps")
+      }else{
+        isOrg(email)
+        navigation.replace("Org Events")
+      }
+
+    });
+  };
+
+ 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -28,6 +71,7 @@ const LoginScreen = () => {
     return unsubscribe;
   }, []);
 
+  
   const handleRegister = () => {
     navigation.navigate("Which User");
   };
@@ -46,7 +90,9 @@ const LoginScreen = () => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Logged in with", user.email);
-        navigation.replace("Explore Opps");
+        isVol(user.email)
+        
+       
       })
       .catch((error) => alert(error.message));
   };

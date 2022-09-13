@@ -5,9 +5,9 @@ import {
   View,
   Image,
   ScrollView,
-  Share,
 } from "react-native";
 import React from "react";
+import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
 
@@ -74,6 +74,7 @@ const SingleOpp = () => {
           >
             <Text style={styles.signUp}> Sign Up</Text>
           </TouchableOpacity>
+          <ShareTab />
         </View>
       </ScrollView>
     );

@@ -6,12 +6,16 @@ import {
   Image,
   ScrollView,
   FlatList,
+  LogBox,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useContext } from "react";
+import { UserContext } from "../src/contexts/UserContext";
 import Ionicons from "react-native-vector-icons/AntDesign";
 
 const ExploreOpps = () => {
+  const {loggedInUser} = useContext(UserContext)
   const navigation = useNavigation();
   const opps = [
     {
