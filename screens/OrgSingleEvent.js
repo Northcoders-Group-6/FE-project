@@ -11,7 +11,7 @@ import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
 
-const SingleOpp = () => {
+const OrgSingleEvent = () => {
   const navigation = useNavigation();
   const opps = [
     {
@@ -22,8 +22,8 @@ const SingleOpp = () => {
     },
   ];
 
-  const sendToSignUpPage = () => {
-    navigation.navigate("Sign Up");
+  const sendBack = () => {
+    navigation.navigate("Org Events");
   };
 
   return opps.map((element) => {
@@ -57,22 +57,22 @@ const SingleOpp = () => {
           <Text style={styles.organiserName}>Organiser: Anne Matthews</Text>
 
           <Text style={styles.text}>
-            <Ionicons name="calendar" size={22} /> From 10AM - 4PM Sat 8 Aug and
-            Sun 9 Aug
+            <Ionicons name="calendar" size={20} />- From 10AM - 4PM Sat 8 Aug
+            and Sun 9 Aug
           </Text>
           <Text style={styles.text}>
-            <Ionicons name="team" size={22} /> Up to 10 volunteers needed
+            <Ionicons name="team" size={20} />- Up to 10 volunteers needed
           </Text>
           <Text style={styles.text}>
-            <Ionicons name="gift" size={22} /> Free meal vouchers next time you
+            <Ionicons name="gift" size={20} />- Free meal vouchers next time you
             shop
           </Text>
 
           <TouchableOpacity
-            onPress={sendToSignUpPage}
+            onPress={sendBack}
             style={[styles.button, styles.buttonOutline]}
           >
-            <Text style={styles.signUp}> Sign Up</Text>
+            <Text style={styles.delete}> Delete Event</Text>
           </TouchableOpacity>
           <ShareTab />
         </View>
@@ -81,7 +81,7 @@ const SingleOpp = () => {
   });
 };
 
-export default SingleOpp;
+export default OrgSingleEvent;
 
 const styles = StyleSheet.create({
   oppsContainer: {
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     alignItems: "center",
   },
-  signUp: {
+  delete: {
     alignItems: "center",
     justifyContent: "center",
     color: "white",

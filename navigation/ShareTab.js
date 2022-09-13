@@ -1,11 +1,11 @@
 import React from "react";
 import { Share, View, TouchableOpacity, Text, StyleSheet } from "react-native";
-
+import Ionicons from "react-native-vector-icons/Entypo";
 const ShareTab = () => {
   const shareData = async () => {
     try {
       await Share.share({
-        message: "This is the demo text",
+        message: "Share this opportunity:",
       });
     } catch (error) {
       alert(error.message);
@@ -17,7 +17,9 @@ const ShareTab = () => {
         onPress={shareData}
         style={[styles.button, styles.buttonOutline]}
       >
-        <Text style={styles.signUp}> Share </Text>
+        <Text style={styles.share}>
+          <Ionicons name="share" size={20} style={styles.iconStyle} /> Share
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -26,6 +28,7 @@ const ShareTab = () => {
 export default ShareTab;
 
 const styles = StyleSheet.create({
+  iconStyle: {},
   button: {
     backgroundColor: "#3D5C43",
     width: "50%",
@@ -50,6 +53,13 @@ const styles = StyleSheet.create({
   signUp: {
     alignItems: "center",
     justifyContent: "center",
+    color: "white",
+    letterSpacing: 10,
+  },
+  share: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    letterSpacing: 1,
     color: "white",
   },
 });
