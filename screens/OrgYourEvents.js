@@ -1,12 +1,31 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
 import { useContext } from "react";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 
 const OrgYourEvents = () => {
-  const {loggedInUser} = useContext(UserContext)
+  const { loggedInUser } = useContext(UserContext);
+
+  let events = [];
+
+  const colRef = collection(db, "events");
+  const q = query(colRef, where("email", "==", loggedInUser.email));
+  onSnapshot(q, (snapshot) => {
+    // let events = [];
+    snapshot.docs.forEach((doc) => {
+      console.log(doc.data());
+    });
+  });
+
   const opps = [
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",
