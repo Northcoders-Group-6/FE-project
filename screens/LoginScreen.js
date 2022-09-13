@@ -53,6 +53,7 @@ const LoginScreen = () => {
     return unsubscribe;
   }, []);
 
+  console.log("heheheheheheheh", loggedInUser);
   const handleRegister = () => {
     navigation.navigate("Which User");
   };
