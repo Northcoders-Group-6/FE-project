@@ -1,10 +1,22 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import { React, useContext } from "react";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
-
+import { UserContext } from "../src/contexts/UserContext";
+import { db } from "../firebase";
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const { loggedInUser } = useContext(UserContext);
+
+  let currUser = auth.currentUser?.uid;
+  console.log(currUser);
+  let student = db.collection("Volunteers");
+  const doc = student.where("firstName", "==", "stan");
+  // let org = db.collection("organisers").doc(currUser);
+  // const orgdoc = await org.get()
+
+  console.log(doc);
+  // console.log("org", orgdoc.data());
 
   const handleSignOut = () => {
     auth
