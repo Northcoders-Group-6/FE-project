@@ -10,13 +10,10 @@ import OrganiserReg from "./screens/OrganiserReg";
 import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
 import SignUp from "./screens/SignUp";
-
 import CreateEvent from "./screens/CreateEvent";
-
 import Settings from "./screens/Settings";
 import VolunteerHistory from "./screens/VolunteerHistory";
-import EditProfile from "./screens/EditProfile";
-
+import SetPreferences from "./screens/SetPreferences";
 import { UserContext } from "./src/contexts/UserContext";
 import { useState } from "react";
 import TabNavigator from "./navigation/TabNavigator";
@@ -48,7 +45,7 @@ export default function App() {
             <Stack.Screen name="Sign Up" component={SignUp} />
             <Stack.Screen name="Create Event" component={CreateEvent} />
             <Stack.Screen name="Settings" component={Settings} />
-            <Stack.Screen name="Edit Profile" component={EditProfile} />
+            <Stack.Screen name="Set Preferences" component={SetPreferences} />
 
             <Stack.Screen
               name="Volunteer History"

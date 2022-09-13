@@ -9,8 +9,8 @@ const Settings = () => {
     navigation.navigate("Volunteer History");
   };
 
-  const EditProfile = () => {
-    navigation.navigate("Edit Profile");
+  const preferencesLink = () => {
+    navigation.navigate("Set Preferences");
   };
   return (
     <View>
@@ -19,16 +19,16 @@ const Settings = () => {
         {"\n"}Jodie
       </Text>
       <TouchableOpacity onPress={volunteerHistory} style={styles.button}>
-        <Text style={styles.buttonText}>View My History</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={EditProfile} style={styles.button}>
         <Text style={styles.buttonText}>Edit Profile</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={preferencesLink} style={styles.button}>
+        <Text style={styles.buttonText}>Set Preferences</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>View My History</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Notification Settings</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Privacy Settings</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Email Support</Text>
