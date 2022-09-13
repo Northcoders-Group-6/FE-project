@@ -8,16 +8,41 @@ import {
 } from "react-native";
 import React, { useEffect } from "react";
 import { useState, useContext } from "react";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
+import { collection, getDocs } from "firebase/firestore";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+
+  const [volunteers, setVolunteers] = useState([]);
+  const [isVolunteer, setIsVolunteer] = useState(false)
+  const isVol = (email) => {
+    const colRef = collection(db, "Volunteers");
+    getDocs(colRef).then((snapshot) => {
+      let volunteersAux = [];
+      snapshot.docs.forEach((doc) => {
+        volunteersAux.push({ ...doc.data() });
+      });
+      setVolunteers(volunteersAux);
+
+      const filteredUser = volunteersAux.filter((user) => {
+        return user.email === email;
+      });
+      
+      if(filteredUser.length !== 0){
+        navigation.replace("Explore Opps")
+      }else{
+        navigation.replace("Org Events")
+      }
+
+    });
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -46,7 +71,9 @@ const LoginScreen = () => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Logged in with", user.email);
-        navigation.replace("Explore Opps");
+        isVol(user.email)
+        
+       
       })
       .catch((error) => alert(error.message));
   };
