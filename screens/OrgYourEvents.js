@@ -8,7 +8,7 @@ const OrgYourEvents = () => {
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",
       opp: "Food Bank Donation",
-      company: "Green Veg Grocers",
+      company: "Unicorn",
       location: "Oxford Road, Manchester",
     },
     {
