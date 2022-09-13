@@ -6,7 +6,7 @@ import { UserContext } from "../src/contexts/UserContext";
 import { useContext } from "react";
 
 const OrgYourEvents = () => {
-  const {loggedInUser} = useContext(UserContext)
+  const { loggedInUser } = useContext(UserContext);
   const opps = [
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",

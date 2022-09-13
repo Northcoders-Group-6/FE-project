@@ -12,29 +12,33 @@ import { auth, db } from "../firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
-import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
-  
-  const [volunteers, setVolunteers] = useState([]);
-  const [isVolunteer, setIsVolunteer] = useState(false)
 
-  const isOrg = (email)=>{
+  const [volunteers, setVolunteers] = useState([]);
+  const [isVolunteer, setIsVolunteer] = useState(false);
+
+  const isOrg = (email) => {
     const colRef = collection(db, "Organizations");
-    const q = query(colRef, where("email", "==", email))
-    onSnapshot(q, (snapshot)=>{
-      snapshot.docs.forEach((doc)=>{
-        const org = doc.data()
-        setLoggedInUser(org)
-      })
-      
-    })
-   
-  }
+    const q = query(colRef, where("email", "==", email));
+    onSnapshot(q, (snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        const org = doc.data();
+        setLoggedInUser(org);
+      });
+    });
+  };
 
   const isVol = (email) => {
     const colRef = collection(db, "Volunteers");
@@ -47,21 +51,18 @@ const LoginScreen = () => {
       const filteredUser = volunteersAux.filter((user) => {
         return user.email === email;
       });
-      
-      if(filteredUser.length !== 0){
-        
-        setLoggedInUser(filteredUser[0])
-        
-        navigation.replace("Explore Opps")
-      }else{
-        isOrg(email)
-        navigation.replace("Org Events")
-      }
 
+      if (filteredUser.length !== 0) {
+        setLoggedInUser(filteredUser[0]);
+
+        navigation.replace("Explore Opps");
+      } else {
+        isOrg(email);
+        navigation.replace("Org Events");
+      }
     });
   };
 
- 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -71,7 +72,6 @@ const LoginScreen = () => {
     return unsubscribe;
   }, []);
 
-  
   const handleRegister = () => {
     navigation.navigate("Which User");
   };
@@ -90,9 +90,7 @@ const LoginScreen = () => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Logged in with", user.email);
-        isVol(user.email)
-        
-       
+        isVol(user.email);
       })
       .catch((error) => alert(error.message));
   };
@@ -127,6 +125,14 @@ const LoginScreen = () => {
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
+        <View>
+          <Text style={styles.textBelow}>
+            Are you a student that is looking for volunteer opportunities?
+            Voluntreats offers a range of events to partake in your area to make
+            a difference in the community. Here, you can build your experience
+            while making changes for the greater good!
+          </Text>
+        </View>
       </View>
     </KeyboardAvoidingView>
   );
@@ -136,7 +142,8 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    marginTop: 200,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -188,6 +195,11 @@ const styles = StyleSheet.create({
   passwordInput: {
     color: "#5D62CB",
     fontWeight: "600",
+    fontSize: 16,
+  },
+  textBelow: {
+    marginTop: 40,
+    color: "#3D5C43",
     fontSize: 16,
   },
 });

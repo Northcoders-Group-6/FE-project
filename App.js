@@ -10,7 +10,7 @@ import OrganiserReg from "./screens/OrganiserReg";
 import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
 import SignUp from "./screens/SignUp";
-import OrgYourEvents from "./screens/OrgYourEvents"
+import OrgYourEvents from "./screens/OrgYourEvents";
 import CreateEvent from "./screens/CreateEvent";
 import Settings from "./screens/Settings";
 import VolunteerHistory from "./screens/VolunteerHistory";
@@ -19,7 +19,8 @@ import { UserContext } from "./src/contexts/UserContext";
 import { useState } from "react";
 import TabNavigator from "./navigation/TabNavigator";
 import Toast from "react-native-toast-message";
-
+import TabNavigatorOrg from "./navigation/TabNavigatorOrg";
+import OrgEventConfirmation from "./screens/OrgEventConfirmation";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -47,8 +48,11 @@ export default function App() {
             <Stack.Screen name="Create Event" component={CreateEvent} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
-            <Stack.Screen name="Org Events" component={OrgYourEvents} />
-
+            <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
+            <Stack.Screen
+              name="Event Confirmation"
+              component={OrgEventConfirmation}
+            />
             <Stack.Screen
               name="Volunteer History"
               component={VolunteerHistory}

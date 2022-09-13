@@ -38,6 +38,7 @@ const CreateEvent = () => {
             setNewEvent(values);
             db.collection("events").add(values);
             actions.resetForm();
+            navigation.navigate("Event Confirmation");
           }}
         >
           {(props) => (
