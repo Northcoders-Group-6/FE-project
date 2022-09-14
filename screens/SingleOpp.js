@@ -27,8 +27,8 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 
-const SingleOpp = ({route}) => {
-  const [eventId, setEventId] = useState(route.params.id)
+const SingleOpp = ({ route }) => {
+  const [eventId, setEventId] = useState(route.params.id);
   const navigation = useNavigation();
   const { loggedInUser } = useContext(UserContext);
   const [userId, setUserId] = useState([]);
@@ -56,7 +56,6 @@ const SingleOpp = ({route}) => {
     });
   }, [eventId]);
 
-
   const handleSignUp = async () => {
     const VolNumRef = doc(db, "events", eventId);
     const Volunteer = doc(db, "Volunteers", loggedInUser.docId);
@@ -77,55 +76,52 @@ const SingleOpp = ({route}) => {
     // newVols = number_of_vols"
     handleSignUp();
   };
-  
+
   return (
-      <ScrollView key={eventId}>
-        <View style={styles.oppsContainer}>
-          <Image
-            source={{ uri: event.image }}
-            style={{ width: 450, height: 250 }}
-          />
-          <Text style={styles.oppsTextTitle}>{event.event_title}</Text>
-          <Text style={styles.oppsText}>{event.company}</Text>
-          <View
-            style={{
-              borderBottomColor: "#646464",
-              paddingBottom: 15,
-              borderBottomWidth: StyleSheet.hairlineWidth,
-            }}
-          >
-            <Text style={styles.oppsText}>{event.location}</Text>
-          </View>
-          <Text style={styles.descriptionText}> Description</Text>
-          <Text style={styles.oppsTextDescription}>
-            {event.description}
-          </Text>
-
-          <Text style={styles.organiserName}>Organiser: Anne Matthews</Text>
-
-          <Text style={styles.text}>
-            <Ionicons name="calendar" size={22} /> From 10AM - 4PM Sat 8 Aug and
-            Sun 9 Aug
-          </Text>
-          <Text style={styles.text}>
-            <Ionicons name="team" size={22} /> Up to 10 volunteers needed
-          </Text>
-          <Text style={styles.text}>
-            <Ionicons name="gift" size={22} /> Free meal vouchers next time you
-            shop
-          </Text>
-
-          <TouchableOpacity
-            onPress={sendToSignUpPage}
-            style={[styles.button, styles.buttonOutline]}
-          >
-            <Text style={styles.signUp}> Sign Up</Text>
-          </TouchableOpacity>
-          <ShareTab />
+    <ScrollView key={eventId}>
+      <View style={styles.oppsContainer}>
+        <Image
+          source={{ uri: event.image }}
+          style={{ width: 450, height: 250 }}
+        />
+        <Text style={styles.oppsText1}>{event.event_title}</Text>
+        <Text style={styles.oppsText2}>{event.company}</Text>
+        <View
+          style={{
+            borderBottomColor: "#646464",
+            paddingBottom: 15,
+            borderBottomWidth: StyleSheet.hairlineWidth,
+          }}
+        >
+          <Text style={styles.oppsText2}>{event.location}</Text>
         </View>
-      </ScrollView>
-    );
-  
+        <Text style={styles.descriptionText}> Description</Text>
+        <Text style={styles.oppsTextDescription}>{event.description}</Text>
+
+        <Text style={styles.organiserName}>Organiser: Anne Matthews</Text>
+
+        <Text style={styles.text}>
+          <Ionicons name="calendar" size={22} /> From 10AM - 4PM Sat 8 Aug and
+          Sun 9 Aug
+        </Text>
+        <Text style={styles.text}>
+          <Ionicons name="team" size={22} /> Up to 10 volunteers needed
+        </Text>
+        <Text style={styles.text}>
+          <Ionicons name="gift" size={22} /> Free meal vouchers next time you
+          shop
+        </Text>
+
+        <TouchableOpacity
+          onPress={sendToSignUpPage}
+          style={[styles.button, styles.buttonOutline]}
+        >
+          <Text style={styles.signUp}> Sign Up</Text>
+        </TouchableOpacity>
+        <ShareTab />
+      </View>
+    </ScrollView>
+  );
 };
 
 export default SingleOpp;
@@ -138,31 +134,31 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     textAlign: "left",
   },
-  oppsText: {
+  oppsText1: {
     color: "#4D4B4B",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 20,
+    textAlign: "left",
+    marginLeft: 8,
+    marginTop: 20,
+  },
+  oppsText2: {
+    color: "#4D4B4B",
+    fontWeight: "700",
+    fontSize: 16,
     textAlign: "left",
     paddingBottom: 5,
     marginLeft: 8,
     lineHeight: 20,
   },
-  oppsTextTitle: {
-    color: "#3D5C43",
-    fontWeight: "700",
-    fontSize: 20,
-    textAlign: "left",
-    marginTop: 20,
-    marginBottom: 8,
-    marginLeft: 8,
-  },
+
   oppsTextDescription: {
     color: "#3D5C43",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
     marginTop: 18,
-    marginLeft: 10,
+    marginLeft: 9,
     lineHeight: 24,
   },
   buttonContainer: {
@@ -209,10 +205,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     color: "#4D4B4B",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
     marginTop: 20,
-    marginLeft: 8,
+    marginLeft: 9,
   },
   hairlineWidth: {
     padding: 30,
@@ -230,9 +226,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: "#4D4B4B",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
     marginTop: 15,
-    marginLeft: 8,
+    marginLeft: 9,
   },
 });

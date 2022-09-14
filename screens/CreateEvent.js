@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
     color: "#4D4B4B",
     fontWeight: "500",
     textAlign: "center",
+    marginBottom: 20,
   },
 
   container: {
@@ -149,9 +150,9 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#6D326D",
     width: "100%",
-    padding: 20,
+    padding: 15,
     borderRadius: 10,
-    alignItems: "center",
+    alignSelf: "center",
     color: "white",
     shadowColor: "#000",
     shadowOffset: {
