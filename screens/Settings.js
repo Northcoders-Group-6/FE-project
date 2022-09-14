@@ -19,7 +19,7 @@ const Settings = () => {
     navigation.navigate("Set Preferences");
   };
   return (
-    <View>
+    <View style={styles.flexCol}>
       <View style={styles.flexCol}>
         {loggedInUser.firstName ? (
           <Ionicons name="smileo" size={40} />
@@ -51,6 +51,13 @@ const Settings = () => {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>FAQ</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        /* onPress={LogOut} */
+        style={[styles.logoutButton, styles.buttonOutline]}
+      >
+        <Text style={styles.buttonOutlineText}>Logout</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -64,9 +71,14 @@ const styles = StyleSheet.create({
     padding: 18,
     borderColor: "#3D5C43",
     borderWidth: 1,
+
+    width: "80%",
+
+    borderRadius: 10,
+    alignItems: "center",
   },
   flexCol: {
-    marginTop: 30,
+    marginTop: 20,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -85,5 +97,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 20,
     marginTop: 0,
+  },
+  logoutButton: {
+    backgroundColor: "#3D5C43",
+    width: "80%",
+    padding: 15,
+    borderRadius: 10,
+    alignItems: "center",
+    marginBottom: 10,
+  },
+
+  buttonOutline: {
+    backgroundColor: "#6D326D",
+    marginTop: 5,
+    borderColor: "#6D326D",
+    borderWidth: 2,
+  },
+  buttonOutlineText: {
+    color: "white",
+    fontWeight: "700",
+    fontSize: 16,
   },
 });
