@@ -2,9 +2,9 @@ import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import React from "react";
 import { CurrentRenderContext, useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
+import Toast, { ErrorToast } from "react-native-toast-message";
 import { useContext } from "react";
 import { UserContext } from "../src/contexts/UserContext";
-
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 const Settings = () => {
@@ -13,6 +13,33 @@ const Settings = () => {
   //console.log(loggedInUser);
   const auth = getAuth();
   console.log("current Auth--->", auth);
+
+  const successToast = () => {
+    Toast.show({
+      type: "success",
+      text1: "You have successfully Logout!",
+
+      text2: "Thank you fot use our app...",
+      visibilityTime: 5000,
+      autoHide: true,
+      onShow: () => {
+        navigation.replace("Login");
+      },
+      onHide: () => {},
+    });
+  };
+
+  const errorToast = err => {
+    ErrorToast.show({
+      type: "error",
+      text1: `Something goes wrong: ${err}`,
+      text2: "Try Again",
+      visibilityTime: 5000,
+      autoHide: false,
+      onShow: () => {},
+      onHide: () => {},
+    });
+  };
 
   const navigation = useNavigation();
   const volunteerHistory = () => {
@@ -28,10 +55,11 @@ const Settings = () => {
       .then(() => {
         setLoggedInUser([]);
         console.log("user signed out!");
-        navigation.replace("Login");
+        successToast();
       })
       .catch(err => {
         console.log(err.message);
+        errorToast(err);
       });
   };
 
