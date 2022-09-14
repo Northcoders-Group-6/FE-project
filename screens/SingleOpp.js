@@ -20,13 +20,15 @@ import {
   snapshotEqual,
   where,
   doc,
+  updateDoc,
+  increment,
 } from "firebase/firestore";
 
 const SingleOpp = () => {
   const navigation = useNavigation();
 
   const [eventArr, setEventArr] = useState([]);
-  const [volNumber, setVolNumber] = useState([]);
+  // const [volNumber, setVolNumber] = useState([]);
 
   const eventsCol = async () => {
     const docRef = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
@@ -45,7 +47,7 @@ const SingleOpp = () => {
   }, []);
 
   console.log(eventArr);
-  console.log(volNumber);
+  // console.log(volNumber);
 
   const opps = [
     {
@@ -57,12 +59,10 @@ const SingleOpp = () => {
   ];
 
   const handleSignUp = async () => {
-    await setVolNumber(volNumber - 1);
     const volNumbers = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
 
-    // Set the "capital" field of the city 'DC'
     updateDoc(volNumbers, {
-      number_of_vols: volNumber,
+      number_of_vols: increment(-1),
     });
   };
 
