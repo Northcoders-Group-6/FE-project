@@ -3,6 +3,7 @@ import * as React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import Toast, { ErrorToast } from "react-native-toast-message";
 
 const EditProfile = () => {
   const [space, setSpace] = React.useState("first");
@@ -11,9 +12,24 @@ const EditProfile = () => {
   const [isRemote, setRemote] = React.useState(false);
   const navigation = useNavigation();
 
-  const savePref = () => {
-    navigation.navigate("Settings");
+  const successToast = () => {
+    Toast.show({
+      type: "success",
+      text1: "Preferences updated! 👍 ",
+
+      visibilityTime: 5000,
+      autoHide: true,
+      onShow: () => {
+        navigation.replace("Settings");
+      },
+      onHide: () => {},
+    });
   };
+
+  const savePref = () => {
+    successToast();
+  };
+
   return (
     <View>
       <Text style={styles.oppsText1}>
