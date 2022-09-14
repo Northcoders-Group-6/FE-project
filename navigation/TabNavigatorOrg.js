@@ -1,7 +1,7 @@
 import React from "react";
-import ExploreOpps from "../screens/ExploreOpps";
+import OrgYourEvents from "../screens/OrgYourEvents";
 import Activity from "../screens/Activity";
-import MapScreen from "../screens/MapScreen";
+import CreateEvent from "../screens/CreateEvent";
 import Settings from "../screens/Settings";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -19,7 +19,7 @@ const TabNavigatorOrg = () => {
     >
       <Tab.Screen
         name="Home"
-        component={ExploreOpps}
+        component={OrgYourEvents}
         options={{
           tabBarShowLabel: true,
           tabBarIcon: ({ color }) => (
@@ -38,12 +38,12 @@ const TabNavigatorOrg = () => {
         }}
       />
       <Tab.Screen
-        name="Map"
-        component={MapScreen}
+        name="Create Event"
+        component={CreateEvent}
         options={{
           tabBarShowLabel: true,
           tabBarIcon: ({ color }) => (
-            <Ionicons name="earth" color={color} size={20} />
+            <Ionicons name="ios-add-circle-outline" color={color} size={20} />
           ),
         }}
       />

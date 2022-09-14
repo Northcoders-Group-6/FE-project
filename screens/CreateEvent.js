@@ -12,11 +12,13 @@ import {
 import React, { useState, useContext } from "react";
 import { Formik } from "formik";
 import { db } from "../firebase";
+import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
 
 const CreateEvent = () => {
   const [newEvent, setNewEvent] = useState({});
   const { loggedInUser } = useContext(UserContext);
+  const navigation = useNavigation();
 
   // console.log("here email", loggedInUser.email);
   // console.log("here compnay", loggedInUser.compnay_name);
@@ -26,6 +28,7 @@ const CreateEvent = () => {
       style={styles.container}
       behavior={Platform.select({ android: undefined, ios: "padding" })}
     >
+      <Text style={styles.title1}>Create a new event</Text>
       <View style={styles.buttonContainer}>
         <Formik
           initialValues={{
@@ -34,14 +37,14 @@ const CreateEvent = () => {
             location: "",
             date_time: "",
             location: "",
-            number_of_vols: "",
+            number_of_vols: 0,
             treats: "",
             image: "",
           }}
           onSubmit={(values, actions) => {
             values.company = loggedInUser.company_name;
             values.email = loggedInUser.email;
-            values.users = []
+            values.users = [];
             setNewEvent(values);
             db.collection("events").add(values);
             actions.resetForm();
@@ -111,19 +114,21 @@ const CreateEvent = () => {
 export default CreateEvent;
 
 const styles = StyleSheet.create({
+  title1: {
+    fontSize: 24,
+    color: "#4D4B4B",
+    fontWeight: "500",
+    textAlign: "center",
+  },
+
   container: {
-    flex: 1,
-    width: "90%",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 20,
-    marginLeft: 20,
   },
   input: {
     borderWidth: 1,
     borderColor: "#ddd",
-    padding: 10,
-    fontSize: 18,
+    padding: 5,
+    fontSize: 16,
     borderRadius: 6,
     marginBottom: 10,
     marginTop: 10,
@@ -134,24 +139,35 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 16,
     textAlign: "left",
-    marginTop: 8,
   },
   buttonContainer: {
     width: "80%",
     justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
   },
 
   button: {
-    backgroundColor: "#3D5C43",
+    backgroundColor: "#6D326D",
     width: "100%",
     padding: 20,
-    borderRadius: 25,
+    borderRadius: 10,
     alignItems: "center",
     color: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
 
   buttonText: {
     color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    textAlign: "center",
   },
 });

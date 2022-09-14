@@ -7,35 +7,86 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
+import { db } from "../firebase";
+import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../src/contexts/UserContext";
 import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
+import {
+  collection,
+  getDoc,
+  onSnapshot,
+  query,
+  snapshotEqual,
+  where,
+  doc,
+  updateDoc,
+  increment,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 
-const SingleOpp = () => {
+const SingleOpp = ({route}) => {
+  const [eventId, setEventId] = useState(route.params.id)
   const navigation = useNavigation();
-  const opps = [
-    {
-      img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
-      opp: "Food Bank Donation",
-      company: "Mustard Tree",
-      location: "Ancoats, Manchester",
-    },
-  ];
+  const { loggedInUser } = useContext(UserContext);
+  const [userId, setUserId] = useState([]);
+
+  const [event, setEvent] = useState({});
+
+  const getEmailFromUser = async () => {
+    let orgEmail = await loggedInUser;
+    return orgEmail;
+  };
+
+  const eventsCol = async () => {
+    const docRef = doc(db, "events", eventId);
+    const docSnap = await getDoc(docRef);
+    return docSnap;
+  };
+
+  useEffect(() => {
+    eventsCol().then((docSnap) => {
+      setEvent(docSnap.data());
+    });
+    getEmailFromUser().then((user) => {
+      console.log("herererer", user);
+      setUserId();
+    });
+  }, [eventId]);
+
+
+  const handleSignUp = async () => {
+    const VolNumRef = doc(db, "events", eventId);
+    const Volunteer = doc(db, "Volunteers", loggedInUser.docId);
+
+    updateDoc(VolNumRef, {
+      number_of_vols: increment(-1),
+    });
+    updateDoc(Volunteer, {
+      events: arrayUnion(VolNumRef),
+    });
+    updateDoc(VolNumRef, {
+      users: arrayUnion(loggedInUser),
+    });
+  };
 
   const sendToSignUpPage = () => {
     navigation.navigate("Sign Up");
+    // newVols = number_of_vols"
+    handleSignUp();
   };
-
-  return opps.map((element) => {
-    return (
-      <ScrollView>
-        <View style={styles.oppsContainer} key={element.opp}>
+  
+  return (
+      <ScrollView key={eventId}>
+        <View style={styles.oppsContainer}>
           <Image
-            source={{ uri: element.img }}
+            source={{ uri: event.image }}
             style={{ width: 450, height: 250 }}
           />
-          <Text style={styles.oppsTextTitle}>{element.opp}</Text>
-          <Text style={styles.oppsText}>{element.company}</Text>
+          <Text style={styles.oppsTextTitle}>{event.event_title}</Text>
+          <Text style={styles.oppsText}>{event.company}</Text>
           <View
             style={{
               borderBottomColor: "#646464",
@@ -43,15 +94,11 @@ const SingleOpp = () => {
               borderBottomWidth: StyleSheet.hairlineWidth,
             }}
           >
-            <Text style={styles.oppsText}>{element.location}</Text>
+            <Text style={styles.oppsText}>{event.location}</Text>
           </View>
           <Text style={styles.descriptionText}> Description</Text>
           <Text style={styles.oppsTextDescription}>
-            Join us in helping tackle food waste and donating food to those in
-            need. We will need help with donations to make sure we provide the
-            community with bags of donations they can take away. We will also
-            provide free food on the day and a free meal voucher next time you
-            shop to say thank you for your hard work.
+            {event.description}
           </Text>
 
           <Text style={styles.organiserName}>Organiser: Anne Matthews</Text>
@@ -78,7 +125,7 @@ const SingleOpp = () => {
         </View>
       </ScrollView>
     );
-  });
+  
 };
 
 export default SingleOpp;
@@ -129,6 +176,15 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 15,
     borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   buttonOutline: {
     backgroundColor: "#3D5C43",

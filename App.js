@@ -11,7 +11,10 @@ import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
 import SignUp from "./screens/SignUp";
 import OrgYourEvents from "./screens/OrgYourEvents";
+import ExploreOpps from "./screens/ExploreOpps";
+
 import OrgSingleEvent from "./screens/OrgSingleEvent";
+
 import CreateEvent from "./screens/CreateEvent";
 import Settings from "./screens/Settings";
 import VolunteerHistory from "./screens/VolunteerHistory";
@@ -32,6 +35,7 @@ export default function App() {
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <NavigationContainer>
           <Stack.Navigator>
+            {/* <Stack.Screen name="Single" component={SingleOpp} /> */}
             <Stack.Screen
               options={{ headerShown: false }}
               name="Login"
@@ -50,7 +54,7 @@ export default function App() {
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
 
-       
+
             <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
 
 

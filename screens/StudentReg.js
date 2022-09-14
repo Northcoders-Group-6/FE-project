@@ -217,21 +217,29 @@ export default StudentReg;
 
 const styles = StyleSheet.create({
   input: {
-    margin: 0,
     borderWidth: 1,
     borderColor: "#ddd",
     padding: 5,
-    fontSize: 15,
+    fontSize: 16,
     borderRadius: 6,
   },
   container: {
     padding: 20,
   },
   button: {
-    borderRadius: 8,
+    borderRadius: 10,
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: "#3D5C43",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   buttonText: {
     color: "white",

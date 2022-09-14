@@ -1,4 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 
 import { React, useState, useEffect } from "react";
 import { auth, db } from "../firebase";
@@ -15,6 +22,7 @@ import {
 
 const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
+  const navigation = useNavigation();
 
   const opps = [
     {
@@ -44,12 +52,12 @@ const OrgYourEvents = () => {
       let orgEmail = await loggedInUser.email;
       return orgEmail;
     };
-    getEmailFromUser().then(email => {
+    getEmailFromUser().then((email) => {
       const colRef = collection(db, "events");
       const events = query(colRef, where("email", "==", email));
-      onSnapshot(events, snapshot => {
+      onSnapshot(events, (snapshot) => {
         let eventAux = [];
-        snapshot.docs.forEach(doc => {
+        snapshot.docs.forEach((doc) => {
           eventAux.push({ ...doc.data() });
         });
         setEventArr(eventAux);
@@ -67,33 +75,37 @@ const OrgYourEvents = () => {
 
   return (
     <>
-      <Text>Your Events</Text>
-      <TouchableOpacity
-        onPress={clickCreateEvent}
-        style={[styles.button, styles.buttonOutline]}
-      >
-        <Text>Create a new event</Text>
-      </TouchableOpacity>
-      {opps.map(element => {
-        return (
-          <View style={styles.oppsContainer} key={element.opp}>
-            <Image
-              source={{ uri: element.img }}
-              style={{ width: 450, height: 250 }}
-            />
+      <ScrollView>
+        <View>
+          <Text style={styles.title}>Your Events</Text>
+          <TouchableOpacity
+            onPress={clickCreateEvent}
+            style={[styles.button, styles.buttonOutline]}
+          >
+            <Text style={styles.seeMore}>Create a new event</Text>
+          </TouchableOpacity>
+          {opps.map((element) => {
+            return (
+              <View style={styles.oppsContainer} key={element.opp}>
+                <Image
+                  source={{ uri: element.img }}
+                  style={{ width: 450, height: 250 }}
+                />
 
-            <Text style={styles.oppsText}>{element.opp}</Text>
-            <Text style={styles.oppsText}>{element.company}</Text>
-            <Text style={styles.oppsText}>{element.location}</Text>
-            <TouchableOpacity
-              onPress={singleEventClick}
-              style={[styles.button, styles.buttonOutline]}
-            >
-              <Text style={styles.seeMore}>See More</Text>
-            </TouchableOpacity>
-          </View>
-        );
-      })}
+                <Text style={styles.oppsText}>{element.opp}</Text>
+                <Text style={styles.oppsText}>{element.company}</Text>
+                <Text style={styles.oppsText}>{element.location}</Text>
+                <TouchableOpacity
+                  onPress={singleEventClick}
+                  style={[styles.button, styles.buttonOutline]}
+                >
+                  <Text style={styles.seeMore}>See More</Text>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
     </>
   );
 };
@@ -108,17 +120,21 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     textAlign: "left",
   },
-  oppsHeaderText: {
-    fontSize: 30,
+  title: {
+    paddingTop: 30,
+    paddingBottom: 15,
+    fontSize: 24,
+    color: "#4D4B4B",
+    fontWeight: "500",
+    textAlign: "center",
   },
   oppsText: {
     color: "#6D326D",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
-    paddingBottom: 5,
+    paddingBottom: 10,
     marginLeft: 8,
-    lineHeight: 20,
   },
   oppsTextTitle: {
     color: "#6D326D",
@@ -137,24 +153,17 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#6D326D",
-    width: "100%",
+    width: "90%",
     padding: 15,
     borderRadius: 10,
-    alignItems: "center",
+    alignSelf: "center",
   },
   buttonOutline: {
     backgroundColor: "#6D326D",
     marginTop: 20,
     borderColor: "#6D326D",
     alignItems: "center",
-    marginBottom: 40,
-  },
-
-  buttonOutlineText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
-    alignItems: "center",
+    marginBottom: 1,
   },
   seeMore: {
     alignItems: "center",
