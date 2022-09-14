@@ -46,7 +46,7 @@ const OrgYourEvents = () => {
     });
   }, [loggedInUser]);
 
-  console.log("Here are the events", eventArr);
+  // console.log("Here are the events", eventArr);
 
   const singleEventClick = (docId) => {
     navigation.navigate("Org Single Event", { eventId: docId });

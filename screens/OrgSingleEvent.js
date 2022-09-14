@@ -7,80 +7,80 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
+import { useContext, useState, useEffect } from "react";
 import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
+import { getDoc, doc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 const OrgSingleEvent = ({ route }) => {
-  console.log(route.params);
+  const [eventdoc, setEventId] = useState(route.params.eventId);
   const navigation = useNavigation();
+  const [event, setEvent] = useState({});
 
-  const opps = [
-    {
-      img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
-      opp: "Food Bank Donation",
-      company: "Mustard Tree",
-      location: "Ancoats, Manchester",
-    },
-  ];
+  const eventsCol = async () => {
+    const docRef = doc(db, "events", eventdoc);
+    const docSnap = await getDoc(docRef);
+    return docSnap;
+  };
+
+  useEffect(() => {
+    eventsCol().then((docSnap) => {
+      setEvent(docSnap.data());
+    });
+  }, [eventdoc]);
+
+  console.log(event.users);
 
   const sendBack = () => {
     navigation.navigate("Org Events");
   };
 
-  return opps.map((element) => {
-    return (
-      <ScrollView>
-        <View style={styles.oppsContainer} key={element.opp}>
-          <Image
-            source={{ uri: element.img }}
-            style={{ width: 450, height: 250 }}
-          />
-          <Text style={styles.oppsTextTitle}>{element.opp}</Text>
-          <Text style={styles.oppsText}>{element.company}</Text>
-          <View
-            style={{
-              borderBottomColor: "#646464",
-              paddingBottom: 15,
-              borderBottomWidth: StyleSheet.hairlineWidth,
-            }}
-          >
-            <Text style={styles.oppsText}>{element.location}</Text>
-          </View>
-          <Text style={styles.descriptionText}> Description</Text>
-          <Text style={styles.oppsTextDescription}>
-            Join us in helping tackle food waste and donating food to those in
-            need. We will need help with donations to make sure we provide the
-            community with bags of donations they can take away. We will also
-            provide free food on the day and a free meal voucher next time you
-            shop to say thank you for your hard work.
-          </Text>
+  return (
+    <ScrollView>
+      <View>
+        <View style={styles.oppsContainer} key={event.event_title}>
+          <Text style={styles.oppsTextTitle}>{event.event_title}</Text>
 
-          <Text style={styles.organiserName}>Organiser: Anne Matthews</Text>
-
-          <Text style={styles.text}>
-            <Ionicons name="calendar" size={20} />- From 10AM - 4PM Sat 8 Aug
-            and Sun 9 Aug
-          </Text>
-          <Text style={styles.text}>
-            <Ionicons name="team" size={20} />- Up to 10 volunteers needed
-          </Text>
-          <Text style={styles.text}>
-            <Ionicons name="gift" size={20} />- Free meal vouchers next time you
-            shop
-          </Text>
-
-          <TouchableOpacity
-            onPress={sendBack}
-            style={[styles.button, styles.buttonOutline]}
-          >
-            <Text style={styles.delete}> Delete Event</Text>
-          </TouchableOpacity>
-          <ShareTab />
+          <Text style={styles.oppsText}>{event.location}</Text>
         </View>
-      </ScrollView>
-    );
-  });
+
+        <Text style={styles.oppsTextDescription}>
+          Number of attendees: {event.number_of_vols}
+        </Text>
+
+        <Text>Attendees info:</Text>
+        {event.users.map((element) => {
+          return (
+            <View style={styles.oppsContainer} key={element.docId}>
+              <Text>
+                Name: {element.firstName} {element.lastName}{" "}
+              </Text>
+              <Text>email: {element.email} </Text>
+              <Text>phone number: {element.phone} </Text>
+            </View>
+          );
+        })}
+
+        <Text style={styles.text}>
+          <Ionicons name="calendar" size={20} />
+          {event.date_time}
+        </Text>
+        <Text style={styles.text}>
+          <Ionicons name="team" size={20} />- Up to 10 volunteers needed
+        </Text>
+
+        <TouchableOpacity
+          onPress={sendBack}
+          style={[styles.button, styles.buttonOutline]}
+        >
+          <Text style={styles.delete}> Delete Event</Text>
+        </TouchableOpacity>
+        <ShareTab />
+      </View>
+    </ScrollView>
+  );
 };
 
 export default OrgSingleEvent;
