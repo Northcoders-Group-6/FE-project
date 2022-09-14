@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -40,6 +47,12 @@ const WhichUser = () => {
           local event!
         </Text>
       </View>
+      <View style={styles.image}>
+        <Image
+          source={require("./../assets/Untitled-1.png")}
+          style={{ width: 128, height: 40 }}
+        />
+      </View>
     </View>
   );
 };
@@ -62,6 +75,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     marginLeft: 40,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   buttonText: {
     color: "white",
@@ -85,5 +107,8 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 16,
     marginLeft: 15,
+  },
+  image: {
+    alignSelf: "center",
   },
 });

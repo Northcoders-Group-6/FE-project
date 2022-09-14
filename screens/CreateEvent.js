@@ -28,6 +28,7 @@ const CreateEvent = () => {
       style={styles.container}
       behavior={Platform.select({ android: undefined, ios: "padding" })}
     >
+      <Text style={styles.title1}>Create a new event</Text>
       <View style={styles.buttonContainer}>
         <Formik
           initialValues={{
@@ -113,6 +114,13 @@ const CreateEvent = () => {
 export default CreateEvent;
 
 const styles = StyleSheet.create({
+  title1: {
+    fontSize: 24,
+    color: "#4D4B4B",
+    fontWeight: "500",
+    textAlign: "center",
+  },
+
   container: {
     padding: 20,
   },
@@ -145,6 +153,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     color: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
 
   buttonText: {
