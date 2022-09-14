@@ -48,14 +48,12 @@ export default WhichUser;
 
 const styles = StyleSheet.create({
   textStyle: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "500",
     color: "#4D4B4B",
+    textAlign: "center",
     marginTop: 40,
-    marginLeft: 100,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 60,
+    marginBottom: 50,
   },
   button: {
     backgroundColor: "#3D5C43",
@@ -64,7 +62,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     marginLeft: 40,
-    // marginBottom: 10,
   },
   buttonText: {
     color: "white",
@@ -83,8 +80,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   textBelow: {
-    marginTop: 20,
-    marginBottom: 50,
+    padding: 30,
+    textAlign: "center",
     color: "black",
     fontSize: 16,
     marginLeft: 15,
