@@ -47,7 +47,7 @@ const LoginScreen = () => {
       let volunteersAux = [];
       snapshot.docs.forEach((doc) => {
         userData = doc.data();
-        userData.DocId = doc.id;
+        userData.docId = doc.id;
         // console.log("uesrdata final", userData);
         // console.log("docID is here=", doc.id);
         volunteersAux.push({ ...userData });

@@ -66,17 +66,17 @@ const SingleOpp = () => {
 
   const handleSignUp = async () => {
     const VolNumRef = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
-    const Volunteer = doc(db, "Volunteers");
+    const Volunteer = doc(db, "Volunteers", loggedInUser.docId);
 
     updateDoc(VolNumRef, {
       number_of_vols: increment(-1),
     });
-    // await updateDoc(eventData, {
-    //   events: arrayUnion("greater_virginia"),
-    // });
-    // await updateDoc(washingtonRef, {
-    //   regions: arrayUnion("greater_virginia"),
-    // });
+    updateDoc(Volunteer, {
+      events: arrayUnion(VolNumRef),
+    });
+    updateDoc(VolNumRef, {
+      users: arrayUnion(loggedInUser),
+    });
   };
 
   const sendToSignUpPage = () => {
