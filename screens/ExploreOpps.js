@@ -37,48 +37,18 @@ const ExploreOpps = () => {
     let eventAux = [];
     eventsCol().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        // console.log(doc.id);
+         
         // doc.data() is never undefined for query doc snapshots
-        eventAux.push({ ...doc.data() });
+        eventAux.push({ ...doc.data(), doc_id: doc.id });
       });
       setEventArr(eventAux);
     });
-  }, [eventArr]);
+  }, [loggedInUser]);
   
-
+  
   // console.log(eventArr);
-
-  const opps = [
-    {
-      img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
-      opp: "Food Bank Donation",
-      company: "Green Veg Grocers",
-      location: "Oxford Road, Manchester",
-    },
-
-    {
-      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Tree planting",
-      company: "Plant a tree",
-      location: "Chorlton",
-    },
-    {
-      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Read to kids",
-      company: "Library",
-      location: "St Peters square",
-    },
-
-    {
-      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Read to kids3",
-      company: "Library",
-      location: "St Peters square",
-    },
-  ];
-
-  const singleOpp = () => {
-    navigation.navigate("Single");
+  const singleOpp = (id) => {
+    navigation.navigate("Single", {id});
   };
 
   return (
@@ -99,7 +69,7 @@ const ExploreOpps = () => {
                 <Text style={styles.oppsText}>{element.company}</Text>
                 <Text style={styles.oppsText}>{element.location}</Text>
                 <TouchableOpacity
-                  onPress={singleOpp}
+                  onPress={()=>{singleOpp(element.doc_id)}}
                   style={[styles.button, styles.buttonOutline]}
                 >
                   <Text style={styles.seeMore}>See More</Text>
