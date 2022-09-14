@@ -51,11 +51,7 @@ export default function App() {
             <Stack.Screen name="Create Event" component={CreateEvent} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
-
-       
             <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
-
-
             <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
             <Stack.Screen
               name="Event Confirmation"
