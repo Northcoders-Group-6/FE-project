@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { db } from "../firebase";
 import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../src/contexts/UserContext";
 import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
@@ -22,13 +23,21 @@ import {
   doc,
   updateDoc,
   increment,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 
 const SingleOpp = () => {
   const navigation = useNavigation();
+  const { loggedInUser } = useContext(UserContext);
+  const [userId, setUserId] = useState([]);
 
   const [eventArr, setEventArr] = useState([]);
-  // const [volNumber, setVolNumber] = useState([]);
+
+  const getEmailFromUser = async () => {
+    let orgEmail = await loggedInUser;
+    return orgEmail;
+  };
 
   const eventsCol = async () => {
     const docRef = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
@@ -37,17 +46,14 @@ const SingleOpp = () => {
   };
 
   useEffect(() => {
-    eventsCol()
-      .then((docSnap) => {
-        setEventArr(docSnap.data());
-      })
-      .then(() => {
-        setVolNumber(eventArr.number_of_vols);
-      });
+    eventsCol().then((docSnap) => {
+      setEventArr(docSnap.data());
+    });
+    getEmailFromUser().then((user) => {
+      console.log("herererer", user);
+      setUserId();
+    });
   }, []);
-
-  console.log(eventArr);
-  // console.log(volNumber);
 
   const opps = [
     {
@@ -59,11 +65,18 @@ const SingleOpp = () => {
   ];
 
   const handleSignUp = async () => {
-    const volNumbers = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
+    const VolNumRef = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
+    const Volunteer = doc(db, "Volunteers");
 
-    updateDoc(volNumbers, {
+    updateDoc(VolNumRef, {
       number_of_vols: increment(-1),
     });
+    // await updateDoc(eventData, {
+    //   events: arrayUnion("greater_virginia"),
+    // });
+    // await updateDoc(washingtonRef, {
+    //   regions: arrayUnion("greater_virginia"),
+    // });
   };
 
   const sendToSignUpPage = () => {
