@@ -5,10 +5,14 @@ import Ionicons from "react-native-vector-icons/AntDesign";
 import { useContext } from "react";
 import { UserContext } from "../src/contexts/UserContext";
 
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+
 const Settings = () => {
-  console.log(UserContext);
+  //console.log(UserContext);
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
-  console.log(loggedInUser);
+  //console.log(loggedInUser);
+  const auth = getAuth();
+  console.log("current Auth--->", auth);
 
   const navigation = useNavigation();
   const volunteerHistory = () => {
@@ -18,6 +22,24 @@ const Settings = () => {
   const preferencesLink = () => {
     navigation.navigate("Set Preferences");
   };
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        setLoggedInUser([]);
+        console.log("user signed out!");
+        navigation.replace("Login");
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  };
+
+  // subscribing to auth changes
+  onAuthStateChanged(auth, user => {
+    console.log("user status changed:", user);
+  });
+
   return (
     <View style={styles.flexCol}>
       <View style={styles.flexCol}>
@@ -53,7 +75,7 @@ const Settings = () => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        /* onPress={LogOut} */
+        onPress={logOut}
         style={[styles.logoutButton, styles.buttonOutline]}
       >
         <Text style={styles.buttonOutlineText}>Logout</Text>
