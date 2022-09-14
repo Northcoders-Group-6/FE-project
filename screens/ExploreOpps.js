@@ -13,14 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../src/contexts/UserContext";
 import Ionicons from "react-native-vector-icons/AntDesign";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  snapshotEqual,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 const ExploreOpps = () => {
   const { loggedInUser } = useContext(UserContext);
@@ -54,10 +47,15 @@ const ExploreOpps = () => {
       <ScrollView>
         <View>
           <Text style={styles.title1}>Your Local Opportunities</Text>
+          <View></View>
           <View>
-            <Text style={styles.textFilterHead}>Filter by:</Text>
-          </View>
-          <View>
+            <View
+              style={{
+                borderBottomColor: "#D17C14",
+                paddingBottom: 15,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+              }}
+            ></View>
             <ScrollView horizontal={true}>
               <Text style={styles.oppsText3}>All </Text>
               <Text style={styles.oppsText3}>Indoor </Text>
@@ -68,6 +66,13 @@ const ExploreOpps = () => {
               <Text style={styles.oppsText3}>Independent </Text>
               <Text style={styles.oppsText3}>Remote </Text>
             </ScrollView>
+            <View
+              style={{
+                borderBottomColor: "#D17C14",
+                paddingBottom: 15,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+              }}
+            ></View>
           </View>
           {eventArr.map((element) => {
             return (
@@ -132,23 +137,15 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   oppsText3: {
-    color: "#4D4B4B",
-    fontWeight: "400",
-    fontSize: 12,
+    color: "#6D326D",
+    fontWeight: "500",
+    fontSize: 16,
     textAlign: "center",
     marginLeft: 20,
+    marginTop: 15,
     backgroundColor: "#white",
     borderColor: "black",
-    borderRadius: "20%",
-    borderWidth: 1,
-  },
-
-  textFilterHead: {
-    fontSize: 16,
-    color: "#4D4B4B",
-    fontWeight: "500",
-    textAlign: "center",
-    marginTop: 20,
+    borderRadius: 20,
   },
 
   buttonContainer: {
@@ -199,5 +196,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "white",
+  },
+  hairlineWidth: {
+    padding: 30,
+    color: "#6D326D",
   },
 });
