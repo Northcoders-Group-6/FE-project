@@ -1,10 +1,16 @@
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { CurrentRenderContext, useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
-const Settings = () => {
-  const navigation = useNavigation();
+import { useContext } from "react";
+import { UserContext } from "../src/contexts/UserContext";
 
+const Settings = () => {
+  console.log(UserContext);
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  console.log(loggedInUser);
+
+  const navigation = useNavigation();
   const volunteerHistory = () => {
     navigation.navigate("Volunteer History");
   };
@@ -14,10 +20,19 @@ const Settings = () => {
   };
   return (
     <View>
-      <Text style={styles.text}>
-        <Ionicons name="smileo" size={20} />
-        {"\n"}Jodie
-      </Text>
+      <View style={styles.flexCol}>
+        {loggedInUser.firstName ? (
+          <Ionicons name="smileo" size={40} />
+        ) : (
+          <Ionicons name="idcard" size={40} />
+        )}
+        <Text style={styles.text}>
+          {loggedInUser.company_name
+            ? `${loggedInUser.company_name}`
+            : `${loggedInUser.firstName}`}
+        </Text>
+      </View>
+
       <TouchableOpacity onPress={volunteerHistory} style={styles.button}>
         <Text style={styles.buttonText}>Edit Profile</Text>
       </TouchableOpacity>
@@ -50,16 +65,25 @@ const styles = StyleSheet.create({
     borderColor: "#3D5C43",
     borderWidth: 1,
   },
+  flexCol: {
+    marginTop: 30,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
   buttonText: {
     color: "#3D5C43",
   },
   text: {
-    paddingTop: 10,
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
     color: "#3D5C43",
     fontSize: 20,
     marginBottom: 20,
-    textAlign: "center",
-    marginTop: 10,
+    marginTop: 0,
   },
 });
