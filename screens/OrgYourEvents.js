@@ -25,26 +25,6 @@ const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
   const navigation = useNavigation();
 
-  const opps = [
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjNvVfEuJEvQyLbZygLwxhqLTjyc_Z4Ngg-w&usqp=CAU",
-      opp: "Food Bank Donation",
-      company: "Unicorn",
-      location: "Oxford Road, Manchester",
-    },
-    {
-      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Tree planting",
-      company: "Plant a tree",
-      location: "Chorlton",
-    },
-    {
-      img: "https://i.ytimg.com/vi/EjT3emte-CM/maxresdefault.jpg",
-      opp: "Read to kids",
-      company: "Library Corner",
-      location: "St Peters square, Manchester",
-    },
-  ];
 
   const [eventArr, setEventArr] = useState([]);
 
@@ -59,15 +39,19 @@ const OrgYourEvents = () => {
       onSnapshot(events, (snapshot) => {
         let eventAux = [];
         snapshot.docs.forEach((doc) => {
-          eventAux.push({ ...doc.data() });
+          let eventWithId = doc.data();
+          eventWithId.docId = doc.id;
+          eventAux.push({ ...eventWithId });
         });
         setEventArr(eventAux);
       });
     });
   }, [loggedInUser]);
 
-  const singleEventClick = () => {
-    navigation.navigate("Org Single Event");
+  console.log("Here are the events", eventArr);
+
+  const singleEventClick = (docId) => {
+    navigation.navigate("Org Single Event", { eventId: docId });
   };
 
   const clickCreateEvent = () => {
@@ -81,21 +65,24 @@ const OrgYourEvents = () => {
           <Text style={styles.title}>Your Events</Text>
           <TouchableOpacity
             onPress={clickCreateEvent}
-            style={[styles.createNewButton]}
-          ></TouchableOpacity>
-          {opps.map((element) => {
+
+            style={[styles.button, styles.buttonOutline]}
+          >
+            <Text style={styles.seeMore}>Create a new event</Text>
+          </TouchableOpacity>
+          {eventArr.map((element) => {
             return (
-              <View style={styles.oppsContainer} key={element.opp}>
+              <View style={styles.oppsContainer} key={element.event_title}>
                 <Image
-                  source={{ uri: element.img }}
+                  source={{ uri: element.image }}
                   style={{ width: 450, height: 250 }}
                 />
 
-                <Text style={styles.oppsText1}>{element.opp}</Text>
+                <Text style={styles.oppsText}>{element.event_title}</Text>
                 <Text style={styles.oppsText}>{element.company}</Text>
                 <Text style={styles.oppsText}>{element.location}</Text>
                 <TouchableOpacity
-                  onPress={singleEventClick}
+                  onPress={() => singleEventClick(element.docId)}
                   style={[styles.button, styles.buttonOutline]}
                 >
                   <Text style={styles.seeMore}>

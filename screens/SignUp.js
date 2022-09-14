@@ -10,7 +10,7 @@ const SignUp = () => {
   const goBack = ()=>{
     setTimeout(()=>{
       navigation.navigate("Explore Opps")
-    }, 5000);
+    }, 3000);
   }
   const [fontsLoaded] = useFonts({
     "Rubik-Regular": require("./../assets/fonts/Rubik-Regular.ttf"),
