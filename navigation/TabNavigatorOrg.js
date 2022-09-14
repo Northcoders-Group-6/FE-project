@@ -1,5 +1,5 @@
 import React from "react";
-import ExploreOpps from "../screens/ExploreOpps";
+import OrgYourEvents from "../screens/OrgYourEvents";
 import Activity from "../screens/Activity";
 import MapScreen from "../screens/MapScreen";
 import Settings from "../screens/Settings";
@@ -19,7 +19,7 @@ const TabNavigatorOrg = () => {
     >
       <Tab.Screen
         name="Home"
-        component={ExploreOpps}
+        component={OrgYourEvents}
         options={{
           tabBarShowLabel: true,
           tabBarIcon: ({ color }) => (

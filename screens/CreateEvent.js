@@ -12,11 +12,13 @@ import {
 import React, { useState, useContext } from "react";
 import { Formik } from "formik";
 import { db } from "../firebase";
+import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
 
 const CreateEvent = () => {
   const [newEvent, setNewEvent] = useState({});
   const { loggedInUser } = useContext(UserContext);
+  const navigation = useNavigation();
 
   // console.log("here email", loggedInUser.email);
   // console.log("here compnay", loggedInUser.compnay_name);
@@ -112,18 +114,13 @@ export default CreateEvent;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: "90%",
-    justifyContent: "center",
-    alignItems: "center",
     padding: 20,
-    marginLeft: 20,
   },
   input: {
     borderWidth: 1,
     borderColor: "#ddd",
-    padding: 10,
-    fontSize: 18,
+    padding: 5,
+    fontSize: 16,
     borderRadius: 6,
     marginBottom: 10,
     marginTop: 10,
@@ -134,24 +131,26 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 16,
     textAlign: "left",
-    marginTop: 8,
   },
   buttonContainer: {
     width: "80%",
     justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
   },
 
   button: {
-    backgroundColor: "#3D5C43",
+    backgroundColor: "#6D326D",
     width: "100%",
     padding: 20,
-    borderRadius: 25,
+    borderRadius: 10,
     alignItems: "center",
     color: "white",
   },
 
   buttonText: {
     color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    textAlign: "center",
   },
 });

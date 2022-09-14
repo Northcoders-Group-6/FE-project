@@ -14,16 +14,32 @@ const WhichUser = () => {
   };
   return (
     <View>
-      <Text style={styles.textStyle}>Are you...</Text>
+      <Text style={styles.textStyle}>Register for Voluntreats</Text>
       <TouchableOpacity onPress={studentLogin} style={styles.button}>
         <Text style={styles.buttonText}>Student</Text>
       </TouchableOpacity>
+      <View>
+        <Text style={styles.textBelow}>
+          Are you a student that is looking for volunteer opportunities?
+          Voluntreats offers a range of events to get involved with in your
+          local area, making a difference in the community. Here, you can build
+          your experience while making changes for the greater good!
+        </Text>
+      </View>
       <TouchableOpacity
         onPress={orgLogin}
         style={[styles.button, styles.buttonOutline]}
       >
         <Text style={styles.buttonOutlineText}>Organiser</Text>
       </TouchableOpacity>
+      <View>
+        <Text style={styles.textBelow}>
+          Are you a business who wants to arrange an activity that requires
+          student volunteers? Voluntreats is the perfect place to get started in
+          one simple, easy to use app. Sign up and get started by creating a
+          local event!
+        </Text>
+      </View>
     </View>
   );
 };
@@ -32,14 +48,12 @@ export default WhichUser;
 
 const styles = StyleSheet.create({
   textStyle: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "500",
     color: "#4D4B4B",
+    textAlign: "center",
     marginTop: 40,
-    marginLeft: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 60,
+    marginBottom: 50,
   },
   button: {
     backgroundColor: "#3D5C43",
@@ -48,7 +62,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     marginLeft: 40,
-    marginBottom: 10,
   },
   buttonText: {
     color: "white",
@@ -65,5 +78,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "700",
     fontSize: 16,
+  },
+  textBelow: {
+    padding: 30,
+    textAlign: "center",
+    color: "black",
+    fontSize: 16,
+    marginLeft: 15,
   },
 });

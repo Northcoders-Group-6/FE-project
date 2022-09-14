@@ -5,6 +5,7 @@ import {
   View,
   Image,
   LogBox,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { db } from "../firebase";
@@ -79,26 +80,36 @@ const ExploreOpps = () => {
     navigation.navigate("Single");
   };
 
-  return opps.map((element) => {
-    return (
-      <View style={styles.oppsContainer} key={element.opp}>
-        <Image
-          source={{ uri: element.img }}
-          style={{ width: 450, height: 250 }}
-        />
-        <Text style={styles.text}></Text>
-        <Text style={styles.oppsTextTitle}>{element.opp}</Text>
-        <Text style={styles.oppsText}>{element.company}</Text>
-        <Text style={styles.oppsText}>{element.location}</Text>
-        <TouchableOpacity
-          onPress={singleOpp}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.seeMore}>See More</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  });
+  return (
+    <>
+      <ScrollView>
+        <View>
+          <Text>Your Local Opportunities</Text>
+
+          {opps.map((element) => {
+            return (
+              <View style={styles.oppsContainer} key={element.opp}>
+                <Image
+                  source={{ uri: element.img }}
+                  style={{ width: 450, height: 250 }}
+                />
+
+                <Text style={styles.oppsText}>{element.opp}</Text>
+                <Text style={styles.oppsText}>{element.company}</Text>
+                <Text style={styles.oppsText}>{element.location}</Text>
+                <TouchableOpacity
+                  onPress={singleOpp}
+                  style={[styles.button, styles.buttonOutline]}
+                >
+                  <Text style={styles.seeMore}>See More</Text>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
+    </>
+  );
 };
 
 export default ExploreOpps;

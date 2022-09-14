@@ -1,10 +1,14 @@
 import * as React from "react";
+
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
 const EditProfile = () => {
-  const [checked, setChecked] = React.useState("first");
+  const [space, setSpace] = React.useState("first");
+  const [workpace, setWorkpace] = React.useState("both")
+  const [interaction, setInteraction] = React.useState("both")
+  const [isRemote, setRemote] = React.useState(false)
   const navigation = useNavigation();
 
   const savePref = () => {
@@ -19,25 +23,25 @@ const EditProfile = () => {
         <Text style={styles.oppsText}>Indoor</Text>
         <Checkbox
           value="indoor"
-          status={checked === "indoor" ? "checked" : "unchecked"}
-          onPress={() => setChecked("indoor")}
+          status={space === "indoor" ? "checked" : "unchecked"}
+          onPress={() => setSpace("indoor")}
           label="indoor"
           color="#E48510"
         />
         <Text style={styles.oppsText}>Outdoor</Text>
         <Checkbox
           value="outdoor"
-          status={checked === "outdoor" ? "checked" : "unchecked"}
-          onPress={() => setChecked("outdoor")}
+          status={space === "outdoor" ? "checked" : "unchecked"}
+          onPress={() => setSpace("outdoor")}
           label="outdoor"
           color="#E48510"
         />
         <Text style={styles.oppsText}>Both</Text>
         <Checkbox
-          value="third"
-          status={checked === "third" ? "checked" : "unchecked"}
-          onPress={() => setChecked("third")}
-          label="third"
+          value="bothSpaces"
+          status={space === "bothSpaces" ? "checked" : "unchecked"}
+          onPress={() => setSpace("bothSpaces")}
+          label="bothSpaces"
           color="#E48510"
         />
       </View>
@@ -45,25 +49,25 @@ const EditProfile = () => {
         <Text style={styles.oppsText}>Active</Text>
         <Checkbox
           value="active"
-          status={checked === "active" ? "checked" : "unchecked"}
-          onPress={() => setChecked("active")}
+          status={workpace === "active" ? "checked" : "unchecked"}
+          onPress={() => setWorkpace("active")}
           label="active"
           color="#E48510"
         />
         <Text style={styles.oppsText}>Relaxed</Text>
         <Checkbox
           value="relaxed"
-          status={checked === "relaxed" ? "checked" : "unchecked"}
-          onPress={() => setChecked("relaxed")}
+          status={workpace === "relaxed" ? "checked" : "unchecked"}
+          onPress={() => setWorkpace("relaxed")}
           label="relaxed"
           color="#E48510"
         />
         <Text style={styles.oppsText}>Both</Text>
         <Checkbox
-          value="activeboth"
-          status={checked === "activeboth" ? "checked" : "unchecked"}
-          onPress={() => setChecked("activeboth")}
-          label="activeboth"
+          value="bothWorkpace"
+          status={workpace === "bothWorkpace" ? "checked" : "unchecked"}
+          onPress={() => setWorkpace("bothWorkpace")}
+          label="bothWorkpace"
           color="#E48510"
         />
       </View>
@@ -71,32 +75,39 @@ const EditProfile = () => {
         <Text style={styles.oppsText}>Social</Text>
         <Checkbox
           value="social"
-          status={checked === "social" ? "checked" : "unchecked"}
-          onPress={() => setChecked("social")}
+          status={interaction === "social" ? "checked" : "unchecked"}
+          onPress={() => setInteraction("social")}
           label="social"
           color="#E48510"
         />
         <Text style={styles.oppsText}>Independent</Text>
         <Checkbox
           value="independent"
-          status={checked === "independent" ? "checked" : "unchecked"}
-          onPress={() => setChecked("independent")}
+          status={interaction === "independent" ? "checked" : "unchecked"}
+          onPress={() => setInteraction("independent")}
           label="independent"
           color="#E48510"
         />
         <Text style={styles.oppsText}>Both</Text>
         <Checkbox
-          value="socialboth"
-          status={checked === "socialboth" ? "checked" : "unchecked"}
-          onPress={() => setChecked("socialboth")}
-          label="socialboth"
+          value="bothInteractions"
+          status={interaction === "bothInteractions" ? "checked" : "unchecked"}
+          onPress={() => setInteraction("bothInteractions")}
+          label="bothInteractions"
           color="#E48510"
         />
         <Text style={styles.oppsText2}>Show Remote Opportunities</Text>
         <Checkbox
-          value="remote"
-          status={checked === "remote" ? "checked" : "unchecked"}
-          onPress={() => setChecked("remote")}
+          value="remoteYes"
+          status={isRemote === true ? "checked" : "unchecked"}
+          onPress={() => setRemote(true)}
+          label="remote"
+          color="#E48510"
+        />
+        <Checkbox
+          value="remoteNo"
+          status={isRemote === false ? "checked" : "unchecked"}
+          onPress={() => setRemote(false)}
           label="remote"
           color="#E48510"
         />

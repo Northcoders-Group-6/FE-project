@@ -11,6 +11,7 @@ import MapScreen from "./screens/MapScreen";
 import SingleOpp from "./screens/SingleOpp";
 import SignUp from "./screens/SignUp";
 import OrgYourEvents from "./screens/OrgYourEvents";
+import ExploreOpps from "./screens/ExploreOpps";
 
 import OrgSingleEvent from "./screens/OrgSingleEvent";
 
@@ -53,7 +54,9 @@ export default function App() {
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
 
+
             <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
+
 
             <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
             <Stack.Screen
