@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import React, { useEffect } from "react";
 import { useState, useContext } from "react";
@@ -25,7 +26,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
-
 
   const [volunteers, setVolunteers] = useState([]);
   const [isVolunteer, setIsVolunteer] = useState(false);
@@ -74,7 +74,6 @@ const LoginScreen = () => {
     return unsubscribe;
   }, []);
 
-
   const handleRegister = () => {
     navigation.navigate("Which User");
   };
@@ -103,6 +102,12 @@ const LoginScreen = () => {
       style={styles.container}
       behavior={Platform.select({ android: undefined, ios: "padding" })}
     >
+      <View style={styles.image}>
+        <Image
+          source={require("./../assets/Untitled-1.png")}
+          style={{ width: 296, height: 119 }}
+        />
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -128,14 +133,6 @@ const LoginScreen = () => {
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
-        <View>
-          <Text style={styles.textBelow}>
-            Are you a student that is looking for volunteer opportunities?
-            Voluntreats offers a range of events to partake in your area to make
-            a difference in the community. Here, you can build your experience
-            while making changes for the greater good!
-          </Text>
-        </View>
       </View>
     </KeyboardAvoidingView>
   );
@@ -151,6 +148,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   inputContainer: {
+    // marginTop: 50,
     width: "80%",
   },
   input: {
@@ -160,6 +158,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 5,
     color: "5D62CB",
+  },
+  image: {
+    marginTop: 10,
   },
   buttonContainer: {
     width: "60%",
