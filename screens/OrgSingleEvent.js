@@ -11,8 +11,10 @@ import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
 
-const OrgSingleEvent = () => {
+const OrgSingleEvent = ({ route }) => {
+  console.log(route.params);
   const navigation = useNavigation();
+
   const opps = [
     {
       img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
