@@ -54,7 +54,21 @@ const ExploreOpps = () => {
       <ScrollView>
         <View>
           <Text style={styles.title1}>Your Local Opportunities</Text>
-
+          <View>
+            <Text style={styles.textFilterHead}>Filter by:</Text>
+          </View>
+          <View>
+            <ScrollView horizontal={true}>
+              <Text style={styles.oppsText3}>All </Text>
+              <Text style={styles.oppsText3}>Indoor </Text>
+              <Text style={styles.oppsText3}>Outdoor </Text>
+              <Text style={styles.oppsText3}>Active </Text>
+              <Text style={styles.oppsText3}>Relaxed </Text>
+              <Text style={styles.oppsText3}>Social </Text>
+              <Text style={styles.oppsText3}>Independent </Text>
+              <Text style={styles.oppsText3}>Remote </Text>
+            </ScrollView>
+          </View>
           {eventArr.map((element) => {
             return (
               <View style={styles.oppsContainer} key={element.event_title}>
@@ -116,6 +130,25 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     marginLeft: 8,
     lineHeight: 20,
+  },
+  oppsText3: {
+    color: "#4D4B4B",
+    fontWeight: "400",
+    fontSize: 12,
+    textAlign: "center",
+    marginLeft: 20,
+    backgroundColor: "#white",
+    borderColor: "black",
+    borderRadius: "20%",
+    borderWidth: 1,
+  },
+
+  textFilterHead: {
+    fontSize: 16,
+    color: "#4D4B4B",
+    fontWeight: "500",
+    textAlign: "center",
+    marginTop: 20,
   },
 
   buttonContainer: {
