@@ -36,7 +36,7 @@ const CreateEvent = () => {
             location: "",
             date_time: "",
             location: "",
-            number_of_vols: "",
+            number_of_vols: 0,
             treats: "",
             image: "",
           }}

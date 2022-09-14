@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import React, { useEffect } from "react";
 import { useState, useContext } from "react";
@@ -35,6 +36,7 @@ const LoginScreen = () => {
     onSnapshot(q, (snapshot) => {
       snapshot.docs.forEach((doc) => {
         const org = doc.data();
+        org.docId = doc.id;
         setLoggedInUser(org);
       });
     });
@@ -45,7 +47,11 @@ const LoginScreen = () => {
     getDocs(colRef).then((snapshot) => {
       let volunteersAux = [];
       snapshot.docs.forEach((doc) => {
-        volunteersAux.push({ ...doc.data() });
+        userData = doc.data();
+        userData.docId = doc.id;
+        // console.log("uesrdata final", userData);
+        // console.log("docID is here=", doc.id);
+        volunteersAux.push({ ...userData });
       });
       setVolunteers(volunteersAux);
 
@@ -101,6 +107,12 @@ const LoginScreen = () => {
       style={styles.container}
       behavior={Platform.select({ android: undefined, ios: "padding" })}
     >
+      <View style={styles.image}>
+        <Image
+          source={require("./../assets/Untitled-1.png")}
+          style={{ width: 296, height: 119 }}
+        />
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -134,6 +146,7 @@ const LoginScreen = () => {
             good!
           </Text>
         </View>
+
       </View>
     </KeyboardAvoidingView>
   );
@@ -149,6 +162,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   inputContainer: {
+    // marginTop: 50,
     width: "80%",
   },
   input: {
@@ -158,6 +172,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 5,
     color: "5D62CB",
+  },
+  image: {
+    marginTop: 10,
   },
   buttonContainer: {
     width: "80%",
