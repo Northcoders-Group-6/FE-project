@@ -116,10 +116,11 @@ export default ExploreOpps;
 
 const styles = StyleSheet.create({
   title1: {
-    fontSize: 24,
+    fontSize: 20,
     color: "#4D4B4B",
     fontWeight: "500",
     textAlign: "center",
+    marginTop: 20,
   },
   oppsContainer: {
     textAlign: "left",
@@ -131,9 +132,8 @@ const styles = StyleSheet.create({
   oppsText: {
     color: "#4D4B4B",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
-    paddingBottom: 5,
     marginLeft: 8,
     lineHeight: 20,
   },
