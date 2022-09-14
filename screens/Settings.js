@@ -19,7 +19,7 @@ const Settings = () => {
       type: "success",
       text1: "You have successfully Logout!",
 
-      text2: "Thank you fot use our app...",
+      text2: "Thank you for use our app...",
       visibilityTime: 5000,
       autoHide: true,
       onShow: () => {
