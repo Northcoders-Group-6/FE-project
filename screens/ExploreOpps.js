@@ -53,7 +53,7 @@ const ExploreOpps = () => {
     <>
       <ScrollView>
         <View>
-          <Text>Your Local Opportunities</Text>
+          <Text style={styles.title1}>Your Local Opportunities</Text>
 
           {opps.map((element) => {
             return (
@@ -84,6 +84,12 @@ const ExploreOpps = () => {
 export default ExploreOpps;
 
 const styles = StyleSheet.create({
+  title1: {
+    fontSize: 24,
+    color: "#4D4B4B",
+    fontWeight: "500",
+    textAlign: "center",
+  },
   oppsContainer: {
     textAlign: "left",
     paddingBottom: 30,
@@ -94,9 +100,9 @@ const styles = StyleSheet.create({
   oppsText: {
     color: "#4D4B4B",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
-    paddingBottom: 5,
+    paddingBottom: 10,
     marginLeft: 8,
     lineHeight: 20,
   },
@@ -110,7 +116,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   buttonContainer: {
-    width: "100%",
+    width: "80%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
@@ -121,6 +127,15 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   buttonOutline: {
     backgroundColor: "#3D5C43",

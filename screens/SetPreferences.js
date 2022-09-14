@@ -6,9 +6,9 @@ import { useNavigation } from "@react-navigation/native";
 
 const EditProfile = () => {
   const [space, setSpace] = React.useState("first");
-  const [workpace, setWorkpace] = React.useState("both")
-  const [interaction, setInteraction] = React.useState("both")
-  const [isRemote, setRemote] = React.useState(false)
+  const [workpace, setWorkpace] = React.useState("both");
+  const [interaction, setInteraction] = React.useState("both");
+  const [isRemote, setRemote] = React.useState(false);
   const navigation = useNavigation();
 
   const savePref = () => {
@@ -169,6 +169,15 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   buttonOutline: {
     backgroundColor: "#3D5C43",
