@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -39,6 +46,12 @@ const WhichUser = () => {
           one simple, easy to use app. Sign up and get started by creating a
           local event!
         </Text>
+      </View>
+      <View style={styles.image}>
+        <Image
+          source={require("./../assets/Untitled-1.png")}
+          style={{ width: 128, height: 40 }}
+        />
       </View>
     </View>
   );
@@ -94,5 +107,8 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 16,
     marginLeft: 15,
+  },
+  image: {
+    alignSelf: "center",
   },
 });
