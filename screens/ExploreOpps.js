@@ -131,33 +131,34 @@ const styles = StyleSheet.create({
   oppsText: {
     color: "#4D4B4B",
     fontWeight: "700",
-    fontSize: 16,
+    fontSize: 14,
     textAlign: "left",
-    paddingBottom: 10,
+    paddingBottom: 5,
     marginLeft: 8,
     lineHeight: 20,
   },
-  oppsTextTitle: {
-    color: "#3D5C43",
-    fontWeight: "700",
-    fontSize: 20,
-    textAlign: "left",
-    marginTop: 5,
-    marginBottom: 8,
-    marginLeft: 8,
-  },
+
   buttonContainer: {
     width: "80%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   button: {
     backgroundColor: "#3D5C43",
-    width: "100%",
+    width: "90%",
     padding: 15,
     borderRadius: 10,
-    alignItems: "center",
+    alignSelf: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

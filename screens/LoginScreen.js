@@ -49,8 +49,6 @@ const LoginScreen = () => {
       snapshot.docs.forEach((doc) => {
         userData = doc.data();
         userData.docId = doc.id;
-        // console.log("uesrdata final", userData);
-        // console.log("docID is here=", doc.id);
         volunteersAux.push({ ...userData });
       });
       setVolunteers(volunteersAux);
@@ -82,15 +80,6 @@ const LoginScreen = () => {
   const handleRegister = () => {
     navigation.navigate("Which User");
   };
-
-  // const handleSignUp = () => {
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((userCredentials) => {
-  //       const user = userCredentials.user;
-  //       console.log("Registered with:", user.email);
-  //     })
-  //     .catch((error) => alert(error.message));
-  // }; //THIS IS THE CODE FOR REGISTERING USERS TO FIREBASE
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
@@ -146,7 +135,6 @@ const LoginScreen = () => {
             good!
           </Text>
         </View>
-
       </View>
     </KeyboardAvoidingView>
   );
@@ -157,7 +145,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 200,
+    marginTop: 100,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -170,17 +158,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 10,
-    marginTop: 5,
+    marginTop: 18,
     color: "5D62CB",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   image: {
-    marginTop: 10,
+    paddingBottom: 10,
   },
   buttonContainer: {
     width: "80%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
+    marginTop: 30,
     borderRadius: 10,
   },
   button: {
