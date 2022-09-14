@@ -25,32 +25,31 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
-
-
+  //console.log(loggedInUser);
   const [volunteers, setVolunteers] = useState([]);
   const [isVolunteer, setIsVolunteer] = useState(false);
 
-  const isOrg = (email) => {
+  const isOrg = email => {
     const colRef = collection(db, "Organizations");
     const q = query(colRef, where("email", "==", email));
-    onSnapshot(q, (snapshot) => {
-      snapshot.docs.forEach((doc) => {
+    onSnapshot(q, snapshot => {
+      snapshot.docs.forEach(doc => {
         const org = doc.data();
         setLoggedInUser(org);
       });
     });
   };
 
-  const isVol = (email) => {
+  const isVol = email => {
     const colRef = collection(db, "Volunteers");
-    getDocs(colRef).then((snapshot) => {
+    getDocs(colRef).then(snapshot => {
       let volunteersAux = [];
-      snapshot.docs.forEach((doc) => {
+      snapshot.docs.forEach(doc => {
         volunteersAux.push({ ...doc.data() });
       });
       setVolunteers(volunteersAux);
 
-      const filteredUser = volunteersAux.filter((user) => {
+      const filteredUser = volunteersAux.filter(user => {
         return user.email === email;
       });
 
@@ -66,14 +65,13 @@ const LoginScreen = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {
         setLoggedInUser(user.uid);
       }
     });
     return unsubscribe;
   }, []);
-
 
   const handleRegister = () => {
     navigation.navigate("Which User");
@@ -90,12 +88,12 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
+      .then(userCredentials => {
         const user = userCredentials.user;
-        console.log("Logged in with", user.email);
+        //console.log("Logged in with", user);
         isVol(user.email);
       })
-      .catch((error) => alert(error.message));
+      .catch(error => alert(error.message));
   };
 
   return (
@@ -107,13 +105,13 @@ const LoginScreen = () => {
         <TextInput
           placeholder="Email"
           value={email}
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={text => setEmail(text)}
           style={styles.input}
         />
         <TextInput
           placeholder="Password"
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={text => setPassword(text)}
           style={styles.input}
           secureTextEntry
         />
