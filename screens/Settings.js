@@ -17,7 +17,7 @@ const Settings = () => {
   const successToast = () => {
     Toast.show({
       type: "success",
-      text1: "You have successfully Logout!",
+      text1: "You have successfully logged out!",
 
       text2: "Thank you for use our app...",
       visibilityTime: 5000,
@@ -32,7 +32,7 @@ const Settings = () => {
   const errorToast = (err) => {
     ErrorToast.show({
       type: "error",
-      text1: `Something goes wrong: ${err}`,
+      text1: `Something went wrong: ${err}`,
       text2: "Try Again",
       visibilityTime: 5000,
       autoHide: false,

@@ -46,7 +46,10 @@ export default function App() {
             <Stack.Screen name="Which User" component={WhichUser} />
             <Stack.Screen name="Student Reg" component={StudentReg} />
             <Stack.Screen name="Organiser Reg" component={OrganiserReg} />
-            <Stack.Screen name="Explore Opps" component={TabNavigator} />
+            <Stack.Screen
+              name="Your Local Opportunities"
+              component={TabNavigator}
+            />
             <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Single" component={SingleOpp} />
             <Stack.Screen name="Sign Up" component={SignUp} />
@@ -54,9 +57,7 @@ export default function App() {
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
 
-
             <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
-
 
             <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
             <Stack.Screen

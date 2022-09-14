@@ -90,7 +90,7 @@ const LoginScreen = () => {
       if (filteredUser.length !== 0) {
         setLoggedInUser(filteredUser[0]);
 
-        navigation.replace("Explore Opps");
+        navigation.replace("Your Local Opportunities");
       } else {
         isOrg(email);
         navigation.replace("Org Events");
