@@ -12,6 +12,7 @@ import { auth, db } from "../firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
+import Toast, { ErrorToast } from "react-native-toast-message";
 import {
   collection,
   getDocs,
@@ -28,6 +29,34 @@ const LoginScreen = () => {
   //console.log(loggedInUser);
   const [volunteers, setVolunteers] = useState([]);
   const [isVolunteer, setIsVolunteer] = useState(false);
+
+  const successToast = () => {
+    Toast.show({
+      type: "success",
+      text1: "You have successfully Login!",
+      text2: "Welcome to Volontreets community!",
+      visibilityTime: 5000,
+      autoHide: true,
+      /*  onShow: () => {
+        isVolunteer == true
+          ? navigation.replace("Explore Opps")
+          : navigation.replace("Explore Opps");
+      },
+      onHide: () => {}, */
+    });
+  };
+
+  const errorToast = err => {
+    ErrorToast.show({
+      type: "error",
+      text1: `Something goes wrong: ${err}`,
+      text2: "Try Again",
+      visibilityTime: 5000,
+      autoHide: false,
+      onShow: () => {},
+      onHide: () => {},
+    });
+  };
 
   const isOrg = email => {
     const colRef = collection(db, "Organizations");
@@ -92,8 +121,9 @@ const LoginScreen = () => {
         const user = userCredentials.user;
         //console.log("Logged in with", user);
         isVol(user.email);
+        successToast();
       })
-      .catch(error => alert(error.message));
+      .catch(error => errorToast(error));
   };
 
   return (
