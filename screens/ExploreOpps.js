@@ -34,8 +34,8 @@ const ExploreOpps = () => {
   };
 
   useEffect(() => {
+    let eventAux = [];
     eventsCol().then((querySnapshot) => {
-      let eventAux = [];
       querySnapshot.forEach((doc) => {
         // console.log(doc.id);
         // doc.data() is never undefined for query doc snapshots
@@ -43,7 +43,8 @@ const ExploreOpps = () => {
       });
       setEventArr(eventAux);
     });
-  }, []);
+  }, [eventArr]);
+  
 
   // console.log(eventArr);
 
@@ -86,15 +87,15 @@ const ExploreOpps = () => {
         <View>
           <Text style={styles.title1}>Your Local Opportunities</Text>
 
-          {opps.map((element) => {
+          {eventArr.map((element) => {
             return (
-              <View style={styles.oppsContainer} key={element.opp}>
+              <View style={styles.oppsContainer} key={element.event_title}>
                 <Image
-                  source={{ uri: element.img }}
+                  source={{ uri: element.image }}
                   style={{ width: 450, height: 250 }}
                 />
 
-                <Text style={styles.oppsText}>{element.opp}</Text>
+                <Text style={styles.oppsText}>{element.event_title}</Text>
                 <Text style={styles.oppsText}>{element.company}</Text>
                 <Text style={styles.oppsText}>{element.location}</Text>
                 <TouchableOpacity
