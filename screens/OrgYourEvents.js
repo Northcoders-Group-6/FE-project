@@ -15,6 +15,7 @@ import {
 
 const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
+  const navigation = useNavigation();
 
   const opps = [
     {
@@ -44,12 +45,12 @@ const OrgYourEvents = () => {
       let orgEmail = await loggedInUser.email;
       return orgEmail;
     };
-    getEmailFromUser().then(email => {
+    getEmailFromUser().then((email) => {
       const colRef = collection(db, "events");
       const events = query(colRef, where("email", "==", email));
-      onSnapshot(events, snapshot => {
+      onSnapshot(events, (snapshot) => {
         let eventAux = [];
-        snapshot.docs.forEach(doc => {
+        snapshot.docs.forEach((doc) => {
           eventAux.push({ ...doc.data() });
         });
         setEventArr(eventAux);
@@ -74,7 +75,7 @@ const OrgYourEvents = () => {
       >
         <Text>Create a new event</Text>
       </TouchableOpacity>
-      {opps.map(element => {
+      {opps.map((element) => {
         return (
           <View style={styles.oppsContainer} key={element.opp}>
             <Image

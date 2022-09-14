@@ -12,11 +12,13 @@ import {
 import React, { useState, useContext } from "react";
 import { Formik } from "formik";
 import { db } from "../firebase";
+import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
 
 const CreateEvent = () => {
   const [newEvent, setNewEvent] = useState({});
   const { loggedInUser } = useContext(UserContext);
+  const navigation = useNavigation();
 
   // console.log("here email", loggedInUser.email);
   // console.log("here compnay", loggedInUser.compnay_name);
@@ -41,7 +43,7 @@ const CreateEvent = () => {
           onSubmit={(values, actions) => {
             values.company = loggedInUser.company_name;
             values.email = loggedInUser.email;
-            values.users = []
+            values.users = [];
             setNewEvent(values);
             db.collection("events").add(values);
             actions.resetForm();
