@@ -95,9 +95,7 @@ const Settings = () => {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Notification Settings</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Email Support</Text>
-      </TouchableOpacity>
+
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>FAQ</Text>
       </TouchableOpacity>
@@ -156,7 +154,7 @@ const styles = StyleSheet.create({
     color: "#3D5C43",
     fontSize: 16,
     marginBottom: 20,
-    marginTop: 0,
+    marginTop: 10,
   },
   logoutButton: {
     backgroundColor: "#3D5C43",

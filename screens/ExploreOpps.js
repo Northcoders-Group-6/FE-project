@@ -37,18 +37,16 @@ const ExploreOpps = () => {
     let eventAux = [];
     eventsCol().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-         
         // doc.data() is never undefined for query doc snapshots
         eventAux.push({ ...doc.data(), doc_id: doc.id });
       });
       setEventArr(eventAux);
     });
   }, [loggedInUser]);
-  
-  
+
   // console.log(eventArr);
   const singleOpp = (id) => {
-    navigation.navigate("Single", {id});
+    navigation.navigate("Single", { id });
   };
 
   return (
@@ -65,11 +63,13 @@ const ExploreOpps = () => {
                   style={{ width: 450, height: 250 }}
                 />
 
-                <Text style={styles.oppsText}>{element.event_title}</Text>
-                <Text style={styles.oppsText}>{element.company}</Text>
-                <Text style={styles.oppsText}>{element.location}</Text>
+                <Text style={styles.oppsText1}>{element.event_title}</Text>
+                <Text style={styles.oppsText2}>{element.company}</Text>
+                <Text style={styles.oppsText2}>{element.location}</Text>
                 <TouchableOpacity
-                  onPress={()=>{singleOpp(element.doc_id)}}
+                  onPress={() => {
+                    singleOpp(element.doc_id);
+                  }}
                   style={[styles.button, styles.buttonOutline]}
                 >
                   <Text style={styles.seeMore}>See More</Text>
@@ -100,11 +100,20 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     textAlign: "left",
   },
-  oppsText: {
+  oppsText1: {
+    color: "#4D4B4B",
+    fontWeight: "700",
+    fontSize: 20,
+    textAlign: "left",
+    marginLeft: 8,
+    marginTop: 20,
+  },
+  oppsText2: {
     color: "#4D4B4B",
     fontWeight: "700",
     fontSize: 16,
     textAlign: "left",
+    paddingBottom: 5,
     marginLeft: 8,
     lineHeight: 20,
   },
