@@ -25,7 +25,6 @@ const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
   const navigation = useNavigation();
 
-
   const [eventArr, setEventArr] = useState([]);
 
   useEffect(() => {
@@ -65,7 +64,6 @@ const OrgYourEvents = () => {
           <Text style={styles.title}>Your Events</Text>
           <TouchableOpacity
             onPress={clickCreateEvent}
-
             style={[styles.button, styles.buttonOutline]}
           >
             <Text style={styles.seeMore}>Create a new event</Text>
@@ -78,7 +76,7 @@ const OrgYourEvents = () => {
                   style={{ width: 450, height: 250 }}
                 />
 
-                <Text style={styles.oppsText}>{element.event_title}</Text>
+                <Text style={styles.oppsText1}>{element.event_title}</Text>
                 <Text style={styles.oppsText}>{element.company}</Text>
                 <Text style={styles.oppsText}>{element.location}</Text>
                 <TouchableOpacity

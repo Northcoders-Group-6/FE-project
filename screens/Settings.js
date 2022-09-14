@@ -29,7 +29,7 @@ const Settings = () => {
     });
   };
 
-  const errorToast = err => {
+  const errorToast = (err) => {
     ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
@@ -57,14 +57,14 @@ const Settings = () => {
         console.log("user signed out!");
         successToast();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.message);
         errorToast(err);
       });
   };
 
   // subscribing to auth changes
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, (user) => {
     console.log("user status changed:", user);
   });
 
@@ -74,7 +74,7 @@ const Settings = () => {
         {loggedInUser.firstName ? (
           <Ionicons name="smileo" size={40} />
         ) : (
-          <Ionicons name="idcard" size={40} />
+          <Ionicons name="idcard" size={40} color={"#4D4B4B"} />
         )}
         <Text style={styles.text}>
           {loggedInUser.company_name
@@ -122,7 +122,6 @@ const styles = StyleSheet.create({
     borderColor: "#3D5C43",
     borderWidth: 1,
 
-
     width: "80%",
 
     borderRadius: 10,
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "#3D5C43",
-    fontSize: 20,
+    fontSize: 16,
     marginBottom: 20,
     marginTop: 0,
   },
@@ -169,14 +168,13 @@ const styles = StyleSheet.create({
   },
 
   buttonOutline: {
-    backgroundColor: "#6D326D",
+    backgroundColor: "#FFFFFB",
     marginTop: 5,
-    borderColor: "#6D326D",
+    borderColor: "#4D4B4B",
     borderWidth: 2,
   },
   buttonOutlineText: {
-    color: "white",
-    fontWeight: "700",
+    color: "#4D4B4B",
     fontSize: 16,
   },
 });
