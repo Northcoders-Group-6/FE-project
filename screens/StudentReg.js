@@ -22,11 +22,15 @@ const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const volunteerSchema = yup.object({
-  firstName: yup.string().required().min(2).max(20),
+  firstName: yup
+    .string()
+    .required("first name is a required field")
+    .min(2)
+    .max(20),
   surname: yup.string().required().min(2).max(20),
   studentId: yup
     .string()
-    .required()
+    .required("student Id is a required field")
     .min(5, "Must be exactly 5 values")
     .max(5, "Must be exactly 5 values"),
   location: yup.string().required().min(2),
@@ -57,7 +61,7 @@ const StudentReg = () => {
     });
   };
 
-  const errorToast = (err) => {
+  const errorToast = err => {
     ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
@@ -96,7 +100,7 @@ const StudentReg = () => {
                   .add(values)
                   .then(() => successToast())
 
-                  .catch((err) => errorToast(err));
+                  .catch(err => errorToast(err));
 
                 createUserWithEmailAndPassword(
                   auth,
@@ -110,7 +114,7 @@ const StudentReg = () => {
                 // .catch((error) => alert(error.message));
               }}
             >
-              {(props) => (
+              {props => (
                 <View>
                   <TextInput
                     style={styles.input}
@@ -217,29 +221,21 @@ export default StudentReg;
 
 const styles = StyleSheet.create({
   input: {
+    margin: 0,
     borderWidth: 1,
     borderColor: "#ddd",
     padding: 5,
-    fontSize: 16,
+    fontSize: 15,
     borderRadius: 6,
   },
   container: {
     padding: 20,
   },
   button: {
-    borderRadius: 10,
+    borderRadius: 8,
     paddingVertical: 14,
     paddingHorizontal: 10,
     backgroundColor: "#3D5C43",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-
-    elevation: 6,
   },
   buttonText: {
     color: "white",
