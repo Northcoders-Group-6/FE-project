@@ -138,6 +138,15 @@ const LoginScreen = () => {
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
+        <View>
+          <Text style={styles.textBelow}>
+            Are you a student that is looking for volunteer opportunities? Or
+            are you an organisation looking to host an event for charity? Here,
+            you can build your experience while making changes for the greater
+            good!
+          </Text>
+        </View>
+
       </View>
     </KeyboardAvoidingView>
   );
@@ -147,7 +156,7 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     marginTop: 200,
     justifyContent: "center",
     alignItems: "center",
@@ -168,10 +177,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   buttonContainer: {
-    width: "60%",
+    width: "80%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
+    borderRadius: 10,
   },
   button: {
     backgroundColor: "#3D5C43",
@@ -179,6 +189,15 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   buttonOutline: {
     backgroundColor: "white",
@@ -210,5 +229,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     color: "#3D5C43",
     fontSize: 16,
+    textAlign: "center",
   },
 });

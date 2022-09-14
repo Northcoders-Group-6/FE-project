@@ -77,12 +77,12 @@ const OrgYourEvents = () => {
     <>
       <ScrollView>
         <View>
-          <Text>Your Events</Text>
+          <Text style={styles.title}>Your Events</Text>
           <TouchableOpacity
             onPress={clickCreateEvent}
             style={[styles.button, styles.buttonOutline]}
           >
-            <Text>Create a new event</Text>
+            <Text style={styles.seeMore}>Create a new event</Text>
           </TouchableOpacity>
           {opps.map((element) => {
             return (
@@ -120,17 +120,21 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     textAlign: "left",
   },
-  oppsHeaderText: {
-    fontSize: 30,
+  title: {
+    paddingTop: 30,
+    paddingBottom: 15,
+    fontSize: 24,
+    color: "#4D4B4B",
+    fontWeight: "500",
+    textAlign: "center",
   },
   oppsText: {
     color: "#6D326D",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
-    paddingBottom: 5,
+    paddingBottom: 10,
     marginLeft: 8,
-    lineHeight: 20,
   },
   oppsTextTitle: {
     color: "#6D326D",
@@ -149,24 +153,17 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#6D326D",
-    width: "100%",
+    width: "90%",
     padding: 15,
     borderRadius: 10,
-    alignItems: "center",
+    alignSelf: "center",
   },
   buttonOutline: {
     backgroundColor: "#6D326D",
     marginTop: 20,
     borderColor: "#6D326D",
     alignItems: "center",
-    marginBottom: 40,
-  },
-
-  buttonOutlineText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
-    alignItems: "center",
+    marginBottom: 1,
   },
   seeMore: {
     alignItems: "center",
