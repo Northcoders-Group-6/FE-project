@@ -48,12 +48,12 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="Profile"
         component={Settings}
         options={{
           tabBarShowLabel: true,
           tabBarIcon: ({ color }) => (
-            <Ionicons name="settings-outline" color={color} size={20} />
+            <Ionicons name="person-circle-outline" color={color} size={20} />
           ),
         }}
       />
