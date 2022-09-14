@@ -26,7 +26,6 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
-
   const [volunteers, setVolunteers] = useState([]);
   const [isVolunteer, setIsVolunteer] = useState(false);
 
@@ -36,6 +35,7 @@ const LoginScreen = () => {
     onSnapshot(q, (snapshot) => {
       snapshot.docs.forEach((doc) => {
         const org = doc.data();
+        org.docId = doc.id;
         setLoggedInUser(org);
       });
     });
@@ -46,7 +46,11 @@ const LoginScreen = () => {
     getDocs(colRef).then((snapshot) => {
       let volunteersAux = [];
       snapshot.docs.forEach((doc) => {
-        volunteersAux.push({ ...doc.data() });
+        userData = doc.data();
+        userData.docId = doc.id;
+        // console.log("uesrdata final", userData);
+        // console.log("docID is here=", doc.id);
+        volunteersAux.push({ ...userData });
       });
       setVolunteers(volunteersAux);
 
@@ -73,7 +77,6 @@ const LoginScreen = () => {
     });
     return unsubscribe;
   }, []);
-
 
   const handleRegister = () => {
     navigation.navigate("Which User");

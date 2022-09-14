@@ -35,6 +35,7 @@ export default function App() {
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <NavigationContainer>
           <Stack.Navigator>
+            {/* <Stack.Screen name="Single" component={SingleOpp} /> */}
             <Stack.Screen
               options={{ headerShown: false }}
               name="Login"
@@ -52,7 +53,11 @@ export default function App() {
             <Stack.Screen name="Create Event" component={CreateEvent} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
+
+
             <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
+
+
             <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
             <Stack.Screen
               name="Event Confirmation"

@@ -7,12 +7,54 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
+import { db } from "../firebase";
+import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../src/contexts/UserContext";
 import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
+import {
+  collection,
+  getDoc,
+  onSnapshot,
+  query,
+  snapshotEqual,
+  where,
+  doc,
+  updateDoc,
+  increment,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 
 const SingleOpp = () => {
   const navigation = useNavigation();
+  const { loggedInUser } = useContext(UserContext);
+  const [userId, setUserId] = useState([]);
+
+  const [eventArr, setEventArr] = useState([]);
+
+  const getEmailFromUser = async () => {
+    let orgEmail = await loggedInUser;
+    return orgEmail;
+  };
+
+  const eventsCol = async () => {
+    const docRef = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
+    const docSnap = await getDoc(docRef);
+    return docSnap;
+  };
+
+  useEffect(() => {
+    eventsCol().then((docSnap) => {
+      setEventArr(docSnap.data());
+    });
+    getEmailFromUser().then((user) => {
+      console.log("herererer", user);
+      setUserId();
+    });
+  }, []);
+
   const opps = [
     {
       img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
@@ -22,14 +64,31 @@ const SingleOpp = () => {
     },
   ];
 
+  const handleSignUp = async () => {
+    const VolNumRef = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
+    const Volunteer = doc(db, "Volunteers", loggedInUser.docId);
+
+    updateDoc(VolNumRef, {
+      number_of_vols: increment(-1),
+    });
+    updateDoc(Volunteer, {
+      events: arrayUnion(VolNumRef),
+    });
+    updateDoc(VolNumRef, {
+      users: arrayUnion(loggedInUser),
+    });
+  };
+
   const sendToSignUpPage = () => {
     navigation.navigate("Sign Up");
+    // newVols = number_of_vols"
+    handleSignUp();
   };
 
   return opps.map((element) => {
     return (
-      <ScrollView>
-        <View style={styles.oppsContainer} key={element.opp}>
+      <ScrollView key={element.opp}>
+        <View style={styles.oppsContainer}>
           <Image
             source={{ uri: element.img }}
             style={{ width: 450, height: 250 }}
