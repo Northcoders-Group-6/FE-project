@@ -37,18 +37,16 @@ const ExploreOpps = () => {
     let eventAux = [];
     eventsCol().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-         
         // doc.data() is never undefined for query doc snapshots
         eventAux.push({ ...doc.data(), doc_id: doc.id });
       });
       setEventArr(eventAux);
     });
   }, [loggedInUser]);
-  
-  
+
   // console.log(eventArr);
   const singleOpp = (id) => {
-    navigation.navigate("Single", {id});
+    navigation.navigate("Single", { id });
   };
 
   return (
@@ -69,7 +67,9 @@ const ExploreOpps = () => {
                 <Text style={styles.oppsText}>{element.company}</Text>
                 <Text style={styles.oppsText}>{element.location}</Text>
                 <TouchableOpacity
-                  onPress={()=>{singleOpp(element.doc_id)}}
+                  onPress={() => {
+                    singleOpp(element.doc_id);
+                  }}
                   style={[styles.button, styles.buttonOutline]}
                 >
                   <Text style={styles.seeMore}>See More</Text>
