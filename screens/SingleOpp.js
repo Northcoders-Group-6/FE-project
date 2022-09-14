@@ -7,12 +7,46 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
+import { db } from "../firebase";
+import { useContext, useState, useEffect } from "react";
 import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
+import {
+  collection,
+  getDoc,
+  onSnapshot,
+  query,
+  snapshotEqual,
+  where,
+  doc,
+} from "firebase/firestore";
 
 const SingleOpp = () => {
   const navigation = useNavigation();
+
+  const [eventArr, setEventArr] = useState([]);
+  const [volNumber, setVolNumber] = useState([]);
+
+  const eventsCol = async () => {
+    const docRef = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
+    const docSnap = await getDoc(docRef);
+    return docSnap;
+  };
+
+  useEffect(() => {
+    eventsCol()
+      .then((docSnap) => {
+        setEventArr(docSnap.data());
+      })
+      .then(() => {
+        setVolNumber(eventArr.number_of_vols);
+      });
+  }, []);
+
+  console.log(eventArr);
+  console.log(volNumber);
+
   const opps = [
     {
       img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",
@@ -22,14 +56,26 @@ const SingleOpp = () => {
     },
   ];
 
+  const handleSignUp = async () => {
+    await setVolNumber(volNumber - 1);
+    const volNumbers = doc(db, "events", "JfZ4g9LLLPABO7NqNztA");
+
+    // Set the "capital" field of the city 'DC'
+    updateDoc(volNumbers, {
+      number_of_vols: volNumber,
+    });
+  };
+
   const sendToSignUpPage = () => {
     navigation.navigate("Sign Up");
+    // newVols = number_of_vols"
+    handleSignUp();
   };
 
   return opps.map((element) => {
     return (
-      <ScrollView>
-        <View style={styles.oppsContainer} key={element.opp}>
+      <ScrollView key={element.opp}>
+        <View style={styles.oppsContainer}>
           <Image
             source={{ uri: element.img }}
             style={{ width: 450, height: 250 }}

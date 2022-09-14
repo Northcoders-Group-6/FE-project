@@ -7,14 +7,45 @@ import {
   LogBox,
 } from "react-native";
 import React from "react";
+import { db } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../src/contexts/UserContext";
 import Ionicons from "react-native-vector-icons/AntDesign";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  snapshotEqual,
+  where,
+} from "firebase/firestore";
 
 const ExploreOpps = () => {
   const { loggedInUser } = useContext(UserContext);
   const navigation = useNavigation();
+
+  const [eventArr, setEventArr] = useState([]);
+
+  const eventsCol = async () => {
+    const querySnapshot = await getDocs(collection(db, "events"));
+    return querySnapshot;
+  };
+
+  useEffect(() => {
+    eventsCol().then((querySnapshot) => {
+      let eventAux = [];
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.id);
+        // doc.data() is never undefined for query doc snapshots
+        eventAux.push({ ...doc.data() });
+      });
+      setEventArr(eventAux);
+    });
+  }, []);
+
+  // console.log(eventArr);
+
   const opps = [
     {
       img: "https://images.unsplash.com/photo-1628717341663-0007b0ee2597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80.jpeg",

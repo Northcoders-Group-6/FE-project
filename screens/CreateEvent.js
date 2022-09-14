@@ -34,14 +34,14 @@ const CreateEvent = () => {
             location: "",
             date_time: "",
             location: "",
-            number_of_vols: "",
+            number_of_vols: 0,
             treats: "",
             image: "",
           }}
           onSubmit={(values, actions) => {
             values.company = loggedInUser.company_name;
             values.email = loggedInUser.email;
-            values.users = []
+            values.users = [];
             setNewEvent(values);
             db.collection("events").add(values);
             actions.resetForm();
