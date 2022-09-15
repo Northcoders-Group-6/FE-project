@@ -62,7 +62,7 @@ const Settings = () => {
 
   // subscribing to auth changes
   onAuthStateChanged(auth, (user) => {
-    console.log("user status changed:", user);
+    // console.log("user status changed:", user);
   });
 
   return (
