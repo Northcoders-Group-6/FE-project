@@ -8,11 +8,9 @@ import { UserContext } from "../src/contexts/UserContext";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 const Settings = () => {
-  //console.log(UserContext);
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
-  //console.log(loggedInUser);
+
   const auth = getAuth();
-  console.log("current Auth--->", auth);
 
   const successToast = () => {
     Toast.show({
@@ -54,11 +52,10 @@ const Settings = () => {
     signOut(auth)
       .then(() => {
         setLoggedInUser([]);
-        console.log("user signed out!");
+
         successToast();
       })
       .catch((err) => {
-        console.log(err.message);
         errorToast(err);
       });
   };

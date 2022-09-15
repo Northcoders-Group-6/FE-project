@@ -99,14 +99,20 @@ const Map = () => {
           }}
         >
           {markers.map((marker, index) => {
-            console.log(marker.location);
             return (
               <Marker
                 key={index}
                 coordinate={marker.location}
                 pinColor={"purple"}
               >
-                <Callout tooltip onPress={() => navigation.replace("Single")}>
+                <Callout
+                  tooltip
+                  onPress={() =>
+                    navigation.navigate("Single", {
+                      id: "9L9Ywu3hs1to7Y6TdYtp",
+                    })
+                  }
+                >
                   <View style={styles.bubble}>
                     <View>
                       <Text style={styles.bubbleText}>
