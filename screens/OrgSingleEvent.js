@@ -40,12 +40,6 @@ const OrgSingleEvent = ({ route }) => {
       });
   }, [eventdoc]);
 
-  // console.log(event);
-
-  // const sendBack = () => {
-  //   navigation.navigate("Org Events");
-  // };
-
   const handleDelete = async () => {
     await deleteDoc(doc(db, "events", eventdoc));
     navigation.navigate("Org Events");
