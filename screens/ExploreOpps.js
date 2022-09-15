@@ -45,7 +45,7 @@ const ExploreOpps = () => {
     <>
       <ScrollView>
         <View>
-          <Text style={styles.title1}>Your Local Opportunities</Text>
+          {/* <Text style={styles.title1}>Your Local Opportunities</Text> */}
           <View></View>
           <View>
             <View
