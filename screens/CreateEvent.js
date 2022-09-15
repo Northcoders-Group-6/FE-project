@@ -42,110 +42,115 @@ const CreateEvent = () => {
   // console.log("here compnay", loggedInUser.compnay_name);
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.select({ android: undefined, ios: "padding" })}
-    >
-      <Text style={styles.title1}>Create a new event</Text>
-      <View style={styles.buttonContainer}>
-        <Formik
-          initialValues={{
-            event_title: "",
-            description: "",
-            location: "",
-            date_time: "",
-            number_of_vols: 0,
-            treats: "",
-            image: "",
-          }}
-          validationSchema={eventSchema}
-          onSubmit={(values, actions) => {
-            values.company = loggedInUser.company_name;
-            values.email = loggedInUser.email;
-            values.users = [];
-            setNewEvent(values);
-            db.collection("events").add(values);
-            actions.resetForm();
-            navigation.navigate("Event Confirmation");
-          }}
+    <>
+      <ScrollView style={{ marginHorizontal: 20 }}>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.select({ android: undefined, ios: "padding" })}
         >
-          {props => (
-            <View>
-              <TextInput
-                placeholder="Event Title"
-                style={styles.input}
-                onChangeText={props.handleChange("event_title")}
-                onBlur={props.handleBlur("event_title")}
-                value={props.values.event_title}
-              />
-              <Text style={styles.errorText}>
-                {props.touched.event_title && props.errors.event_title}
-              </Text>
+          <Text style={styles.title1}>Create a new event</Text>
+          <View style={styles.buttonContainer}>
+            <Formik
+              initialValues={{
+                event_title: "",
+                description: "",
+                location: "",
+                date_time: "",
+                number_of_vols: 0,
+                treats: "",
+                image: "",
+              }}
+              validationSchema={eventSchema}
+              onSubmit={(values, actions) => {
+                values.company = loggedInUser.company_name;
+                values.email = loggedInUser.email;
+                values.users = [];
+                setNewEvent(values);
+                db.collection("events").add(values);
+                actions.resetForm();
+                navigation.navigate("Event Confirmation");
+              }}
+            >
+              {props => (
+                <View>
+                  <TextInput
+                    placeholder="Event Title"
+                    style={styles.input}
+                    onChangeText={props.handleChange("event_title")}
+                    onBlur={props.handleBlur("event_title")}
+                    value={props.values.event_title}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.event_title && props.errors.event_title}
+                  </Text>
 
-              <TextInput
-                placeholder="Description"
-                style={styles.input}
-                onChangeText={props.handleChange("description")}
-                onBlur={props.handleBlur("description")}
-                value={props.values.description}
-              />
-              <Text style={styles.errorText}>
-                {props.touched.description && props.errors.description}
-              </Text>
-              <TextInput
-                placeholder="Location"
-                style={styles.input}
-                onChangeText={props.handleChange("location")}
-                onBlur={props.handleBlur("location")}
-                value={props.values.location}
-              />
-              <Text style={styles.errorText}>
-                {props.touched.location && props.errors.location}
-              </Text>
-              <TextInput
-                placeholder="Date and Time"
-                style={styles.input}
-                onChangeText={props.handleChange("date_time")}
-                onBlur={props.handleBlur("date_time")}
-                value={props.values.date_time}
-                dataDetectorTypes="calendarEvent"
-                keyboardType="numeric"
-              />
-              <Text style={styles.errorText}>
-                {props.touched.date_time && props.errors.date_time}
-              </Text>
-              <TextInput
-                placeholder="Number of Volunteers"
-                style={styles.input}
-                onChangeText={props.handleChange("number_of_vols")}
-                onBlur={props.handleBlur("number_of_vols")}
-                value={props.values.number_of_vols}
-                keyboardType="numeric"
-              />
-              <Text style={styles.errorText}>
-                {props.touched.number_of_vols && props.errors.number_of_vols}
-              </Text>
-              <TextInput
-                placeholder="Treats"
-                style={styles.input}
-                onChangeText={props.handleChange("treats")}
-                onBlur={props.handleBlur("treats")}
-                value={props.values.treats}
-              />
-              <Text style={styles.errorText}>
-                {props.touched.treats && props.errors.treats}
-              </Text>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={props.handleSubmit}
-              >
-                <Text style={styles.buttonText}>Submit</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </Formik>
-      </View>
-    </KeyboardAvoidingView>
+                  <TextInput
+                    placeholder="Description"
+                    style={styles.input}
+                    onChangeText={props.handleChange("description")}
+                    onBlur={props.handleBlur("description")}
+                    value={props.values.description}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.description && props.errors.description}
+                  </Text>
+                  <TextInput
+                    placeholder="Location"
+                    style={styles.input}
+                    onChangeText={props.handleChange("location")}
+                    onBlur={props.handleBlur("location")}
+                    value={props.values.location}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.location && props.errors.location}
+                  </Text>
+                  <TextInput
+                    placeholder="Date and Time"
+                    style={styles.input}
+                    onChangeText={props.handleChange("date_time")}
+                    onBlur={props.handleBlur("date_time")}
+                    value={props.values.date_time}
+                    dataDetectorTypes="calendarEvent"
+                    keyboardType="numeric"
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.date_time && props.errors.date_time}
+                  </Text>
+                  <TextInput
+                    placeholder="Number of Volunteers"
+                    style={styles.input}
+                    onChangeText={props.handleChange("number_of_vols")}
+                    onBlur={props.handleBlur("number_of_vols")}
+                    value={props.values.number_of_vols}
+                    keyboardType="numeric"
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.number_of_vols &&
+                      props.errors.number_of_vols}
+                  </Text>
+                  <TextInput
+                    placeholder="Treats"
+                    style={styles.input}
+                    onChangeText={props.handleChange("treats")}
+                    onBlur={props.handleBlur("treats")}
+                    value={props.values.treats}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.treats && props.errors.treats}
+                  </Text>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={props.handleSubmit}
+                  >
+                    <Text style={styles.buttonText}>Submit</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </Formik>
+          </View>
+        </KeyboardAvoidingView>
+      </ScrollView>
+    </>
   );
 };
 
