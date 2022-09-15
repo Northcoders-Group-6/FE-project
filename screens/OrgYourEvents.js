@@ -26,28 +26,36 @@ const OrgYourEvents = () => {
   const navigation = useNavigation();
 
   const [eventArr, setEventArr] = useState([]);
+  const [eventsExist, setEventsExist] = useState(false);
 
   useEffect(() => {
     const getEmailFromUser = async () => {
       let orgEmail = await loggedInUser.email;
       return orgEmail;
     };
-    getEmailFromUser().then((email) => {
-      const colRef = collection(db, "events");
-      const events = query(colRef, where("email", "==", email));
-      onSnapshot(events, (snapshot) => {
-        let eventAux = [];
-        snapshot.docs.forEach((doc) => {
-          let eventWithId = doc.data();
-          eventWithId.docId = doc.id;
-          eventAux.push({ ...eventWithId });
+    getEmailFromUser()
+      .then((email) => {
+        const colRef = collection(db, "events");
+        const events = query(colRef, where("email", "==", email));
+        onSnapshot(events, (snapshot) => {
+          let eventAux = [];
+          snapshot.docs.forEach((doc) => {
+            let eventWithId = doc.data();
+            eventWithId.docId = doc.id;
+            eventAux.push({ ...eventWithId });
+          });
+          setEventArr(eventAux);
         });
-        setEventArr(eventAux);
+        return eventAux;
+      })
+      .then((eventAux) => {
+        if (eventAux.length >= 1) {
+          setEventsExist(true);
+        }
       });
-    });
   }, [loggedInUser]);
 
-  // console.log("Here are the events", eventArr);
+  console.log("Here are the events", eventArr);
 
   const singleEventClick = (docId) => {
     navigation.navigate("Org Single Event", { eventId: docId });
@@ -68,29 +76,38 @@ const OrgYourEvents = () => {
           >
             <Text style={styles.seeMore}>Create a new event</Text>
           </TouchableOpacity>
-          {eventArr.map((element) => {
-            return (
-              <View style={styles.oppsContainer} key={element.event_title}>
-                <Image
-                  source={{ uri: element.image }}
-                  style={{ width: 450, height: 250 }}
-                />
 
-                <Text style={styles.oppsText1}>{element.event_title}</Text>
-                <Text style={styles.oppsText}>{element.company}</Text>
-                <Text style={styles.oppsText}>{element.location}</Text>
-                <TouchableOpacity
-                  onPress={() => singleEventClick(element.docId)}
-                  style={[styles.button, styles.buttonOutline]}
-                >
-                  <Text style={styles.seeMore}>
-                    <Ionicons name="edit" size={20} style={styles.iconStyle} />{" "}
-                    Edit Event
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            );
-          })}
+          {eventsExist === false && (
+            <Text style={styles.noEvents}>You have no events yet</Text>
+          )}
+          {eventsExist &&
+            eventArr.map((element) => {
+              return (
+                <View style={styles.oppsContainer} key={element.event_title}>
+                  <Image
+                    source={{ uri: element.image }}
+                    style={{ width: 450, height: 250 }}
+                  />
+
+                  <Text style={styles.oppsText1}>{element.event_title}</Text>
+                  <Text style={styles.oppsText}>{element.company}</Text>
+                  <Text style={styles.oppsText}>{element.location}</Text>
+                  <TouchableOpacity
+                    onPress={() => singleEventClick(element.docId)}
+                    style={[styles.button, styles.buttonOutline]}
+                  >
+                    <Text style={styles.seeMore}>
+                      <Ionicons
+                        name="edit"
+                        size={20}
+                        style={styles.iconStyle}
+                      />{" "}
+                      Edit Event
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
         </View>
       </ScrollView>
     </>
@@ -165,5 +182,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "white",
+  },
+  noEvents: {
+    textAlign: "center",
+    color: "#4D4B4B",
+    fontWeight: "700",
+    fontSize: 16,
+    marginTop: 10,
   },
 });
