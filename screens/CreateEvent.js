@@ -22,22 +22,22 @@ const eventSchema = yup.object({
     .string()
     .required("event title is a required field")
     .min(2)
-    .max(20),
-  description: yup.string().required().min(2).max(20),
-  location: yup.string().required().min(2).max(20),
+    .max(60),
+  description: yup.string().required().min(2).max(1000),
+  location: yup.string().required().min(2).max(60),
   date_time: yup.string().typeError("Enter a date").required("Enter a date"),
   number_of_vols: yup
     .number()
     .typeError("n° of volunteer is a required field")
     .required("n° of volunteer is a required field")
     .min(1),
-  treats: yup.string().required().min(2).max(20),
+  treats: yup.string().required().min(2).max(100),
   image: yup
     .string()
-    .matches(
-      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-      "Enter correct url!"
-    )
+    // .matches(
+    //   "/((https?)://)?(www.)?[a-z0-9]+(.[a-z]{2,}){1,3}(#?/?[a-zA-Z0-9#]+)*/?(?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/",
+    //   "Enter correct url!"
+    // )
     .required("Please enter website"),
 });
 
@@ -76,7 +76,7 @@ const CreateEvent = () => {
                 navigation.navigate("Event Confirmation");
               }}
             >
-              {props => (
+              {(props) => (
                 <View>
                   <TextInput
                     placeholder="Event Title"
@@ -171,7 +171,6 @@ const CreateEvent = () => {
 export default CreateEvent;
 
 const styles = StyleSheet.create({
-
   input: {
     borderWidth: 1,
     borderColor: "#ddd",

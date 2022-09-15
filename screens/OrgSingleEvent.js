@@ -7,12 +7,12 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
 import { getDoc, doc, deleteDoc } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { db } from "../firebase";
 
 const OrgSingleEvent = ({ route }) => {
   const [eventdoc, setEventId] = useState(route.params.eventId);
