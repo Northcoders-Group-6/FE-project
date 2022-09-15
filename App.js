@@ -59,7 +59,7 @@ export default function App() {
 
             <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
 
-            <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
+            <Stack.Screen name="Voluntreats" component={TabNavigatorOrg} />
             <Stack.Screen
               name="Event Confirmation"
               component={OrgEventConfirmation}
