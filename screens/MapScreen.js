@@ -34,6 +34,56 @@ const Map = () => {
       date: "Monday 3rd October",
       location: { latitude: 53.533391, longitude: -2.229218 },
     },
+    {
+      eventTitle: "Clean the mains streets",
+      date: "Monday 3rd October",
+      location: { latitude: 53.478401, longitude: -2.229218 },
+    },
+    {
+      eventTitle: "Help the charity shops",
+      date: "Monday 3rd October",
+      location: { latitude: 53.482595, longitude: -2.243992 },
+    },
+    {
+      eventTitle: "Food donations",
+      date: "Monday 3rd October",
+      location: { latitude: 53.473198, longitude: -2.248359 },
+    },
+    {
+      eventTitle: "Homeless assistance",
+      date: "Monday 3rd October",
+      location: { latitude: 53.487222, longitude: -2.243714 },
+    },
+    {
+      eventTitle: "Elderly people assistance",
+      date: "Monday 3rd October",
+      location: { latitude: 53.482728, longitude: -2.251031 },
+    },
+    {
+      eventTitle: "Help the soup kitchen",
+      date: "Monday 3rd October",
+      location: { latitude: 53.472585, longitude: -2.239218 },
+    },
+    {
+      eventTitle: "Food bank",
+      date: "Monday 3rd October",
+      location: { latitude: 53.47528, longitude: -2.251449 },
+    },
+    {
+      eventTitle: "Help the soup kitchen",
+      date: "Monday 3rd October",
+      location: { latitude: 53.480662, longitude: -2.237115 },
+    },
+    {
+      eventTitle: "Elderly people assistance",
+      date: "Monday 3rd October",
+      location: { latitude: 53.476474, longitude: -2.23145 },
+    },
+    {
+      eventTitle: "Elderly people assistance",
+      date: "Monday 3rd October",
+      location: { latitude: 53.47581, longitude: -2.222181 },
+    },
   ];
 
   return (
