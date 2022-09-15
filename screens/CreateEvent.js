@@ -1,4 +1,5 @@
 import {
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -24,22 +25,26 @@ const eventSchema = yup.object({
     .max(20),
   description: yup.string().required().min(2).max(20),
   location: yup.string().required().min(2).max(20),
-  date_time: yup.string().required("date & time is a required field"),
+  date_time: yup.string().typeError("Enter a date").required("Enter a date"),
   number_of_vols: yup
-    .string()
+    .number()
+    .typeError("n° of volunteer is a required field")
     .required("n° of volunteer is a required field")
     .min(1),
-
   treats: yup.string().required().min(2).max(20),
+  image: yup
+    .string()
+    .matches(
+      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      "Enter correct url!"
+    )
+    .required("Please enter website"),
 });
 
 const CreateEvent = () => {
   const [newEvent, setNewEvent] = useState({});
   const { loggedInUser } = useContext(UserContext);
   const navigation = useNavigation();
-
-  // console.log("here email", loggedInUser.email);
-  // console.log("here compnay", loggedInUser.compnay_name);
 
   return (
     <>
@@ -111,7 +116,6 @@ const CreateEvent = () => {
                     onBlur={props.handleBlur("date_time")}
                     value={props.values.date_time}
                     dataDetectorTypes="calendarEvent"
-                    keyboardType="numeric"
                   />
                   <Text style={styles.errorText}>
                     {props.touched.date_time && props.errors.date_time}
@@ -137,6 +141,16 @@ const CreateEvent = () => {
                   />
                   <Text style={styles.errorText}>
                     {props.touched.treats && props.errors.treats}
+                  </Text>
+                  <TextInput
+                    placeholder="URL path image"
+                    style={styles.input}
+                    onChangeText={props.handleChange("image")}
+                    onBlur={props.handleBlur("image")}
+                    value={props.values.image}
+                  />
+                  <Text style={styles.errorText}>
+                    {props.touched.image && props.errors.image}
                   </Text>
                   <TouchableOpacity
                     style={styles.button}
