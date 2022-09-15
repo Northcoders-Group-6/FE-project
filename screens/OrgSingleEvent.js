@@ -52,34 +52,49 @@ const OrgSingleEvent = ({ route }) => {
           <Text style={styles.oppsTextTitle}>{event.event_title}</Text>
 
           <Text style={styles.oppsText}>{event.location}</Text>
+          <View
+            style={{
+              borderBottomColor: "#6D326D",
+              paddingBottom: 15,
+              marginRight: 15,
+              borderBottomWidth: StyleSheet.hairlineWidth,
+            }}
+          ></View>
         </View>
+        <Text style={styles.text}>
+          <Ionicons name="calendar" size={20} /> {event.date_time}
+        </Text>
+        <Text style={styles.text}>
+          <Ionicons name="team" size={20} />- Up to 10 volunteers needed
+        </Text>
+        <View
+          style={{
+            borderBottomColor: "#6D326D",
+            paddingBottom: 15,
 
+            borderBottomWidth: StyleSheet.hairlineWidth,
+          }}
+        ></View>
         <Text style={styles.oppsTextDescription}>
           Number of attendees: {event.number_of_vols}
         </Text>
 
-        <Text>Attendees info:</Text>
+        <Text style={styles.attendInfo}>Attendees info:</Text>
         {usersExist === false && <Text>No event attendees yet</Text>}
         {usersExist &&
           event.users.map((element) => {
             return (
               <View style={styles.oppsContainer} key={element.docId}>
-                <Text>
-                  Name: {element.firstName} {element.lastName}
+                <Text style={styles.userInfo1}>
+                  <Text>Name:</Text> {element.firstName} {element.lastName}
                 </Text>
-                <Text>email: {element.email} </Text>
-                <Text>phone number: {element.phone} </Text>
+                <Text style={styles.userInfo2}>email: {element.email} </Text>
+                <Text style={styles.userInfo2}>
+                  phone number: {element.phone}{" "}
+                </Text>
               </View>
             );
           })}
-
-        <Text style={styles.text}>
-          <Ionicons name="calendar" size={20} />
-          {event.date_time}
-        </Text>
-        <Text style={styles.text}>
-          <Ionicons name="team" size={20} />- Up to 10 volunteers needed
-        </Text>
 
         <TouchableOpacity
           onPress={handleDelete}
@@ -100,41 +115,62 @@ export default OrgSingleEvent;
 
 const styles = StyleSheet.create({
   oppsContainer: {
-    paddingBottom: 30,
-    paddingTop: 30,
+    paddingTop: 20,
     width: "100%",
     flexDirection: "column",
     textAlign: "left",
+    marginLeft: 9,
   },
   oppsText: {
     color: "#4D4B4B",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
-    paddingBottom: 5,
-    marginLeft: 8,
+    marginLeft: 9,
     lineHeight: 20,
   },
   oppsTextTitle: {
-    color: "#3D5C43",
+    color: "#4D4B4B",
     fontWeight: "700",
     fontSize: 20,
     textAlign: "left",
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 8,
-    marginLeft: 8,
+    marginLeft: 9,
   },
   oppsTextDescription: {
-    color: "#3D5C43",
+    color: "#4D4B4B",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "left",
     marginTop: 18,
-    marginLeft: 10,
+    marginLeft: 15,
     lineHeight: 24,
   },
+  attendInfo: {
+    color: "#6D326D",
+    fontWeight: "700",
+    fontSize: 16,
+    marginLeft: 15,
+    paddingTop: 10,
+    marginBottom: -10,
+  },
+  userInfo1: {
+    color: "#6D326D",
+    fontWeight: "700",
+    fontSize: 16,
+    marginLeft: 9,
+    paddingTop: 10,
+  },
+  userInfo2: {
+    color: "#3D5C43",
+    fontWeight: "500",
+    fontSize: 16,
+    marginLeft: 9,
+    paddingTop: 10,
+  },
   buttonContainer: {
-    width: "100%",
+    width: "90%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
@@ -150,9 +186,10 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#3D5C43",
-    width: "100%",
+    width: "90%",
     padding: 15,
     borderRadius: 10,
+    alignSelf: "center",
   },
   buttonOutline: {
     backgroundColor: "#3D5C43",
@@ -180,7 +217,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "left",
     marginTop: 20,
-    marginLeft: 8,
+    marginLeft: 15,
   },
   hairlineWidth: {
     padding: 30,
@@ -201,6 +238,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "left",
     marginTop: 15,
-    marginLeft: 8,
+    marginLeft: 9,
   },
 });
