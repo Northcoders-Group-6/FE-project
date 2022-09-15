@@ -33,26 +33,19 @@ const OrgYourEvents = () => {
       let orgEmail = await loggedInUser.email;
       return orgEmail;
     };
-    getEmailFromUser()
-      .then((email) => {
-        const colRef = collection(db, "events");
-        const events = query(colRef, where("email", "==", email));
-        onSnapshot(events, (snapshot) => {
-          let eventAux = [];
-          snapshot.docs.forEach((doc) => {
-            let eventWithId = doc.data();
-            eventWithId.docId = doc.id;
-            eventAux.push({ ...eventWithId });
-          });
-          setEventArr(eventAux);
+    getEmailFromUser().then((email) => {
+      const colRef = collection(db, "events");
+      const events = query(colRef, where("email", "==", email));
+      onSnapshot(events, (snapshot) => {
+        let eventAux = [];
+        snapshot.docs.forEach((doc) => {
+          let eventWithId = doc.data();
+          eventWithId.docId = doc.id;
+          eventAux.push({ ...eventWithId });
         });
-        return eventAux;
-      })
-      .then((eventAux) => {
-        if (eventAux.length >= 1) {
-          setEventsExist(true);
-        }
+        setEventArr(eventAux);
       });
+    });
   }, [loggedInUser]);
 
   console.log("Here are the events", eventArr);
@@ -77,37 +70,29 @@ const OrgYourEvents = () => {
             <Text style={styles.seeMore}>Create a new event</Text>
           </TouchableOpacity>
 
-          {eventsExist === false && (
-            <Text style={styles.noEvents}>You have no events yet</Text>
-          )}
-          {eventsExist &&
-            eventArr.map((element) => {
-              return (
-                <View style={styles.oppsContainer} key={element.event_title}>
-                  <Image
-                    source={{ uri: element.image }}
-                    style={{ width: 450, height: 250 }}
-                  />
+          {eventArr.map((element) => {
+            return (
+              <View style={styles.oppsContainer} key={element.event_title}>
+                <Image
+                  source={{ uri: element.image }}
+                  style={{ width: 450, height: 250 }}
+                />
 
-                  <Text style={styles.oppsText1}>{element.event_title}</Text>
-                  <Text style={styles.oppsText}>{element.company}</Text>
-                  <Text style={styles.oppsText}>{element.location}</Text>
-                  <TouchableOpacity
-                    onPress={() => singleEventClick(element.docId)}
-                    style={[styles.button, styles.buttonOutline]}
-                  >
-                    <Text style={styles.seeMore}>
-                      <Ionicons
-                        name="edit"
-                        size={20}
-                        style={styles.iconStyle}
-                      />{" "}
-                      Edit Event
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              );
-            })}
+                <Text style={styles.oppsText1}>{element.event_title}</Text>
+                <Text style={styles.oppsText}>{element.company}</Text>
+                <Text style={styles.oppsText}>{element.location}</Text>
+                <TouchableOpacity
+                  onPress={() => singleEventClick(element.docId)}
+                  style={[styles.button, styles.buttonOutline]}
+                >
+                  <Text style={styles.seeMore}>
+                    <Ionicons name="edit" size={20} style={styles.iconStyle} />{" "}
+                    Edit Event
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
         </View>
       </ScrollView>
     </>
