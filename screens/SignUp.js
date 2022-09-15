@@ -48,9 +48,7 @@ const SignUp = () => {
           student ID with you.
         </Text>
       </View>
-      <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
-        <Text style={styles.editEvent}>View Event</Text>
-      </TouchableOpacity>
+
       <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
         <Text style={styles.contact}>
           <Fontisto name="email" size={18} /> Contact Organiser
