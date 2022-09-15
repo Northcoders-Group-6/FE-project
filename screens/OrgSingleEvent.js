@@ -11,13 +11,14 @@ import { useContext, useState, useEffect } from "react";
 import ShareTab from "../navigation/ShareTab";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, deleteDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
 const OrgSingleEvent = ({ route }) => {
   const [eventdoc, setEventId] = useState(route.params.eventId);
   const navigation = useNavigation();
   const [event, setEvent] = useState({});
+  const [usersExist, setUserExist] = useState(false);
 
   const eventsCol = async () => {
     const docRef = doc(db, "events", eventdoc);
@@ -26,14 +27,27 @@ const OrgSingleEvent = ({ route }) => {
   };
 
   useEffect(() => {
-    eventsCol().then((docSnap) => {
-      setEvent(docSnap.data());
-    });
+    eventsCol()
+      .then((docSnap) => {
+        let eventU = docSnap.data();
+        setEvent(docSnap.data());
+        return eventU;
+      })
+      .then((eventU) => {
+        if (eventU.users.length >= 1) {
+          setUserExist(true);
+        }
+      });
   }, [eventdoc]);
 
-  console.log(event.users);
+  // console.log(event);
 
-  const sendBack = () => {
+  // const sendBack = () => {
+  //   navigation.navigate("Org Events");
+  // };
+
+  const handleDelete = async () => {
+    await deleteDoc(doc(db, "events", eventdoc));
     navigation.navigate("Org Events");
   };
 
@@ -51,17 +65,19 @@ const OrgSingleEvent = ({ route }) => {
         </Text>
 
         <Text>Attendees info:</Text>
-        {event.users.map((element) => {
-          return (
-            <View style={styles.oppsContainer} key={element.docId}>
-              <Text>
-                Name: {element.firstName} {element.lastName}{" "}
-              </Text>
-              <Text>email: {element.email} </Text>
-              <Text>phone number: {element.phone} </Text>
-            </View>
-          );
-        })}
+        {usersExist === false && <Text>No event attendees yet</Text>}
+        {usersExist &&
+          event.users.map((element) => {
+            return (
+              <View style={styles.oppsContainer} key={element.docId}>
+                <Text>
+                  Name: {element.firstName} {element.lastName}
+                </Text>
+                <Text>email: {element.email} </Text>
+                <Text>phone number: {element.phone} </Text>
+              </View>
+            );
+          })}
 
         <Text style={styles.text}>
           <Ionicons name="calendar" size={20} />
@@ -72,11 +88,14 @@ const OrgSingleEvent = ({ route }) => {
         </Text>
 
         <TouchableOpacity
-          onPress={sendBack}
+          onPress={handleDelete}
           style={[styles.button, styles.buttonOutline]}
         >
           <Text style={styles.delete}> Delete Event</Text>
         </TouchableOpacity>
+        {/* <TouchableOpacity onPress={handleDelete}>
+          <Text style={styles.delete}> Delete Event</Text>
+        </TouchableOpacity> */}
         <ShareTab />
       </View>
     </ScrollView>
