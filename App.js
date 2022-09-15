@@ -51,13 +51,13 @@ export default function App() {
               component={TabNavigator}
             />
             <Stack.Screen name="Map" component={MapScreen} />
-            <Stack.Screen name="Single" component={SingleOpp} />
+            <Stack.Screen name="More Info" component={SingleOpp} />
             <Stack.Screen name="Sign Up" component={SignUp} />
             <Stack.Screen name="Create Event" component={CreateEvent} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Set Preferences" component={SetPreferences} />
 
-            <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
+            <Stack.Screen name="Event" component={OrgSingleEvent} />
 
             <Stack.Screen name="Voluntreats" component={TabNavigatorOrg} />
             <Stack.Screen

@@ -38,7 +38,7 @@ const ExploreOpps = () => {
   }, [loggedInUser]);
 
   const singleOpp = (id) => {
-    navigation.navigate("Single", { id });
+    navigation.navigate("More Info", { id });
   };
 
   return (

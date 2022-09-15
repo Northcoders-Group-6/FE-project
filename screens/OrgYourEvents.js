@@ -49,7 +49,7 @@ const OrgYourEvents = () => {
   }, [loggedInUser]);
 
   const singleEventClick = (docId) => {
-    navigation.navigate("Org Single Event", { eventId: docId });
+    navigation.navigate("Event", { eventId: docId });
   };
 
   const clickCreateEvent = () => {
