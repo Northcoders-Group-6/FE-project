@@ -36,7 +36,7 @@ const LoginScreen = () => {
       type: "success",
       text1: "You have successfully logged in!",
       text2: "Welcome to the Voluntreats community!",
-      visibilityTime: 5000,
+      visibilityTime: 1000,
       autoHide: true,
       /*  onShow: () => {
         isVolunteer == true

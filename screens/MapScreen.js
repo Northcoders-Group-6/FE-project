@@ -15,17 +15,17 @@ const Map = () => {
 
   const markers = [
     {
-      eventTitle: "Ready to Kids",
+      eventTitle: "Planting Vegetables",
       date: "Monday 3rd October",
       location: { latitude: 53.481938, longitude: -2.216858 },
     },
     {
-      eventTitle: "Food bank",
+      eventTitle: "Food bank donations",
       date: "Monday 3rd October",
       location: { latitude: 53.434104, longitude: -2.14476 },
     },
     {
-      eventTitle: "Ready to Kids",
+      eventTitle: "Eco ",
       date: "Monday 3rd October",
       location: { latitude: 53.441467, longitude: -2.37616 },
     },
@@ -60,7 +60,7 @@ const Map = () => {
       location: { latitude: 53.482728, longitude: -2.251031 },
     },
     {
-      eventTitle: "Help the soup kitchen",
+      eventTitle: "Soup Kitchen Assistance",
       date: "Monday 3rd October",
       location: { latitude: 53.472585, longitude: -2.239218 },
     },
@@ -104,7 +104,7 @@ const Map = () => {
               <Marker
                 key={index}
                 coordinate={marker.location}
-                pinColor={"purple"}
+                pinColor={"#BC6C0B"}
               >
                 <Callout tooltip onPress={() => navigation.replace("Single")}>
                   <View style={styles.bubble}>
@@ -112,7 +112,6 @@ const Map = () => {
                       <Text style={styles.bubbleText}>
                         Event: {marker.eventTitle}
                       </Text>
-
                       <Text style={styles.secondText}>Date: {marker.date}</Text>
                     </View>
                   </View>
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
   bubble: {
     borderWidth: 2,
     borderRadius: 6,
-    borderColor: "#ff7f50",
+    borderColor: "#D17C14",
     backgroundColor: `#f8f8ff`,
     padding: 5,
     marginBottom: 5,
