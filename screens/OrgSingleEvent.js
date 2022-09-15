@@ -77,7 +77,7 @@ const OrgSingleEvent = ({ route }) => {
           }}
         ></View>
         <Text style={styles.oppsTextDescription}>
-          Number of attendees: {event.number_of_vols}
+          Number of attendees still needed: {event.number_of_vols}
         </Text>
 
         <Text style={styles.attendInfo}>Attendees info:</Text>
