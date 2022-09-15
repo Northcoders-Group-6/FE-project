@@ -38,7 +38,7 @@ const Activity = () => {
         }}
       ></View>
       <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
-        <Text style={styles.signUp}> Edit Event</Text>
+        <Text style={styles.signUp}> I can no longer attend the event</Text>
       </TouchableOpacity>
       <Text style={styles.title2}>
         Planting Vegetables at Chorlton High School, Unicorn Grocery
@@ -55,7 +55,7 @@ const Activity = () => {
         }}
       ></View>
       <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
-        <Text style={styles.signUp}> Edit Event</Text>
+        <Text style={styles.signUp}> I can no longer attend the event</Text>
       </TouchableOpacity>
       <View style={styles.image}>
         <Image

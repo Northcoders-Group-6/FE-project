@@ -108,7 +108,7 @@ const Map = () => {
                 <Callout
                   tooltip
                   onPress={() =>
-                    navigation.navigate("Single", {
+                    navigation.navigate("More Info", {
                       id: "9L9Ywu3hs1to7Y6TdYtp",
                     })
                   }
