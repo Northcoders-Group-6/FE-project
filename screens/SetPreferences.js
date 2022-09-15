@@ -112,7 +112,9 @@ const EditProfile = () => {
           label="bothInteractions"
           color="#E48510"
         />
-        <Text style={styles.oppsText2}>Show Remote Opportunities</Text>
+        <Text style={styles.oppsText2}>Show Remote Events</Text>
+        <Text style={styles.oppsText2}>Yes</Text>
+
         <Checkbox
           value="remoteYes"
           status={isRemote === true ? "checked" : "unchecked"}
@@ -120,6 +122,8 @@ const EditProfile = () => {
           label="remote"
           color="#E48510"
         />
+        <Text style={styles.oppsText2}>No</Text>
+
         <Checkbox
           value="remoteNo"
           status={isRemote === false ? "checked" : "unchecked"}
