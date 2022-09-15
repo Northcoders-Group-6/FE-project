@@ -22,14 +22,28 @@ const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const organiserSchema = yup.object({
-  company_name: yup.string().required().min(2).max(40),
-  company_type: yup.string().required().min(2).max(40),
-  contact_name: yup.string().required().min(2).max(20),
-  // company_reg_number: yup
-  //   .string()
-  //   .required()
-  //   .min(5, "Must be exactly 5 values")
-  //   .max(5, "Must be exactly 5 values"),
+
+  company_name: yup
+    .string()
+    .required("company name is a required field")
+    .min(2)
+    .max(20),
+  company_type: yup
+    .string()
+    .required("company type is a required field")
+    .min(2)
+    .max(20),
+  contact_name: yup
+    .string()
+    .required("contact name is a required field")
+    .min(2)
+    .max(20),
+  company_reg_number: yup
+    .string()
+    .required("company registration N° is a required field")
+    .min(5, "Must be exactly 5 values")
+    .max(5, "Must be exactly 5 values"),
+
   location: yup.string().required().min(2),
   phone: yup
     .string()
@@ -56,7 +70,7 @@ const OrganiserReg = () => {
       onHide: () => {},
     });
   };
-  const errorToast = (err) => {
+  const errorToast = err => {
     ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
@@ -96,7 +110,7 @@ const OrganiserReg = () => {
                   db.collection("Organizations")
                     .add(values)
                     .then(() => successToast())
-                    .catch((err) => errorToast(err));
+                    .catch(err => errorToast(err));
 
                   createUserWithEmailAndPassword(
                     auth,
@@ -105,7 +119,7 @@ const OrganiserReg = () => {
                   );
                 }}
               >
-                {(props) => (
+                {props => (
                   <View>
                     <TextInput
                       placeholder="Company Name"

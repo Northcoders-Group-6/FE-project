@@ -33,12 +33,12 @@ const OrgYourEvents = () => {
       let orgEmail = await loggedInUser.email;
       return orgEmail;
     };
-    getEmailFromUser().then((email) => {
+    getEmailFromUser().then(email => {
       const colRef = collection(db, "events");
       const events = query(colRef, where("email", "==", email));
-      onSnapshot(events, (snapshot) => {
+      onSnapshot(events, snapshot => {
         let eventAux = [];
-        snapshot.docs.forEach((doc) => {
+        snapshot.docs.forEach(doc => {
           let eventWithId = doc.data();
           eventWithId.docId = doc.id;
           eventAux.push({ ...eventWithId });
@@ -50,7 +50,7 @@ const OrgYourEvents = () => {
 
   console.log("Here are the events", eventArr);
 
-  const singleEventClick = (docId) => {
+  const singleEventClick = docId => {
     navigation.navigate("Org Single Event", { eventId: docId });
   };
 
@@ -60,7 +60,7 @@ const OrgYourEvents = () => {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView style={{ marginHorizontal: 20 }}>
         <View>
           <Text style={styles.title}>Your Events</Text>
           <TouchableOpacity
@@ -70,7 +70,8 @@ const OrgYourEvents = () => {
             <Text style={styles.seeMore}>Create a new event</Text>
           </TouchableOpacity>
 
-          {eventArr.map((element) => {
+          {eventArr.map(element => {
+
             return (
               <View style={styles.oppsContainer} key={element.event_title}>
                 <Image
