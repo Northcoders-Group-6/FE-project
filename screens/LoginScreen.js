@@ -93,7 +93,7 @@ const LoginScreen = () => {
         navigation.replace("Your Local Opportunities");
       } else {
         isOrg(email);
-        navigation.replace("Org Events");
+        navigation.replace("Voluntreats");
       }
     });
   };
