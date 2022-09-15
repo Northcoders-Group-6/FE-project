@@ -34,8 +34,8 @@ const LoginScreen = () => {
   const successToast = () => {
     Toast.show({
       type: "success",
-      text1: "You have successfully Login!",
-      text2: "Welcome to Volontreets community!",
+      text1: "You have successfully logged in!",
+      text2: "Welcome to the Voluntreats community!",
       visibilityTime: 5000,
       autoHide: true,
       /*  onShow: () => {
@@ -47,11 +47,11 @@ const LoginScreen = () => {
     });
   };
 
-  const errorToast = err => {
+  const errorToast = (err) => {
     ErrorToast.show({
       type: "error",
-      text1: `Something goes wrong: ${err}`,
-      text2: "Try Again",
+      text1: `Something has gone wrong: ${err}`,
+      text2: "Please try Again",
       visibilityTime: 5000,
       autoHide: false,
       onShow: () => {},
@@ -59,11 +59,11 @@ const LoginScreen = () => {
     });
   };
 
-  const isOrg = email => {
+  const isOrg = (email) => {
     const colRef = collection(db, "Organizations");
     const q = query(colRef, where("email", "==", email));
-    onSnapshot(q, snapshot => {
-      snapshot.docs.forEach(doc => {
+    onSnapshot(q, (snapshot) => {
+      snapshot.docs.forEach((doc) => {
         const org = doc.data();
         org.docId = doc.id;
         setLoggedInUser(org);
@@ -71,9 +71,9 @@ const LoginScreen = () => {
     });
   };
 
-  const isVol = email => {
+  const isVol = (email) => {
     const colRef = collection(db, "Volunteers");
-    getDocs(colRef).then(snapshot => {
+    getDocs(colRef).then((snapshot) => {
       let volunteersAux = [];
 
       snapshot.docs.forEach((doc) => {
@@ -83,23 +83,23 @@ const LoginScreen = () => {
       });
       setVolunteers(volunteersAux);
 
-      const filteredUser = volunteersAux.filter(user => {
+      const filteredUser = volunteersAux.filter((user) => {
         return user.email === email;
       });
 
       if (filteredUser.length !== 0) {
         setLoggedInUser(filteredUser[0]);
 
-        navigation.replace("Explore Opps");
+        navigation.replace("Your Local Opportunities");
       } else {
         isOrg(email);
-        navigation.replace("Org Events");
+        navigation.replace("Voluntreats");
       }
     });
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoggedInUser(user.uid);
       }
@@ -113,13 +113,13 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then(userCredentials => {
+      .then((userCredentials) => {
         const user = userCredentials.user;
         //console.log("Logged in with", user);
         isVol(user.email);
         successToast();
       })
-      .catch(error => errorToast(error));
+      .catch((error) => errorToast(error));
   };
 
   return (
@@ -137,13 +137,13 @@ const LoginScreen = () => {
         <TextInput
           placeholder="Email"
           value={email}
-          onChangeText={text => setEmail(text)}
+          onChangeText={(text) => setEmail(text)}
           style={styles.input}
         />
         <TextInput
           placeholder="Password"
           value={password}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           style={styles.input}
           secureTextEntry
         />

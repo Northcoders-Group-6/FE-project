@@ -19,12 +19,14 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import Ionicons from "react-native-vector-icons/AntDesign";
 
 const OrgYourEvents = () => {
   const { loggedInUser } = useContext(UserContext);
   const navigation = useNavigation();
 
   const [eventArr, setEventArr] = useState([]);
+  const [eventsExist, setEventsExist] = useState(false);
 
   useEffect(() => {
     const getEmailFromUser = async () => {
@@ -67,7 +69,9 @@ const OrgYourEvents = () => {
           >
             <Text style={styles.seeMore}>Create a new event</Text>
           </TouchableOpacity>
+
           {eventArr.map(element => {
+
             return (
               <View style={styles.oppsContainer} key={element.event_title}>
                 <Image
@@ -75,14 +79,17 @@ const OrgYourEvents = () => {
                   style={{ width: 450, height: 250 }}
                 />
 
-                <Text style={styles.oppsText}>{element.event_title}</Text>
+                <Text style={styles.oppsText1}>{element.event_title}</Text>
                 <Text style={styles.oppsText}>{element.company}</Text>
                 <Text style={styles.oppsText}>{element.location}</Text>
                 <TouchableOpacity
                   onPress={() => singleEventClick(element.docId)}
                   style={[styles.button, styles.buttonOutline]}
                 >
-                  <Text style={styles.seeMore}>See More</Text>
+                  <Text style={styles.seeMore}>
+                    <Ionicons name="edit" size={20} style={styles.iconStyle} />{" "}
+                    Edit Event
+                  </Text>
                 </TouchableOpacity>
               </View>
             );
@@ -104,32 +111,32 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   title: {
-    paddingTop: 30,
-    paddingBottom: 15,
-    fontSize: 24,
+    fontSize: 20,
     color: "#4D4B4B",
     fontWeight: "500",
     textAlign: "center",
+    marginTop: 20,
+  },
+
+  oppsText1: {
+    fontSize: 20,
+    color: "#4D4B4B",
+    fontWeight: "500",
+    marginLeft: 8,
+    marginTop: 20,
   },
   oppsText: {
-    color: "#6D326D",
+    color: "#4D4B4B",
     fontWeight: "700",
     fontSize: 16,
     textAlign: "left",
-    paddingBottom: 10,
-    marginLeft: 8,
+
+    marginLeft: 10,
+    lineHeight: 20,
   },
-  oppsTextTitle: {
-    color: "#6D326D",
-    fontWeight: "700",
-    fontSize: 20,
-    textAlign: "left",
-    marginTop: 20,
-    marginBottom: 8,
-    marginLeft: 8,
-  },
+
   buttonContainer: {
-    width: "100%",
+    width: "80%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 40,
@@ -140,6 +147,15 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignSelf: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   buttonOutline: {
     backgroundColor: "#6D326D",
@@ -152,5 +168,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "white",
+  },
+  noEvents: {
+    textAlign: "center",
+    color: "#4D4B4B",
+    fontWeight: "700",
+    fontSize: 16,
+    marginTop: 10,
   },
 });

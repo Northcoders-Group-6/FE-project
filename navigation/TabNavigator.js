@@ -12,7 +12,7 @@ const Tab = createMaterialBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Explore Opps"
+      initialRouteName="Your Local Opportunities"
       activeColor="white"
       inactiveColor="white"
       barStyle={{ backgroundColor: "#3D5C43" }}

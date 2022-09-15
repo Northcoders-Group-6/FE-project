@@ -17,7 +17,7 @@ const Settings = () => {
   const successToast = () => {
     Toast.show({
       type: "success",
-      text1: "You have successfully Logout!",
+      text1: "You have successfully logged out!",
 
       text2: "Thank you for use our app...",
       visibilityTime: 5000,
@@ -29,10 +29,10 @@ const Settings = () => {
     });
   };
 
-  const errorToast = err => {
+  const errorToast = (err) => {
     ErrorToast.show({
       type: "error",
-      text1: `Something goes wrong: ${err}`,
+      text1: `Something went wrong: ${err}`,
       text2: "Try Again",
       visibilityTime: 5000,
       autoHide: false,
@@ -57,14 +57,14 @@ const Settings = () => {
         console.log("user signed out!");
         successToast();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.message);
         errorToast(err);
       });
   };
 
   // subscribing to auth changes
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, (user) => {
     console.log("user status changed:", user);
   });
 
@@ -74,7 +74,7 @@ const Settings = () => {
         {loggedInUser.firstName ? (
           <Ionicons name="smileo" size={40} />
         ) : (
-          <Ionicons name="idcard" size={40} />
+          <Ionicons name="idcard" size={40} color={"#4D4B4B"} />
         )}
         <Text style={styles.text}>
           {loggedInUser.company_name
@@ -95,9 +95,7 @@ const Settings = () => {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Notification Settings</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Email Support</Text>
-      </TouchableOpacity>
+
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>FAQ</Text>
       </TouchableOpacity>
@@ -121,7 +119,6 @@ const styles = StyleSheet.create({
     padding: 18,
     borderColor: "#3D5C43",
     borderWidth: 1,
-
 
     width: "80%",
 
@@ -155,9 +152,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "#3D5C43",
-    fontSize: 20,
+    fontSize: 16,
     marginBottom: 20,
-    marginTop: 0,
+    marginTop: 10,
   },
   logoutButton: {
     backgroundColor: "#3D5C43",
@@ -169,14 +166,13 @@ const styles = StyleSheet.create({
   },
 
   buttonOutline: {
-    backgroundColor: "#6D326D",
+    backgroundColor: "#FFFFFB",
     marginTop: 5,
-    borderColor: "#6D326D",
+    borderColor: "#4D4B4B",
     borderWidth: 2,
   },
   buttonOutlineText: {
-    color: "white",
-    fontWeight: "700",
+    color: "#4D4B4B",
     fontSize: 16,
   },
 });

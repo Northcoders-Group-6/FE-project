@@ -22,6 +22,7 @@ const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const organiserSchema = yup.object({
+
   company_name: yup
     .string()
     .required("company name is a required field")
@@ -42,6 +43,7 @@ const organiserSchema = yup.object({
     .required("company registration N° is a required field")
     .min(5, "Must be exactly 5 values")
     .max(5, "Must be exactly 5 values"),
+
   location: yup.string().required().min(2),
   phone: yup
     .string()
@@ -94,7 +96,7 @@ const OrganiserReg = () => {
                   company_name: "",
                   company_type: "",
                   contact_name: "",
-                  company_reg_number: "",
+                  // company_reg_number: "",
                   location: "",
                   email: "",
                   phone: "",
@@ -149,7 +151,7 @@ const OrganiserReg = () => {
                     <Text style={styles.errorText}>
                       {props.touched.contact_name && props.errors.contact_name}
                     </Text>
-                    <TextInput
+                    {/* <TextInput
                       placeholder="Company Registration Number"
                       style={styles.input}
                       onChangeText={props.handleChange("company_reg_number")}
@@ -160,7 +162,7 @@ const OrganiserReg = () => {
                     <Text style={styles.errorText}>
                       {props.touched.company_reg_number &&
                         props.errors.company_reg_number}
-                    </Text>
+                    </Text> */}
                     <TextInput
                       placeholder="Location"
                       style={styles.input}

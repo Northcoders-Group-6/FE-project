@@ -171,6 +171,7 @@ const CreateEvent = () => {
 export default CreateEvent;
 
 const styles = StyleSheet.create({
+
   input: {
     borderWidth: 1,
     borderColor: "#ddd",
