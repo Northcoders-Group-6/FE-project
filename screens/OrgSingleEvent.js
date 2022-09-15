@@ -7,8 +7,9 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import { useState, useEffect } from "react";
-import ShareTab from "../navigation/ShareTab";
+import { useContext, useState, useEffect } from "react";
+import ShareTabOrg from "../navigation/ShareTabOrg";
+
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/AntDesign";
 import { getDoc, doc, deleteDoc } from "firebase/firestore";
@@ -90,7 +91,7 @@ const OrgSingleEvent = ({ route }) => {
         {/* <TouchableOpacity onPress={handleDelete}>
           <Text style={styles.delete}> Delete Event</Text>
         </TouchableOpacity> */}
-        <ShareTab />
+        <ShareTabOrg />
       </View>
     </ScrollView>
   );
