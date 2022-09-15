@@ -61,7 +61,7 @@ const StudentReg = () => {
     });
   };
 
-  const errorToast = err => {
+  const errorToast = (err) => {
     ErrorToast.show({
       type: "error",
       text1: `Something goes wrong: ${err}`,
@@ -100,21 +100,16 @@ const StudentReg = () => {
                   .add(values)
                   .then(() => successToast())
 
-                  .catch(err => errorToast(err));
+                  .catch((err) => errorToast(err));
 
                 createUserWithEmailAndPassword(
                   auth,
                   values.email,
                   values.password
                 );
-                // .then((userCredentials) => {
-                //   const user = userCredentials.user;
-                //   console.log("Registered with:", user.email);
-                // })
-                // .catch((error) => alert(error.message));
               }}
             >
-              {props => (
+              {(props) => (
                 <View>
                   <TextInput
                     style={styles.input}

@@ -11,10 +11,6 @@ const HomeScreen = () => {
   let currUser = auth.currentUser?.uid;
   let student = db.collection("Volunteers");
   const doc = student.where("firstName", "==", "stan");
-  // let org = db.collection("organisers").doc(currUser);
-  // const orgdoc = await org.get()
-
-  // console.log("org", orgdoc.data());
 
   const handleSignOut = () => {
     auth

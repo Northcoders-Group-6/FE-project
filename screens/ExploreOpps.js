@@ -37,7 +37,6 @@ const ExploreOpps = () => {
     });
   }, [loggedInUser]);
 
-  // console.log(eventArr);
   const singleOpp = (id) => {
     navigation.navigate("Single", { id });
   };

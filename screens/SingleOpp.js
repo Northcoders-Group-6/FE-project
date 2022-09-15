@@ -76,7 +76,6 @@ const SingleOpp = ({ route }) => {
     // newVols = number_of_vols"
     handleSignUp();
   };
-  console.log(event);
 
   return (
     <ScrollView key={eventId}>
