@@ -1,6 +1,5 @@
 import React from "react";
 import OrgYourEvents from "../screens/OrgYourEvents";
-import Activity from "../screens/Activity";
 import CreateEvent from "../screens/CreateEvent";
 import Settings from "../screens/Settings";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -27,16 +26,7 @@ const TabNavigatorOrg = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="Activity"
-        component={Activity}
-        options={{
-          tabBarShowLabel: true,
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="calendar" color={color} size={20} />
-          ),
-        }}
-      />
+
       <Tab.Screen
         name="Create Event"
         component={CreateEvent}
