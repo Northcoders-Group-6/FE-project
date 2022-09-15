@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ExploreOpps from "../screens/ExploreOpps";
 import Activity from "../screens/Activity";
 import MapScreen from "../screens/MapScreen";
@@ -6,10 +6,18 @@ import Settings from "../screens/Settings";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-
+import { UserContext } from "../src/contexts/UserContext";
+import { useContext } from "react";
+import { collection } from "firebase/firestore";
+import { db } from "../firebase";
+import { doc } from "firebase/firestore";
+import { getDoc } from "firebase/firestore";
+import { MyEventsContext } from "../src/contexts/MyEventsContext";
 const Tab = createMaterialBottomTabNavigator();
 
 const TabNavigator = () => {
+  
+
   return (
     <Tab.Navigator
       initialRouteName="Explore Opps"
@@ -36,6 +44,7 @@ const TabNavigator = () => {
             <FontAwesome name="calendar" color={color} size={20} />
           ),
         }}
+        
       />
       <Tab.Screen
         name="Map"

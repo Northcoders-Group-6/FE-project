@@ -25,52 +25,57 @@ import TabNavigator from "./navigation/TabNavigator";
 import Toast from "react-native-toast-message";
 import TabNavigatorOrg from "./navigation/TabNavigatorOrg";
 import OrgEventConfirmation from "./screens/OrgEventConfirmation";
+import { MyEventsContext } from "./src/contexts/MyEventsContext";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [loggedInUser, setLoggedInUser] = useState([]);
+  const [myEvents, setMyEvents] = useState([]);
 
   return (
     <>
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {/* <Stack.Screen name="Single" component={SingleOpp} /> */}
-            <Stack.Screen
-              options={{ headerShown: false }}
-              name="Login"
-              component={LoginScreen}
-            />
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Welcome" component={WelcomeScreen} />
-            <Stack.Screen name="Which User" component={WhichUser} />
-            <Stack.Screen name="Student Reg" component={StudentReg} />
-            <Stack.Screen name="Organiser Reg" component={OrganiserReg} />
-            <Stack.Screen name="Explore Opps" component={TabNavigator} />
-            <Stack.Screen name="Map" component={MapScreen} />
-            <Stack.Screen name="Single" component={SingleOpp} />
-            <Stack.Screen name="Sign Up" component={SignUp} />
-            <Stack.Screen name="Create Event" component={CreateEvent} />
-            <Stack.Screen name="Settings" component={Settings} />
-            <Stack.Screen name="Set Preferences" component={SetPreferences} />
+        <MyEventsContext.Provider value={{ myEvents, setMyEvents }}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {/* <Stack.Screen name="Single" component={SingleOpp} /> */}
+              <Stack.Screen
+                options={{ headerShown: false }}
+                name="Login"
+                component={LoginScreen}
+              />
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Welcome" component={WelcomeScreen} />
+              <Stack.Screen name="Which User" component={WhichUser} />
+              <Stack.Screen name="Student Reg" component={StudentReg} />
+              <Stack.Screen name="Organiser Reg" component={OrganiserReg} />
+              <Stack.Screen name="Explore Opps" component={TabNavigator} />
+              <Stack.Screen name="Map" component={MapScreen} />
+              <Stack.Screen name="Single" component={SingleOpp} />
+              <Stack.Screen name="Sign Up" component={SignUp} />
+              <Stack.Screen name="Create Event" component={CreateEvent} />
+              <Stack.Screen name="Settings" component={Settings} />
+              <Stack.Screen name="Set Preferences" component={SetPreferences} />
 
+              <Stack.Screen
+                name="Org Single Event"
+                component={OrgSingleEvent}
+              />
 
-            <Stack.Screen name="Org Single Event" component={OrgSingleEvent} />
+              <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
+              <Stack.Screen
+                name="Event Confirmation"
+                component={OrgEventConfirmation}
+              />
 
-
-            <Stack.Screen name="Org Events" component={TabNavigatorOrg} />
-            <Stack.Screen
-              name="Event Confirmation"
-              component={OrgEventConfirmation}
-            />
-
-            <Stack.Screen
-              name="Volunteer History"
-              component={VolunteerHistory}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-        <Toast />
+              <Stack.Screen
+                name="Volunteer History"
+                component={VolunteerHistory}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+          <Toast />
+        </MyEventsContext.Provider>
       </UserContext.Provider>
     </>
   );

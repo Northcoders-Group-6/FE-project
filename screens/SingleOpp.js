@@ -65,7 +65,7 @@ const SingleOpp = ({route}) => {
       number_of_vols: increment(-1),
     });
     updateDoc(Volunteer, {
-      events: arrayUnion(VolNumRef),
+      events: arrayUnion(eventId),
     });
     updateDoc(VolNumRef, {
       users: arrayUnion(loggedInUser),
