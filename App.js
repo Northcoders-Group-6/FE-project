@@ -35,7 +35,7 @@ export default function App() {
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <NavigationContainer>
           <Stack.Navigator>
-            {/* <Stack.Screen name="Single" component={SingleOpp} /> */}
+            {/* <Stack.Screen name="Org Single Event" component={OrgSingleEvent} /> */}
             <Stack.Screen
               options={{ headerShown: false }}
               name="Login"
