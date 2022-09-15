@@ -30,14 +30,14 @@ const eventSchema = yup.object({
     .number()
     .typeError("n° of volunteer is a required field")
     .required("n° of volunteer is a required field")
-    .min(1),
+    .min(1, "minimum one volunteer is required"),
   treats: yup.string().required().min(2).max(100),
   image: yup
     .string()
-    // .matches(
-    //   "/((https?)://)?(www.)?[a-z0-9]+(.[a-z]{2,}){1,3}(#?/?[a-zA-Z0-9#]+)*/?(?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/",
-    //   "Enter correct url!"
-    // )
+    .matches(
+      "/((https?)://)?(www.)?[a-z0-9]+(.[a-z]{2,}){1,3}(#?/?[a-zA-Z0-9#]+)*/?(?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/",
+      "Enter correct url!"
+    )
     .required("Please enter website"),
 });
 
@@ -76,7 +76,7 @@ const CreateEvent = () => {
                 navigation.navigate("Event Confirmation");
               }}
             >
-              {(props) => (
+              {props => (
                 <View>
                   <TextInput
                     placeholder="Event Title"
