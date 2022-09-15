@@ -11,9 +11,27 @@ import {
 } from "react-native";
 import React, { useState, useContext } from "react";
 import { Formik } from "formik";
+import * as yup from "yup";
 import { db } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { UserContext } from "../src/contexts/UserContext";
+
+const eventSchema = yup.object({
+  event_title: yup
+    .string()
+    .required("event title is a required field")
+    .min(2)
+    .max(20),
+  description: yup.string().required().min(2).max(20),
+  location: yup.string().required().min(2).max(20),
+  date_time: yup.string().required("date & time is a required field"),
+  number_of_vols: yup
+    .string()
+    .required("n° of volunteer is a required field")
+    .min(1),
+
+  treats: yup.string().required().min(2).max(20),
+});
 
 const CreateEvent = () => {
   const [newEvent, setNewEvent] = useState({});
@@ -36,11 +54,11 @@ const CreateEvent = () => {
             description: "",
             location: "",
             date_time: "",
-            location: "",
             number_of_vols: 0,
             treats: "",
             image: "",
           }}
+          validationSchema={eventSchema}
           onSubmit={(values, actions) => {
             values.company = loggedInUser.company_name;
             values.email = loggedInUser.email;
@@ -51,52 +69,72 @@ const CreateEvent = () => {
             navigation.navigate("Event Confirmation");
           }}
         >
-          {(props) => (
+          {props => (
             <View>
               <TextInput
                 placeholder="Event Title"
                 style={styles.input}
                 onChangeText={props.handleChange("event_title")}
+                onBlur={props.handleBlur("event_title")}
                 value={props.values.event_title}
               />
-              {/* <TextInput
-                placeholder="Company"
-                style={styles.input}
-                onChangeText={props.handleChange("company")}
-                value={props.values.company}
-              /> */}
+              <Text style={styles.errorText}>
+                {props.touched.event_title && props.errors.event_title}
+              </Text>
+
               <TextInput
                 placeholder="Description"
                 style={styles.input}
                 onChangeText={props.handleChange("description")}
+                onBlur={props.handleBlur("description")}
                 value={props.values.description}
               />
+              <Text style={styles.errorText}>
+                {props.touched.description && props.errors.description}
+              </Text>
               <TextInput
                 placeholder="Location"
                 style={styles.input}
                 onChangeText={props.handleChange("location")}
+                onBlur={props.handleBlur("location")}
                 value={props.values.location}
               />
+              <Text style={styles.errorText}>
+                {props.touched.location && props.errors.location}
+              </Text>
               <TextInput
                 placeholder="Date and Time"
                 style={styles.input}
                 onChangeText={props.handleChange("date_time")}
+                onBlur={props.handleBlur("date_time")}
                 value={props.values.date_time}
+                dataDetectorTypes="calendarEvent"
+                keyboardType="numeric"
               />
-
+              <Text style={styles.errorText}>
+                {props.touched.date_time && props.errors.date_time}
+              </Text>
               <TextInput
                 placeholder="Number of Volunteers"
                 style={styles.input}
                 onChangeText={props.handleChange("number_of_vols")}
+                onBlur={props.handleBlur("number_of_vols")}
                 value={props.values.number_of_vols}
                 keyboardType="numeric"
               />
+              <Text style={styles.errorText}>
+                {props.touched.number_of_vols && props.errors.number_of_vols}
+              </Text>
               <TextInput
                 placeholder="Treats"
                 style={styles.input}
                 onChangeText={props.handleChange("treats")}
+                onBlur={props.handleBlur("treats")}
                 value={props.values.treats}
               />
+              <Text style={styles.errorText}>
+                {props.touched.treats && props.errors.treats}
+              </Text>
               <TouchableOpacity
                 style={styles.button}
                 onPress={props.handleSubmit}
@@ -114,45 +152,21 @@ const CreateEvent = () => {
 export default CreateEvent;
 
 const styles = StyleSheet.create({
-  title1: {
-    fontSize: 24,
-    color: "#4D4B4B",
-    fontWeight: "500",
-    textAlign: "center",
-  },
-
-  container: {
-    padding: 20,
-  },
   input: {
     borderWidth: 1,
     borderColor: "#ddd",
     padding: 5,
     fontSize: 16,
     borderRadius: 6,
-    marginBottom: 10,
-    marginTop: 10,
   },
-
-  oppsText: {
-    color: "#3D5C43",
-    fontWeight: "700",
-    fontSize: 16,
-    textAlign: "left",
-  },
-  buttonContainer: {
-    width: "80%",
-    justifyContent: "center",
-    alignSelf: "center",
-  },
-
-  button: {
-    backgroundColor: "#6D326D",
-    width: "100%",
+  container: {
     padding: 20,
+  },
+  button: {
     borderRadius: 10,
-    alignItems: "center",
-    color: "white",
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+    backgroundColor: "#3D5C43",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -163,11 +177,18 @@ const styles = StyleSheet.create({
 
     elevation: 6,
   },
-
   buttonText: {
     color: "white",
     fontWeight: "bold",
     fontSize: 16,
+    textAlign: "center",
+  },
+  errorText: {
+    color: "#C33C54",
+    fontWeight: "light",
+    marginBottom: 2,
+    marginTop: 2,
+    margin: 0,
     textAlign: "center",
   },
 });
