@@ -129,7 +129,7 @@ const LoginScreen = () => {
     >
       <View style={styles.image}>
         <Image
-          source={require("./../assets/Untitled-1.png")}
+          source={require("./../assets/Untitled-2.png")}
           style={{ width: 296, height: 119 }}
         />
       </View>
